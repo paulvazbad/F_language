@@ -1,0 +1,34 @@
+ function idFunction(){
+     int i,b,c;
+    if(a>b){
+        print(a);
+        read(b);
+        sadas = sdsad;
+        for(id=0; id<5; id=id+1){
+            
+        }
+    }
+    prueba =3;
+    idFunction();
+    while(a>b){
+        if(a>b){
+            b++;
+        }
+    }
+ }
+ function idFunction(){
+    int mat[5][5];
+    int test = mat[5][5];
+    if(a>b){
+        print(a);
+    }
+ }
+
+ 
+main()
+{
+    int a= (6+6)*7 + 8;
+    do{
+        m = a[5];
+    }while(a==b && c>b);
+}

@@ -1,0 +1,3426 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    COMMENT
+
+Grammar
+
+Rule 0     S' -> PROGRAMA
+Rule 1     PROGRAMA -> VAR FUNC M
+Rule 2     VAR -> TIPO DECLARE SEMICOLON
+Rule 3     VAR -> TIPO MAT SEMICOLON
+Rule 4     VAR -> VAR TIPO DECLARE SEMICOLON
+Rule 5     VAR -> VAR TIPO MAT SEMICOLON
+Rule 6     VAR -> <empty>
+Rule 7     DECLARE -> ID
+Rule 8     DECLARE -> DECLARE COMA ID
+Rule 9     DECLARE -> ASSIGN
+Rule 10    DECLARE -> DECLARE COMA ASSIGN
+Rule 11    ASSIGN -> ID EQUAL EA
+Rule 12    FUNC -> FUNCTION ID OPEN_PARENTH CLOSING_PARENTH OPEN_BRACES S CLOSING_BRACES
+Rule 13    FUNC -> FUNC FUNCTION ID OPEN_PARENTH CLOSING_PARENTH OPEN_BRACES S CLOSING_BRACES
+Rule 14    FUNC -> <empty>
+Rule 15    M -> MAIN OPEN_PARENTH CLOSING_PARENTH OPEN_BRACES S CLOSING_BRACES
+Rule 16    TIPO -> INT
+Rule 17    TIPO -> DOUBLE
+Rule 18    S -> STATEMENTS
+Rule 19    S -> S STATEMENTS
+Rule 20    S -> <empty>
+Rule 21    STATEMENTS -> VAR
+Rule 22    STATEMENTS -> IDSTAT
+Rule 23    STATEMENTS -> PRINTSTAT
+Rule 24    STATEMENTS -> READSTAT
+Rule 25    STATEMENTS -> IFSTAT
+Rule 26    STATEMENTS -> WHILESTAT
+Rule 27    STATEMENTS -> DOSTAT
+Rule 28    STATEMENTS -> FORSTAT
+Rule 29    STATEMENTS -> FUNCSTAT
+Rule 30    STATEMENTS -> INC_STAT
+Rule 31    STATEMENTS -> <empty>
+Rule 32    IDSTAT -> ASSIGN SEMICOLON
+Rule 33    PRINTSTAT -> PRINT OPEN_PARENTH EA CLOSING_PARENTH SEMICOLON
+Rule 34    PRINTSTAT -> PRINT OPEN_PARENTH STRING CLOSING_PARENTH SEMICOLON
+Rule 35    READSTAT -> READ OPEN_PARENTH EA CLOSING_PARENTH SEMICOLON
+Rule 36    IFSTAT -> IF OPEN_PARENTH EL CLOSING_PARENTH IN_S
+Rule 37    IFSTAT -> IF OPEN_PARENTH EL CLOSING_PARENTH IN_S ELSE IN_S
+Rule 38    WHILESTAT -> WHILE OPEN_PARENTH EL CLOSING_PARENTH IN_S
+Rule 39    DOSTAT -> DO IN_S WHILE OPEN_PARENTH EL CLOSING_PARENTH SEMICOLON
+Rule 40    FORSTAT -> FOR OPEN_PARENTH ID EQUAL EA SEMICOLON EL SEMICOLON ID EQUAL EA CLOSING_PARENTH IN_S
+Rule 41    FUNCSTAT -> ID OPEN_PARENTH CLOSING_PARENTH SEMICOLON
+Rule 42    INC_STAT -> ID PLUSPLUS SEMICOLON
+Rule 43    INC_STAT -> ID MINUSMINUS SEMICOLON
+Rule 44    IN_S -> OPEN_BRACES S CLOSING_BRACES
+Rule 45    EA -> TA
+Rule 46    EA -> EA PLUS TA
+Rule 47    EA -> EA MINUS TA
+Rule 48    FA -> CONSTANT
+Rule 49    FA -> ID
+Rule 50    FA -> MAT
+Rule 51    FA -> OPEN_PARENTH EA CLOSING_PARENTH
+Rule 52    TA -> FA
+Rule 53    TA -> TA MULTIPLY FA
+Rule 54    TA -> TA DIVISION FA
+Rule 55    EL -> TL
+Rule 56    EL -> EL OR TL
+Rule 57    TL -> FL
+Rule 58    TL -> TL AND FL
+Rule 59    FL -> NL OPERATORS NL
+Rule 60    FL -> EA OPERATORS EA
+Rule 61    FL -> NL
+Rule 62    FL -> OPEN_PARENTH EL CLOSING_PARENTH
+Rule 63    NL -> NOT EL
+Rule 64    OPERATORS -> NOT_EQUAL
+Rule 65    OPERATORS -> LOWER_THAN
+Rule 66    OPERATORS -> BIGGER_THAN
+Rule 67    OPERATORS -> EQUAL_EQUAL
+Rule 68    MAT -> ID MAT_BRACKET
+Rule 69    MAT_BRACKET -> OPEN_BRACKET CONSTANT CLOSING_BRACKET
+Rule 70    MAT_BRACKET -> MAT_BRACKET OPEN_BRACKET CONSTANT CLOSING_BRACKET
+Rule 71    MAT_BRACKET -> OPEN_BRACKET ID CLOSING_BRACKET
+Rule 72    MAT_BRACKET -> MAT_BRACKET OPEN_BRACKET ID CLOSING_BRACKET
+
+Terminals, with rules where they appear
+
+AND                  : 58
+BIGGER_THAN          : 66
+CLOSING_BRACES       : 12 13 15 44
+CLOSING_BRACKET      : 69 70 71 72
+CLOSING_PARENTH      : 12 13 15 33 34 35 36 37 38 39 40 41 51 62
+COMA                 : 8 10
+COMMENT              : 
+CONSTANT             : 48 69 70
+DIVISION             : 54
+DO                   : 39
+DOUBLE               : 17
+ELSE                 : 37
+EQUAL                : 11 40 40
+EQUAL_EQUAL          : 67
+FOR                  : 40
+FUNCTION             : 12 13
+ID                   : 7 8 11 12 13 40 40 41 42 43 49 68 71 72
+IF                   : 36 37
+INT                  : 16
+LOWER_THAN           : 65
+MAIN                 : 15
+MINUS                : 47
+MINUSMINUS           : 43
+MULTIPLY             : 53
+NOT                  : 63
+NOT_EQUAL            : 64
+OPEN_BRACES          : 12 13 15 44
+OPEN_BRACKET         : 69 70 71 72
+OPEN_PARENTH         : 12 13 15 33 34 35 36 37 38 39 40 41 51 62
+OR                   : 56
+PLUS                 : 46
+PLUSPLUS             : 42
+PRINT                : 33 34
+READ                 : 35
+SEMICOLON            : 2 3 4 5 32 33 34 35 39 40 40 41 42 43
+STRING               : 34
+WHILE                : 38 39
+error                : 
+
+Nonterminals, with rules where they appear
+
+ASSIGN               : 9 10 32
+DECLARE              : 2 4 8 10
+DOSTAT               : 27
+EA                   : 11 33 35 40 40 46 47 51 60 60
+EL                   : 36 37 38 39 40 56 62 63
+FA                   : 52 53 54
+FL                   : 57 58
+FORSTAT              : 28
+FUNC                 : 1 13
+FUNCSTAT             : 29
+IDSTAT               : 22
+IFSTAT               : 25
+INC_STAT             : 30
+IN_S                 : 36 37 37 38 39 40
+M                    : 1
+MAT                  : 3 5 50
+MAT_BRACKET          : 68 70 72
+NL                   : 59 59 61
+OPERATORS            : 59 60
+PRINTSTAT            : 23
+PROGRAMA             : 0
+READSTAT             : 24
+S                    : 12 13 15 19 44
+STATEMENTS           : 18 19
+TA                   : 45 46 47 53 54
+TIPO                 : 2 3 4 5
+TL                   : 55 56 58
+VAR                  : 1 4 5 21
+WHILESTAT            : 26
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . PROGRAMA
+    (1) PROGRAMA -> . VAR FUNC M
+    (2) VAR -> . TIPO DECLARE SEMICOLON
+    (3) VAR -> . TIPO MAT SEMICOLON
+    (4) VAR -> . VAR TIPO DECLARE SEMICOLON
+    (5) VAR -> . VAR TIPO MAT SEMICOLON
+    (6) VAR -> .
+    (16) TIPO -> . INT
+    (17) TIPO -> . DOUBLE
+
+  ! shift/reduce conflict for INT resolved as shift
+  ! shift/reduce conflict for DOUBLE resolved as shift
+    FUNCTION        reduce using rule 6 (VAR -> .)
+    MAIN            reduce using rule 6 (VAR -> .)
+    INT             shift and go to state 1
+    DOUBLE          shift and go to state 2
+
+  ! INT             [ reduce using rule 6 (VAR -> .) ]
+  ! DOUBLE          [ reduce using rule 6 (VAR -> .) ]
+
+    PROGRAMA                       shift and go to state 3
+    VAR                            shift and go to state 4
+    TIPO                           shift and go to state 5
+
+state 1
+
+    (16) TIPO -> INT .
+
+    ID              reduce using rule 16 (TIPO -> INT .)
+
+
+state 2
+
+    (17) TIPO -> DOUBLE .
+
+    ID              reduce using rule 17 (TIPO -> DOUBLE .)
+
+
+state 3
+
+    (0) S' -> PROGRAMA .
+
+
+
+state 4
+
+    (1) PROGRAMA -> VAR . FUNC M
+    (4) VAR -> VAR . TIPO DECLARE SEMICOLON
+    (5) VAR -> VAR . TIPO MAT SEMICOLON
+    (12) FUNC -> . FUNCTION ID OPEN_PARENTH CLOSING_PARENTH OPEN_BRACES S CLOSING_BRACES
+    (13) FUNC -> . FUNC FUNCTION ID OPEN_PARENTH CLOSING_PARENTH OPEN_BRACES S CLOSING_BRACES
+    (14) FUNC -> .
+    (16) TIPO -> . INT
+    (17) TIPO -> . DOUBLE
+
+  ! shift/reduce conflict for FUNCTION resolved as shift
+    FUNCTION        shift and go to state 6
+    MAIN            reduce using rule 14 (FUNC -> .)
+    INT             shift and go to state 1
+    DOUBLE          shift and go to state 2
+
+  ! FUNCTION        [ reduce using rule 14 (FUNC -> .) ]
+
+    FUNC                           shift and go to state 7
+    TIPO                           shift and go to state 8
+
+state 5
+
+    (2) VAR -> TIPO . DECLARE SEMICOLON
+    (3) VAR -> TIPO . MAT SEMICOLON
+    (7) DECLARE -> . ID
+    (8) DECLARE -> . DECLARE COMA ID
+    (9) DECLARE -> . ASSIGN
+    (10) DECLARE -> . DECLARE COMA ASSIGN
+    (68) MAT -> . ID MAT_BRACKET
+    (11) ASSIGN -> . ID EQUAL EA
+
+    ID              shift and go to state 12
+
+    ASSIGN                         shift and go to state 9
+    MAT                            shift and go to state 10
+    DECLARE                        shift and go to state 11
+
+state 6
+
+    (12) FUNC -> FUNCTION . ID OPEN_PARENTH CLOSING_PARENTH OPEN_BRACES S CLOSING_BRACES
+
+    ID              shift and go to state 13
+
+
+state 7
+
+    (1) PROGRAMA -> VAR FUNC . M
+    (13) FUNC -> FUNC . FUNCTION ID OPEN_PARENTH CLOSING_PARENTH OPEN_BRACES S CLOSING_BRACES
+    (15) M -> . MAIN OPEN_PARENTH CLOSING_PARENTH OPEN_BRACES S CLOSING_BRACES
+
+    FUNCTION        shift and go to state 16
+    MAIN            shift and go to state 15
+
+    M                              shift and go to state 14
+
+state 8
+
+    (4) VAR -> VAR TIPO . DECLARE SEMICOLON
+    (5) VAR -> VAR TIPO . MAT SEMICOLON
+    (7) DECLARE -> . ID
+    (8) DECLARE -> . DECLARE COMA ID
+    (9) DECLARE -> . ASSIGN
+    (10) DECLARE -> . DECLARE COMA ASSIGN
+    (68) MAT -> . ID MAT_BRACKET
+    (11) ASSIGN -> . ID EQUAL EA
+
+    ID              shift and go to state 12
+
+    ASSIGN                         shift and go to state 9
+    MAT                            shift and go to state 17
+    DECLARE                        shift and go to state 18
+
+state 9
+
+    (9) DECLARE -> ASSIGN .
+
+    SEMICOLON       reduce using rule 9 (DECLARE -> ASSIGN .)
+    COMA            reduce using rule 9 (DECLARE -> ASSIGN .)
+
+
+state 10
+
+    (3) VAR -> TIPO MAT . SEMICOLON
+
+    SEMICOLON       shift and go to state 19
+
+
+state 11
+
+    (2) VAR -> TIPO DECLARE . SEMICOLON
+    (8) DECLARE -> DECLARE . COMA ID
+    (10) DECLARE -> DECLARE . COMA ASSIGN
+
+    SEMICOLON       shift and go to state 21
+    COMA            shift and go to state 20
+
+
+state 12
+
+    (7) DECLARE -> ID .
+    (68) MAT -> ID . MAT_BRACKET
+    (11) ASSIGN -> ID . EQUAL EA
+    (69) MAT_BRACKET -> . OPEN_BRACKET CONSTANT CLOSING_BRACKET
+    (70) MAT_BRACKET -> . MAT_BRACKET OPEN_BRACKET CONSTANT CLOSING_BRACKET
+    (71) MAT_BRACKET -> . OPEN_BRACKET ID CLOSING_BRACKET
+    (72) MAT_BRACKET -> . MAT_BRACKET OPEN_BRACKET ID CLOSING_BRACKET
+
+    SEMICOLON       reduce using rule 7 (DECLARE -> ID .)
+    COMA            reduce using rule 7 (DECLARE -> ID .)
+    EQUAL           shift and go to state 22
+    OPEN_BRACKET    shift and go to state 23
+
+    MAT_BRACKET                    shift and go to state 24
+
+state 13
+
+    (12) FUNC -> FUNCTION ID . OPEN_PARENTH CLOSING_PARENTH OPEN_BRACES S CLOSING_BRACES
+
+    OPEN_PARENTH    shift and go to state 25
+
+
+state 14
+
+    (1) PROGRAMA -> VAR FUNC M .
+
+    $end            reduce using rule 1 (PROGRAMA -> VAR FUNC M .)
+
+
+state 15
+
+    (15) M -> MAIN . OPEN_PARENTH CLOSING_PARENTH OPEN_BRACES S CLOSING_BRACES
+
+    OPEN_PARENTH    shift and go to state 26
+
+
+state 16
+
+    (13) FUNC -> FUNC FUNCTION . ID OPEN_PARENTH CLOSING_PARENTH OPEN_BRACES S CLOSING_BRACES
+
+    ID              shift and go to state 27
+
+
+state 17
+
+    (5) VAR -> VAR TIPO MAT . SEMICOLON
+
+    SEMICOLON       shift and go to state 28
+
+
+state 18
+
+    (4) VAR -> VAR TIPO DECLARE . SEMICOLON
+    (8) DECLARE -> DECLARE . COMA ID
+    (10) DECLARE -> DECLARE . COMA ASSIGN
+
+    SEMICOLON       shift and go to state 29
+    COMA            shift and go to state 20
+
+
+state 19
+
+    (3) VAR -> TIPO MAT SEMICOLON .
+
+    INT             reduce using rule 3 (VAR -> TIPO MAT SEMICOLON .)
+    DOUBLE          reduce using rule 3 (VAR -> TIPO MAT SEMICOLON .)
+    CLOSING_BRACES  reduce using rule 3 (VAR -> TIPO MAT SEMICOLON .)
+    PRINT           reduce using rule 3 (VAR -> TIPO MAT SEMICOLON .)
+    READ            reduce using rule 3 (VAR -> TIPO MAT SEMICOLON .)
+    IF              reduce using rule 3 (VAR -> TIPO MAT SEMICOLON .)
+    WHILE           reduce using rule 3 (VAR -> TIPO MAT SEMICOLON .)
+    DO              reduce using rule 3 (VAR -> TIPO MAT SEMICOLON .)
+    FOR             reduce using rule 3 (VAR -> TIPO MAT SEMICOLON .)
+    ID              reduce using rule 3 (VAR -> TIPO MAT SEMICOLON .)
+    FUNCTION        reduce using rule 3 (VAR -> TIPO MAT SEMICOLON .)
+    MAIN            reduce using rule 3 (VAR -> TIPO MAT SEMICOLON .)
+
+
+state 20
+
+    (8) DECLARE -> DECLARE COMA . ID
+    (10) DECLARE -> DECLARE COMA . ASSIGN
+    (11) ASSIGN -> . ID EQUAL EA
+
+    ID              shift and go to state 31
+
+    ASSIGN                         shift and go to state 30
+
+state 21
+
+    (2) VAR -> TIPO DECLARE SEMICOLON .
+
+    INT             reduce using rule 2 (VAR -> TIPO DECLARE SEMICOLON .)
+    DOUBLE          reduce using rule 2 (VAR -> TIPO DECLARE SEMICOLON .)
+    CLOSING_BRACES  reduce using rule 2 (VAR -> TIPO DECLARE SEMICOLON .)
+    PRINT           reduce using rule 2 (VAR -> TIPO DECLARE SEMICOLON .)
+    READ            reduce using rule 2 (VAR -> TIPO DECLARE SEMICOLON .)
+    IF              reduce using rule 2 (VAR -> TIPO DECLARE SEMICOLON .)
+    WHILE           reduce using rule 2 (VAR -> TIPO DECLARE SEMICOLON .)
+    DO              reduce using rule 2 (VAR -> TIPO DECLARE SEMICOLON .)
+    FOR             reduce using rule 2 (VAR -> TIPO DECLARE SEMICOLON .)
+    ID              reduce using rule 2 (VAR -> TIPO DECLARE SEMICOLON .)
+    FUNCTION        reduce using rule 2 (VAR -> TIPO DECLARE SEMICOLON .)
+    MAIN            reduce using rule 2 (VAR -> TIPO DECLARE SEMICOLON .)
+
+
+state 22
+
+    (11) ASSIGN -> ID EQUAL . EA
+    (45) EA -> . TA
+    (46) EA -> . EA PLUS TA
+    (47) EA -> . EA MINUS TA
+    (52) TA -> . FA
+    (53) TA -> . TA MULTIPLY FA
+    (54) TA -> . TA DIVISION FA
+    (48) FA -> . CONSTANT
+    (49) FA -> . ID
+    (50) FA -> . MAT
+    (51) FA -> . OPEN_PARENTH EA CLOSING_PARENTH
+    (68) MAT -> . ID MAT_BRACKET
+
+    CONSTANT        shift and go to state 37
+    ID              shift and go to state 34
+    OPEN_PARENTH    shift and go to state 32
+
+    EA                             shift and go to state 35
+    MAT                            shift and go to state 33
+    FA                             shift and go to state 36
+    TA                             shift and go to state 38
+
+state 23
+
+    (69) MAT_BRACKET -> OPEN_BRACKET . CONSTANT CLOSING_BRACKET
+    (71) MAT_BRACKET -> OPEN_BRACKET . ID CLOSING_BRACKET
+
+    CONSTANT        shift and go to state 39
+    ID              shift and go to state 40
+
+
+state 24
+
+    (68) MAT -> ID MAT_BRACKET .
+    (70) MAT_BRACKET -> MAT_BRACKET . OPEN_BRACKET CONSTANT CLOSING_BRACKET
+    (72) MAT_BRACKET -> MAT_BRACKET . OPEN_BRACKET ID CLOSING_BRACKET
+
+    MULTIPLY        reduce using rule 68 (MAT -> ID MAT_BRACKET .)
+    DIVISION        reduce using rule 68 (MAT -> ID MAT_BRACKET .)
+    SEMICOLON       reduce using rule 68 (MAT -> ID MAT_BRACKET .)
+    PLUS            reduce using rule 68 (MAT -> ID MAT_BRACKET .)
+    MINUS           reduce using rule 68 (MAT -> ID MAT_BRACKET .)
+    COMA            reduce using rule 68 (MAT -> ID MAT_BRACKET .)
+    CLOSING_PARENTH reduce using rule 68 (MAT -> ID MAT_BRACKET .)
+    NOT_EQUAL       reduce using rule 68 (MAT -> ID MAT_BRACKET .)
+    LOWER_THAN      reduce using rule 68 (MAT -> ID MAT_BRACKET .)
+    BIGGER_THAN     reduce using rule 68 (MAT -> ID MAT_BRACKET .)
+    EQUAL_EQUAL     reduce using rule 68 (MAT -> ID MAT_BRACKET .)
+    AND             reduce using rule 68 (MAT -> ID MAT_BRACKET .)
+    OR              reduce using rule 68 (MAT -> ID MAT_BRACKET .)
+    OPEN_BRACKET    shift and go to state 41
+
+
+state 25
+
+    (12) FUNC -> FUNCTION ID OPEN_PARENTH . CLOSING_PARENTH OPEN_BRACES S CLOSING_BRACES
+
+    CLOSING_PARENTH shift and go to state 42
+
+
+state 26
+
+    (15) M -> MAIN OPEN_PARENTH . CLOSING_PARENTH OPEN_BRACES S CLOSING_BRACES
+
+    CLOSING_PARENTH shift and go to state 43
+
+
+state 27
+
+    (13) FUNC -> FUNC FUNCTION ID . OPEN_PARENTH CLOSING_PARENTH OPEN_BRACES S CLOSING_BRACES
+
+    OPEN_PARENTH    shift and go to state 44
+
+
+state 28
+
+    (5) VAR -> VAR TIPO MAT SEMICOLON .
+
+    INT             reduce using rule 5 (VAR -> VAR TIPO MAT SEMICOLON .)
+    DOUBLE          reduce using rule 5 (VAR -> VAR TIPO MAT SEMICOLON .)
+    CLOSING_BRACES  reduce using rule 5 (VAR -> VAR TIPO MAT SEMICOLON .)
+    PRINT           reduce using rule 5 (VAR -> VAR TIPO MAT SEMICOLON .)
+    READ            reduce using rule 5 (VAR -> VAR TIPO MAT SEMICOLON .)
+    IF              reduce using rule 5 (VAR -> VAR TIPO MAT SEMICOLON .)
+    WHILE           reduce using rule 5 (VAR -> VAR TIPO MAT SEMICOLON .)
+    DO              reduce using rule 5 (VAR -> VAR TIPO MAT SEMICOLON .)
+    FOR             reduce using rule 5 (VAR -> VAR TIPO MAT SEMICOLON .)
+    ID              reduce using rule 5 (VAR -> VAR TIPO MAT SEMICOLON .)
+    FUNCTION        reduce using rule 5 (VAR -> VAR TIPO MAT SEMICOLON .)
+    MAIN            reduce using rule 5 (VAR -> VAR TIPO MAT SEMICOLON .)
+
+
+state 29
+
+    (4) VAR -> VAR TIPO DECLARE SEMICOLON .
+
+    INT             reduce using rule 4 (VAR -> VAR TIPO DECLARE SEMICOLON .)
+    DOUBLE          reduce using rule 4 (VAR -> VAR TIPO DECLARE SEMICOLON .)
+    CLOSING_BRACES  reduce using rule 4 (VAR -> VAR TIPO DECLARE SEMICOLON .)
+    PRINT           reduce using rule 4 (VAR -> VAR TIPO DECLARE SEMICOLON .)
+    READ            reduce using rule 4 (VAR -> VAR TIPO DECLARE SEMICOLON .)
+    IF              reduce using rule 4 (VAR -> VAR TIPO DECLARE SEMICOLON .)
+    WHILE           reduce using rule 4 (VAR -> VAR TIPO DECLARE SEMICOLON .)
+    DO              reduce using rule 4 (VAR -> VAR TIPO DECLARE SEMICOLON .)
+    FOR             reduce using rule 4 (VAR -> VAR TIPO DECLARE SEMICOLON .)
+    ID              reduce using rule 4 (VAR -> VAR TIPO DECLARE SEMICOLON .)
+    FUNCTION        reduce using rule 4 (VAR -> VAR TIPO DECLARE SEMICOLON .)
+    MAIN            reduce using rule 4 (VAR -> VAR TIPO DECLARE SEMICOLON .)
+
+
+state 30
+
+    (10) DECLARE -> DECLARE COMA ASSIGN .
+
+    SEMICOLON       reduce using rule 10 (DECLARE -> DECLARE COMA ASSIGN .)
+    COMA            reduce using rule 10 (DECLARE -> DECLARE COMA ASSIGN .)
+
+
+state 31
+
+    (8) DECLARE -> DECLARE COMA ID .
+    (11) ASSIGN -> ID . EQUAL EA
+
+    SEMICOLON       reduce using rule 8 (DECLARE -> DECLARE COMA ID .)
+    COMA            reduce using rule 8 (DECLARE -> DECLARE COMA ID .)
+    EQUAL           shift and go to state 22
+
+
+state 32
+
+    (51) FA -> OPEN_PARENTH . EA CLOSING_PARENTH
+    (45) EA -> . TA
+    (46) EA -> . EA PLUS TA
+    (47) EA -> . EA MINUS TA
+    (52) TA -> . FA
+    (53) TA -> . TA MULTIPLY FA
+    (54) TA -> . TA DIVISION FA
+    (48) FA -> . CONSTANT
+    (49) FA -> . ID
+    (50) FA -> . MAT
+    (51) FA -> . OPEN_PARENTH EA CLOSING_PARENTH
+    (68) MAT -> . ID MAT_BRACKET
+
+    CONSTANT        shift and go to state 37
+    ID              shift and go to state 34
+    OPEN_PARENTH    shift and go to state 32
+
+    EA                             shift and go to state 45
+    MAT                            shift and go to state 33
+    FA                             shift and go to state 36
+    TA                             shift and go to state 38
+
+state 33
+
+    (50) FA -> MAT .
+
+    MULTIPLY        reduce using rule 50 (FA -> MAT .)
+    DIVISION        reduce using rule 50 (FA -> MAT .)
+    PLUS            reduce using rule 50 (FA -> MAT .)
+    MINUS           reduce using rule 50 (FA -> MAT .)
+    NOT_EQUAL       reduce using rule 50 (FA -> MAT .)
+    LOWER_THAN      reduce using rule 50 (FA -> MAT .)
+    BIGGER_THAN     reduce using rule 50 (FA -> MAT .)
+    EQUAL_EQUAL     reduce using rule 50 (FA -> MAT .)
+    AND             reduce using rule 50 (FA -> MAT .)
+    CLOSING_PARENTH reduce using rule 50 (FA -> MAT .)
+    OR              reduce using rule 50 (FA -> MAT .)
+    SEMICOLON       reduce using rule 50 (FA -> MAT .)
+    COMA            reduce using rule 50 (FA -> MAT .)
+
+
+state 34
+
+    (49) FA -> ID .
+    (68) MAT -> ID . MAT_BRACKET
+    (69) MAT_BRACKET -> . OPEN_BRACKET CONSTANT CLOSING_BRACKET
+    (70) MAT_BRACKET -> . MAT_BRACKET OPEN_BRACKET CONSTANT CLOSING_BRACKET
+    (71) MAT_BRACKET -> . OPEN_BRACKET ID CLOSING_BRACKET
+    (72) MAT_BRACKET -> . MAT_BRACKET OPEN_BRACKET ID CLOSING_BRACKET
+
+    MULTIPLY        reduce using rule 49 (FA -> ID .)
+    DIVISION        reduce using rule 49 (FA -> ID .)
+    PLUS            reduce using rule 49 (FA -> ID .)
+    MINUS           reduce using rule 49 (FA -> ID .)
+    NOT_EQUAL       reduce using rule 49 (FA -> ID .)
+    LOWER_THAN      reduce using rule 49 (FA -> ID .)
+    BIGGER_THAN     reduce using rule 49 (FA -> ID .)
+    EQUAL_EQUAL     reduce using rule 49 (FA -> ID .)
+    AND             reduce using rule 49 (FA -> ID .)
+    CLOSING_PARENTH reduce using rule 49 (FA -> ID .)
+    OR              reduce using rule 49 (FA -> ID .)
+    SEMICOLON       reduce using rule 49 (FA -> ID .)
+    COMA            reduce using rule 49 (FA -> ID .)
+    OPEN_BRACKET    shift and go to state 23
+
+    MAT_BRACKET                    shift and go to state 24
+
+state 35
+
+    (11) ASSIGN -> ID EQUAL EA .
+    (46) EA -> EA . PLUS TA
+    (47) EA -> EA . MINUS TA
+
+    SEMICOLON       reduce using rule 11 (ASSIGN -> ID EQUAL EA .)
+    COMA            reduce using rule 11 (ASSIGN -> ID EQUAL EA .)
+    PLUS            shift and go to state 47
+    MINUS           shift and go to state 46
+
+
+state 36
+
+    (52) TA -> FA .
+
+    MULTIPLY        reduce using rule 52 (TA -> FA .)
+    DIVISION        reduce using rule 52 (TA -> FA .)
+    SEMICOLON       reduce using rule 52 (TA -> FA .)
+    PLUS            reduce using rule 52 (TA -> FA .)
+    MINUS           reduce using rule 52 (TA -> FA .)
+    AND             reduce using rule 52 (TA -> FA .)
+    CLOSING_PARENTH reduce using rule 52 (TA -> FA .)
+    OR              reduce using rule 52 (TA -> FA .)
+    NOT_EQUAL       reduce using rule 52 (TA -> FA .)
+    LOWER_THAN      reduce using rule 52 (TA -> FA .)
+    BIGGER_THAN     reduce using rule 52 (TA -> FA .)
+    EQUAL_EQUAL     reduce using rule 52 (TA -> FA .)
+    COMA            reduce using rule 52 (TA -> FA .)
+
+
+state 37
+
+    (48) FA -> CONSTANT .
+
+    MULTIPLY        reduce using rule 48 (FA -> CONSTANT .)
+    DIVISION        reduce using rule 48 (FA -> CONSTANT .)
+    PLUS            reduce using rule 48 (FA -> CONSTANT .)
+    MINUS           reduce using rule 48 (FA -> CONSTANT .)
+    NOT_EQUAL       reduce using rule 48 (FA -> CONSTANT .)
+    LOWER_THAN      reduce using rule 48 (FA -> CONSTANT .)
+    BIGGER_THAN     reduce using rule 48 (FA -> CONSTANT .)
+    EQUAL_EQUAL     reduce using rule 48 (FA -> CONSTANT .)
+    AND             reduce using rule 48 (FA -> CONSTANT .)
+    CLOSING_PARENTH reduce using rule 48 (FA -> CONSTANT .)
+    OR              reduce using rule 48 (FA -> CONSTANT .)
+    SEMICOLON       reduce using rule 48 (FA -> CONSTANT .)
+    COMA            reduce using rule 48 (FA -> CONSTANT .)
+
+
+state 38
+
+    (45) EA -> TA .
+    (53) TA -> TA . MULTIPLY FA
+    (54) TA -> TA . DIVISION FA
+
+    CLOSING_PARENTH reduce using rule 45 (EA -> TA .)
+    PLUS            reduce using rule 45 (EA -> TA .)
+    MINUS           reduce using rule 45 (EA -> TA .)
+    SEMICOLON       reduce using rule 45 (EA -> TA .)
+    NOT_EQUAL       reduce using rule 45 (EA -> TA .)
+    LOWER_THAN      reduce using rule 45 (EA -> TA .)
+    BIGGER_THAN     reduce using rule 45 (EA -> TA .)
+    EQUAL_EQUAL     reduce using rule 45 (EA -> TA .)
+    AND             reduce using rule 45 (EA -> TA .)
+    OR              reduce using rule 45 (EA -> TA .)
+    COMA            reduce using rule 45 (EA -> TA .)
+    MULTIPLY        shift and go to state 48
+    DIVISION        shift and go to state 49
+
+
+state 39
+
+    (69) MAT_BRACKET -> OPEN_BRACKET CONSTANT . CLOSING_BRACKET
+
+    CLOSING_BRACKET shift and go to state 50
+
+
+state 40
+
+    (71) MAT_BRACKET -> OPEN_BRACKET ID . CLOSING_BRACKET
+
+    CLOSING_BRACKET shift and go to state 51
+
+
+state 41
+
+    (70) MAT_BRACKET -> MAT_BRACKET OPEN_BRACKET . CONSTANT CLOSING_BRACKET
+    (72) MAT_BRACKET -> MAT_BRACKET OPEN_BRACKET . ID CLOSING_BRACKET
+
+    CONSTANT        shift and go to state 52
+    ID              shift and go to state 53
+
+
+state 42
+
+    (12) FUNC -> FUNCTION ID OPEN_PARENTH CLOSING_PARENTH . OPEN_BRACES S CLOSING_BRACES
+
+    OPEN_BRACES     shift and go to state 54
+
+
+state 43
+
+    (15) M -> MAIN OPEN_PARENTH CLOSING_PARENTH . OPEN_BRACES S CLOSING_BRACES
+
+    OPEN_BRACES     shift and go to state 55
+
+
+state 44
+
+    (13) FUNC -> FUNC FUNCTION ID OPEN_PARENTH . CLOSING_PARENTH OPEN_BRACES S CLOSING_BRACES
+
+    CLOSING_PARENTH shift and go to state 56
+
+
+state 45
+
+    (51) FA -> OPEN_PARENTH EA . CLOSING_PARENTH
+    (46) EA -> EA . PLUS TA
+    (47) EA -> EA . MINUS TA
+
+    CLOSING_PARENTH shift and go to state 57
+    PLUS            shift and go to state 47
+    MINUS           shift and go to state 46
+
+
+state 46
+
+    (47) EA -> EA MINUS . TA
+    (52) TA -> . FA
+    (53) TA -> . TA MULTIPLY FA
+    (54) TA -> . TA DIVISION FA
+    (48) FA -> . CONSTANT
+    (49) FA -> . ID
+    (50) FA -> . MAT
+    (51) FA -> . OPEN_PARENTH EA CLOSING_PARENTH
+    (68) MAT -> . ID MAT_BRACKET
+
+    CONSTANT        shift and go to state 37
+    ID              shift and go to state 34
+    OPEN_PARENTH    shift and go to state 32
+
+    MAT                            shift and go to state 33
+    FA                             shift and go to state 36
+    TA                             shift and go to state 58
+
+state 47
+
+    (46) EA -> EA PLUS . TA
+    (52) TA -> . FA
+    (53) TA -> . TA MULTIPLY FA
+    (54) TA -> . TA DIVISION FA
+    (48) FA -> . CONSTANT
+    (49) FA -> . ID
+    (50) FA -> . MAT
+    (51) FA -> . OPEN_PARENTH EA CLOSING_PARENTH
+    (68) MAT -> . ID MAT_BRACKET
+
+    CONSTANT        shift and go to state 37
+    ID              shift and go to state 34
+    OPEN_PARENTH    shift and go to state 32
+
+    MAT                            shift and go to state 33
+    FA                             shift and go to state 36
+    TA                             shift and go to state 59
+
+state 48
+
+    (53) TA -> TA MULTIPLY . FA
+    (48) FA -> . CONSTANT
+    (49) FA -> . ID
+    (50) FA -> . MAT
+    (51) FA -> . OPEN_PARENTH EA CLOSING_PARENTH
+    (68) MAT -> . ID MAT_BRACKET
+
+    CONSTANT        shift and go to state 37
+    ID              shift and go to state 34
+    OPEN_PARENTH    shift and go to state 32
+
+    MAT                            shift and go to state 33
+    FA                             shift and go to state 60
+
+state 49
+
+    (54) TA -> TA DIVISION . FA
+    (48) FA -> . CONSTANT
+    (49) FA -> . ID
+    (50) FA -> . MAT
+    (51) FA -> . OPEN_PARENTH EA CLOSING_PARENTH
+    (68) MAT -> . ID MAT_BRACKET
+
+    CONSTANT        shift and go to state 37
+    ID              shift and go to state 34
+    OPEN_PARENTH    shift and go to state 32
+
+    MAT                            shift and go to state 33
+    FA                             shift and go to state 61
+
+state 50
+
+    (69) MAT_BRACKET -> OPEN_BRACKET CONSTANT CLOSING_BRACKET .
+
+    OPEN_BRACKET    reduce using rule 69 (MAT_BRACKET -> OPEN_BRACKET CONSTANT CLOSING_BRACKET .)
+    MULTIPLY        reduce using rule 69 (MAT_BRACKET -> OPEN_BRACKET CONSTANT CLOSING_BRACKET .)
+    DIVISION        reduce using rule 69 (MAT_BRACKET -> OPEN_BRACKET CONSTANT CLOSING_BRACKET .)
+    PLUS            reduce using rule 69 (MAT_BRACKET -> OPEN_BRACKET CONSTANT CLOSING_BRACKET .)
+    MINUS           reduce using rule 69 (MAT_BRACKET -> OPEN_BRACKET CONSTANT CLOSING_BRACKET .)
+    SEMICOLON       reduce using rule 69 (MAT_BRACKET -> OPEN_BRACKET CONSTANT CLOSING_BRACKET .)
+    COMA            reduce using rule 69 (MAT_BRACKET -> OPEN_BRACKET CONSTANT CLOSING_BRACKET .)
+    CLOSING_PARENTH reduce using rule 69 (MAT_BRACKET -> OPEN_BRACKET CONSTANT CLOSING_BRACKET .)
+    NOT_EQUAL       reduce using rule 69 (MAT_BRACKET -> OPEN_BRACKET CONSTANT CLOSING_BRACKET .)
+    LOWER_THAN      reduce using rule 69 (MAT_BRACKET -> OPEN_BRACKET CONSTANT CLOSING_BRACKET .)
+    BIGGER_THAN     reduce using rule 69 (MAT_BRACKET -> OPEN_BRACKET CONSTANT CLOSING_BRACKET .)
+    EQUAL_EQUAL     reduce using rule 69 (MAT_BRACKET -> OPEN_BRACKET CONSTANT CLOSING_BRACKET .)
+    AND             reduce using rule 69 (MAT_BRACKET -> OPEN_BRACKET CONSTANT CLOSING_BRACKET .)
+    OR              reduce using rule 69 (MAT_BRACKET -> OPEN_BRACKET CONSTANT CLOSING_BRACKET .)
+
+
+state 51
+
+    (71) MAT_BRACKET -> OPEN_BRACKET ID CLOSING_BRACKET .
+
+    OPEN_BRACKET    reduce using rule 71 (MAT_BRACKET -> OPEN_BRACKET ID CLOSING_BRACKET .)
+    MULTIPLY        reduce using rule 71 (MAT_BRACKET -> OPEN_BRACKET ID CLOSING_BRACKET .)
+    DIVISION        reduce using rule 71 (MAT_BRACKET -> OPEN_BRACKET ID CLOSING_BRACKET .)
+    PLUS            reduce using rule 71 (MAT_BRACKET -> OPEN_BRACKET ID CLOSING_BRACKET .)
+    MINUS           reduce using rule 71 (MAT_BRACKET -> OPEN_BRACKET ID CLOSING_BRACKET .)
+    SEMICOLON       reduce using rule 71 (MAT_BRACKET -> OPEN_BRACKET ID CLOSING_BRACKET .)
+    COMA            reduce using rule 71 (MAT_BRACKET -> OPEN_BRACKET ID CLOSING_BRACKET .)
+    CLOSING_PARENTH reduce using rule 71 (MAT_BRACKET -> OPEN_BRACKET ID CLOSING_BRACKET .)
+    NOT_EQUAL       reduce using rule 71 (MAT_BRACKET -> OPEN_BRACKET ID CLOSING_BRACKET .)
+    LOWER_THAN      reduce using rule 71 (MAT_BRACKET -> OPEN_BRACKET ID CLOSING_BRACKET .)
+    BIGGER_THAN     reduce using rule 71 (MAT_BRACKET -> OPEN_BRACKET ID CLOSING_BRACKET .)
+    EQUAL_EQUAL     reduce using rule 71 (MAT_BRACKET -> OPEN_BRACKET ID CLOSING_BRACKET .)
+    AND             reduce using rule 71 (MAT_BRACKET -> OPEN_BRACKET ID CLOSING_BRACKET .)
+    OR              reduce using rule 71 (MAT_BRACKET -> OPEN_BRACKET ID CLOSING_BRACKET .)
+
+
+state 52
+
+    (70) MAT_BRACKET -> MAT_BRACKET OPEN_BRACKET CONSTANT . CLOSING_BRACKET
+
+    CLOSING_BRACKET shift and go to state 62
+
+
+state 53
+
+    (72) MAT_BRACKET -> MAT_BRACKET OPEN_BRACKET ID . CLOSING_BRACKET
+
+    CLOSING_BRACKET shift and go to state 63
+
+
+state 54
+
+    (12) FUNC -> FUNCTION ID OPEN_PARENTH CLOSING_PARENTH OPEN_BRACES . S CLOSING_BRACES
+    (18) S -> . STATEMENTS
+    (19) S -> . S STATEMENTS
+    (20) S -> .
+    (21) STATEMENTS -> . VAR
+    (22) STATEMENTS -> . IDSTAT
+    (23) STATEMENTS -> . PRINTSTAT
+    (24) STATEMENTS -> . READSTAT
+    (25) STATEMENTS -> . IFSTAT
+    (26) STATEMENTS -> . WHILESTAT
+    (27) STATEMENTS -> . DOSTAT
+    (28) STATEMENTS -> . FORSTAT
+    (29) STATEMENTS -> . FUNCSTAT
+    (30) STATEMENTS -> . INC_STAT
+    (31) STATEMENTS -> .
+    (2) VAR -> . TIPO DECLARE SEMICOLON
+    (3) VAR -> . TIPO MAT SEMICOLON
+    (4) VAR -> . VAR TIPO DECLARE SEMICOLON
+    (5) VAR -> . VAR TIPO MAT SEMICOLON
+    (6) VAR -> .
+    (32) IDSTAT -> . ASSIGN SEMICOLON
+    (33) PRINTSTAT -> . PRINT OPEN_PARENTH EA CLOSING_PARENTH SEMICOLON
+    (34) PRINTSTAT -> . PRINT OPEN_PARENTH STRING CLOSING_PARENTH SEMICOLON
+    (35) READSTAT -> . READ OPEN_PARENTH EA CLOSING_PARENTH SEMICOLON
+    (36) IFSTAT -> . IF OPEN_PARENTH EL CLOSING_PARENTH IN_S
+    (37) IFSTAT -> . IF OPEN_PARENTH EL CLOSING_PARENTH IN_S ELSE IN_S
+    (38) WHILESTAT -> . WHILE OPEN_PARENTH EL CLOSING_PARENTH IN_S
+    (39) DOSTAT -> . DO IN_S WHILE OPEN_PARENTH EL CLOSING_PARENTH SEMICOLON
+    (40) FORSTAT -> . FOR OPEN_PARENTH ID EQUAL EA SEMICOLON EL SEMICOLON ID EQUAL EA CLOSING_PARENTH IN_S
+    (41) FUNCSTAT -> . ID OPEN_PARENTH CLOSING_PARENTH SEMICOLON
+    (42) INC_STAT -> . ID PLUSPLUS SEMICOLON
+    (43) INC_STAT -> . ID MINUSMINUS SEMICOLON
+    (16) TIPO -> . INT
+    (17) TIPO -> . DOUBLE
+    (11) ASSIGN -> . ID EQUAL EA
+
+  ! reduce/reduce conflict for CLOSING_BRACES resolved using rule 20 (S -> .)
+  ! reduce/reduce conflict for PRINT resolved using rule 20 (S -> .)
+  ! reduce/reduce conflict for READ resolved using rule 20 (S -> .)
+  ! reduce/reduce conflict for IF resolved using rule 20 (S -> .)
+  ! reduce/reduce conflict for WHILE resolved using rule 20 (S -> .)
+  ! reduce/reduce conflict for DO resolved using rule 20 (S -> .)
+  ! reduce/reduce conflict for FOR resolved using rule 20 (S -> .)
+  ! reduce/reduce conflict for ID resolved using rule 20 (S -> .)
+  ! reduce/reduce conflict for INT resolved using rule 20 (S -> .)
+  ! reduce/reduce conflict for DOUBLE resolved using rule 20 (S -> .)
+  ! reduce/reduce conflict for INT resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for DOUBLE resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for CLOSING_BRACES resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for PRINT resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for READ resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for IF resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for WHILE resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for DO resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for FOR resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for ID resolved using rule 6 (VAR -> .)
+  ! shift/reduce conflict for PRINT resolved as shift
+  ! shift/reduce conflict for READ resolved as shift
+  ! shift/reduce conflict for IF resolved as shift
+  ! shift/reduce conflict for WHILE resolved as shift
+  ! shift/reduce conflict for DO resolved as shift
+  ! shift/reduce conflict for FOR resolved as shift
+  ! shift/reduce conflict for ID resolved as shift
+  ! shift/reduce conflict for INT resolved as shift
+  ! shift/reduce conflict for DOUBLE resolved as shift
+    CLOSING_BRACES  reduce using rule 6 (VAR -> .)
+    PRINT           shift and go to state 80
+    READ            shift and go to state 64
+    IF              shift and go to state 82
+    WHILE           shift and go to state 78
+    DO              shift and go to state 67
+    FOR             shift and go to state 68
+    ID              shift and go to state 69
+    INT             shift and go to state 1
+    DOUBLE          shift and go to state 2
+
+  ! CLOSING_BRACES  [ reduce using rule 20 (S -> .) ]
+  ! PRINT           [ reduce using rule 20 (S -> .) ]
+  ! READ            [ reduce using rule 20 (S -> .) ]
+  ! IF              [ reduce using rule 20 (S -> .) ]
+  ! WHILE           [ reduce using rule 20 (S -> .) ]
+  ! DO              [ reduce using rule 20 (S -> .) ]
+  ! FOR             [ reduce using rule 20 (S -> .) ]
+  ! ID              [ reduce using rule 20 (S -> .) ]
+  ! INT             [ reduce using rule 20 (S -> .) ]
+  ! DOUBLE          [ reduce using rule 20 (S -> .) ]
+  ! CLOSING_BRACES  [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! PRINT           [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! READ            [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! IF              [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! WHILE           [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! DO              [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! FOR             [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! ID              [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! INT             [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! DOUBLE          [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! INT             [ reduce using rule 6 (VAR -> .) ]
+  ! DOUBLE          [ reduce using rule 6 (VAR -> .) ]
+  ! PRINT           [ reduce using rule 6 (VAR -> .) ]
+  ! READ            [ reduce using rule 6 (VAR -> .) ]
+  ! IF              [ reduce using rule 6 (VAR -> .) ]
+  ! WHILE           [ reduce using rule 6 (VAR -> .) ]
+  ! DO              [ reduce using rule 6 (VAR -> .) ]
+  ! FOR             [ reduce using rule 6 (VAR -> .) ]
+  ! ID              [ reduce using rule 6 (VAR -> .) ]
+
+    STATEMENTS                     shift and go to state 77
+    PRINTSTAT                      shift and go to state 79
+    FUNCSTAT                       shift and go to state 66
+    INC_STAT                       shift and go to state 81
+    VAR                            shift and go to state 83
+    FORSTAT                        shift and go to state 70
+    ASSIGN                         shift and go to state 71
+    READSTAT                       shift and go to state 72
+    WHILESTAT                      shift and go to state 65
+    DOSTAT                         shift and go to state 73
+    IFSTAT                         shift and go to state 74
+    S                              shift and go to state 75
+    IDSTAT                         shift and go to state 76
+    TIPO                           shift and go to state 5
+
+state 55
+
+    (15) M -> MAIN OPEN_PARENTH CLOSING_PARENTH OPEN_BRACES . S CLOSING_BRACES
+    (18) S -> . STATEMENTS
+    (19) S -> . S STATEMENTS
+    (20) S -> .
+    (21) STATEMENTS -> . VAR
+    (22) STATEMENTS -> . IDSTAT
+    (23) STATEMENTS -> . PRINTSTAT
+    (24) STATEMENTS -> . READSTAT
+    (25) STATEMENTS -> . IFSTAT
+    (26) STATEMENTS -> . WHILESTAT
+    (27) STATEMENTS -> . DOSTAT
+    (28) STATEMENTS -> . FORSTAT
+    (29) STATEMENTS -> . FUNCSTAT
+    (30) STATEMENTS -> . INC_STAT
+    (31) STATEMENTS -> .
+    (2) VAR -> . TIPO DECLARE SEMICOLON
+    (3) VAR -> . TIPO MAT SEMICOLON
+    (4) VAR -> . VAR TIPO DECLARE SEMICOLON
+    (5) VAR -> . VAR TIPO MAT SEMICOLON
+    (6) VAR -> .
+    (32) IDSTAT -> . ASSIGN SEMICOLON
+    (33) PRINTSTAT -> . PRINT OPEN_PARENTH EA CLOSING_PARENTH SEMICOLON
+    (34) PRINTSTAT -> . PRINT OPEN_PARENTH STRING CLOSING_PARENTH SEMICOLON
+    (35) READSTAT -> . READ OPEN_PARENTH EA CLOSING_PARENTH SEMICOLON
+    (36) IFSTAT -> . IF OPEN_PARENTH EL CLOSING_PARENTH IN_S
+    (37) IFSTAT -> . IF OPEN_PARENTH EL CLOSING_PARENTH IN_S ELSE IN_S
+    (38) WHILESTAT -> . WHILE OPEN_PARENTH EL CLOSING_PARENTH IN_S
+    (39) DOSTAT -> . DO IN_S WHILE OPEN_PARENTH EL CLOSING_PARENTH SEMICOLON
+    (40) FORSTAT -> . FOR OPEN_PARENTH ID EQUAL EA SEMICOLON EL SEMICOLON ID EQUAL EA CLOSING_PARENTH IN_S
+    (41) FUNCSTAT -> . ID OPEN_PARENTH CLOSING_PARENTH SEMICOLON
+    (42) INC_STAT -> . ID PLUSPLUS SEMICOLON
+    (43) INC_STAT -> . ID MINUSMINUS SEMICOLON
+    (16) TIPO -> . INT
+    (17) TIPO -> . DOUBLE
+    (11) ASSIGN -> . ID EQUAL EA
+
+  ! reduce/reduce conflict for CLOSING_BRACES resolved using rule 20 (S -> .)
+  ! reduce/reduce conflict for PRINT resolved using rule 20 (S -> .)
+  ! reduce/reduce conflict for READ resolved using rule 20 (S -> .)
+  ! reduce/reduce conflict for IF resolved using rule 20 (S -> .)
+  ! reduce/reduce conflict for WHILE resolved using rule 20 (S -> .)
+  ! reduce/reduce conflict for DO resolved using rule 20 (S -> .)
+  ! reduce/reduce conflict for FOR resolved using rule 20 (S -> .)
+  ! reduce/reduce conflict for ID resolved using rule 20 (S -> .)
+  ! reduce/reduce conflict for INT resolved using rule 20 (S -> .)
+  ! reduce/reduce conflict for DOUBLE resolved using rule 20 (S -> .)
+  ! reduce/reduce conflict for INT resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for DOUBLE resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for CLOSING_BRACES resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for PRINT resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for READ resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for IF resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for WHILE resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for DO resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for FOR resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for ID resolved using rule 6 (VAR -> .)
+  ! shift/reduce conflict for PRINT resolved as shift
+  ! shift/reduce conflict for READ resolved as shift
+  ! shift/reduce conflict for IF resolved as shift
+  ! shift/reduce conflict for WHILE resolved as shift
+  ! shift/reduce conflict for DO resolved as shift
+  ! shift/reduce conflict for FOR resolved as shift
+  ! shift/reduce conflict for ID resolved as shift
+  ! shift/reduce conflict for INT resolved as shift
+  ! shift/reduce conflict for DOUBLE resolved as shift
+    CLOSING_BRACES  reduce using rule 6 (VAR -> .)
+    PRINT           shift and go to state 80
+    READ            shift and go to state 64
+    IF              shift and go to state 82
+    WHILE           shift and go to state 78
+    DO              shift and go to state 67
+    FOR             shift and go to state 68
+    ID              shift and go to state 69
+    INT             shift and go to state 1
+    DOUBLE          shift and go to state 2
+
+  ! CLOSING_BRACES  [ reduce using rule 20 (S -> .) ]
+  ! PRINT           [ reduce using rule 20 (S -> .) ]
+  ! READ            [ reduce using rule 20 (S -> .) ]
+  ! IF              [ reduce using rule 20 (S -> .) ]
+  ! WHILE           [ reduce using rule 20 (S -> .) ]
+  ! DO              [ reduce using rule 20 (S -> .) ]
+  ! FOR             [ reduce using rule 20 (S -> .) ]
+  ! ID              [ reduce using rule 20 (S -> .) ]
+  ! INT             [ reduce using rule 20 (S -> .) ]
+  ! DOUBLE          [ reduce using rule 20 (S -> .) ]
+  ! CLOSING_BRACES  [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! PRINT           [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! READ            [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! IF              [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! WHILE           [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! DO              [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! FOR             [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! ID              [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! INT             [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! DOUBLE          [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! INT             [ reduce using rule 6 (VAR -> .) ]
+  ! DOUBLE          [ reduce using rule 6 (VAR -> .) ]
+  ! PRINT           [ reduce using rule 6 (VAR -> .) ]
+  ! READ            [ reduce using rule 6 (VAR -> .) ]
+  ! IF              [ reduce using rule 6 (VAR -> .) ]
+  ! WHILE           [ reduce using rule 6 (VAR -> .) ]
+  ! DO              [ reduce using rule 6 (VAR -> .) ]
+  ! FOR             [ reduce using rule 6 (VAR -> .) ]
+  ! ID              [ reduce using rule 6 (VAR -> .) ]
+
+    STATEMENTS                     shift and go to state 77
+    PRINTSTAT                      shift and go to state 79
+    FUNCSTAT                       shift and go to state 66
+    INC_STAT                       shift and go to state 81
+    VAR                            shift and go to state 83
+    FORSTAT                        shift and go to state 70
+    ASSIGN                         shift and go to state 71
+    READSTAT                       shift and go to state 72
+    WHILESTAT                      shift and go to state 65
+    DOSTAT                         shift and go to state 73
+    IFSTAT                         shift and go to state 74
+    S                              shift and go to state 84
+    IDSTAT                         shift and go to state 76
+    TIPO                           shift and go to state 5
+
+state 56
+
+    (13) FUNC -> FUNC FUNCTION ID OPEN_PARENTH CLOSING_PARENTH . OPEN_BRACES S CLOSING_BRACES
+
+    OPEN_BRACES     shift and go to state 85
+
+
+state 57
+
+    (51) FA -> OPEN_PARENTH EA CLOSING_PARENTH .
+
+    MULTIPLY        reduce using rule 51 (FA -> OPEN_PARENTH EA CLOSING_PARENTH .)
+    DIVISION        reduce using rule 51 (FA -> OPEN_PARENTH EA CLOSING_PARENTH .)
+    PLUS            reduce using rule 51 (FA -> OPEN_PARENTH EA CLOSING_PARENTH .)
+    MINUS           reduce using rule 51 (FA -> OPEN_PARENTH EA CLOSING_PARENTH .)
+    NOT_EQUAL       reduce using rule 51 (FA -> OPEN_PARENTH EA CLOSING_PARENTH .)
+    LOWER_THAN      reduce using rule 51 (FA -> OPEN_PARENTH EA CLOSING_PARENTH .)
+    BIGGER_THAN     reduce using rule 51 (FA -> OPEN_PARENTH EA CLOSING_PARENTH .)
+    EQUAL_EQUAL     reduce using rule 51 (FA -> OPEN_PARENTH EA CLOSING_PARENTH .)
+    AND             reduce using rule 51 (FA -> OPEN_PARENTH EA CLOSING_PARENTH .)
+    CLOSING_PARENTH reduce using rule 51 (FA -> OPEN_PARENTH EA CLOSING_PARENTH .)
+    OR              reduce using rule 51 (FA -> OPEN_PARENTH EA CLOSING_PARENTH .)
+    SEMICOLON       reduce using rule 51 (FA -> OPEN_PARENTH EA CLOSING_PARENTH .)
+    COMA            reduce using rule 51 (FA -> OPEN_PARENTH EA CLOSING_PARENTH .)
+
+
+state 58
+
+    (47) EA -> EA MINUS TA .
+    (53) TA -> TA . MULTIPLY FA
+    (54) TA -> TA . DIVISION FA
+
+    CLOSING_PARENTH reduce using rule 47 (EA -> EA MINUS TA .)
+    PLUS            reduce using rule 47 (EA -> EA MINUS TA .)
+    MINUS           reduce using rule 47 (EA -> EA MINUS TA .)
+    SEMICOLON       reduce using rule 47 (EA -> EA MINUS TA .)
+    NOT_EQUAL       reduce using rule 47 (EA -> EA MINUS TA .)
+    LOWER_THAN      reduce using rule 47 (EA -> EA MINUS TA .)
+    BIGGER_THAN     reduce using rule 47 (EA -> EA MINUS TA .)
+    EQUAL_EQUAL     reduce using rule 47 (EA -> EA MINUS TA .)
+    AND             reduce using rule 47 (EA -> EA MINUS TA .)
+    OR              reduce using rule 47 (EA -> EA MINUS TA .)
+    COMA            reduce using rule 47 (EA -> EA MINUS TA .)
+    MULTIPLY        shift and go to state 48
+    DIVISION        shift and go to state 49
+
+
+state 59
+
+    (46) EA -> EA PLUS TA .
+    (53) TA -> TA . MULTIPLY FA
+    (54) TA -> TA . DIVISION FA
+
+    CLOSING_PARENTH reduce using rule 46 (EA -> EA PLUS TA .)
+    PLUS            reduce using rule 46 (EA -> EA PLUS TA .)
+    MINUS           reduce using rule 46 (EA -> EA PLUS TA .)
+    SEMICOLON       reduce using rule 46 (EA -> EA PLUS TA .)
+    NOT_EQUAL       reduce using rule 46 (EA -> EA PLUS TA .)
+    LOWER_THAN      reduce using rule 46 (EA -> EA PLUS TA .)
+    BIGGER_THAN     reduce using rule 46 (EA -> EA PLUS TA .)
+    EQUAL_EQUAL     reduce using rule 46 (EA -> EA PLUS TA .)
+    AND             reduce using rule 46 (EA -> EA PLUS TA .)
+    OR              reduce using rule 46 (EA -> EA PLUS TA .)
+    COMA            reduce using rule 46 (EA -> EA PLUS TA .)
+    MULTIPLY        shift and go to state 48
+    DIVISION        shift and go to state 49
+
+
+state 60
+
+    (53) TA -> TA MULTIPLY FA .
+
+    MULTIPLY        reduce using rule 53 (TA -> TA MULTIPLY FA .)
+    DIVISION        reduce using rule 53 (TA -> TA MULTIPLY FA .)
+    SEMICOLON       reduce using rule 53 (TA -> TA MULTIPLY FA .)
+    PLUS            reduce using rule 53 (TA -> TA MULTIPLY FA .)
+    MINUS           reduce using rule 53 (TA -> TA MULTIPLY FA .)
+    AND             reduce using rule 53 (TA -> TA MULTIPLY FA .)
+    CLOSING_PARENTH reduce using rule 53 (TA -> TA MULTIPLY FA .)
+    OR              reduce using rule 53 (TA -> TA MULTIPLY FA .)
+    NOT_EQUAL       reduce using rule 53 (TA -> TA MULTIPLY FA .)
+    LOWER_THAN      reduce using rule 53 (TA -> TA MULTIPLY FA .)
+    BIGGER_THAN     reduce using rule 53 (TA -> TA MULTIPLY FA .)
+    EQUAL_EQUAL     reduce using rule 53 (TA -> TA MULTIPLY FA .)
+    COMA            reduce using rule 53 (TA -> TA MULTIPLY FA .)
+
+
+state 61
+
+    (54) TA -> TA DIVISION FA .
+
+    MULTIPLY        reduce using rule 54 (TA -> TA DIVISION FA .)
+    DIVISION        reduce using rule 54 (TA -> TA DIVISION FA .)
+    SEMICOLON       reduce using rule 54 (TA -> TA DIVISION FA .)
+    PLUS            reduce using rule 54 (TA -> TA DIVISION FA .)
+    MINUS           reduce using rule 54 (TA -> TA DIVISION FA .)
+    AND             reduce using rule 54 (TA -> TA DIVISION FA .)
+    CLOSING_PARENTH reduce using rule 54 (TA -> TA DIVISION FA .)
+    OR              reduce using rule 54 (TA -> TA DIVISION FA .)
+    NOT_EQUAL       reduce using rule 54 (TA -> TA DIVISION FA .)
+    LOWER_THAN      reduce using rule 54 (TA -> TA DIVISION FA .)
+    BIGGER_THAN     reduce using rule 54 (TA -> TA DIVISION FA .)
+    EQUAL_EQUAL     reduce using rule 54 (TA -> TA DIVISION FA .)
+    COMA            reduce using rule 54 (TA -> TA DIVISION FA .)
+
+
+state 62
+
+    (70) MAT_BRACKET -> MAT_BRACKET OPEN_BRACKET CONSTANT CLOSING_BRACKET .
+
+    OPEN_BRACKET    reduce using rule 70 (MAT_BRACKET -> MAT_BRACKET OPEN_BRACKET CONSTANT CLOSING_BRACKET .)
+    MULTIPLY        reduce using rule 70 (MAT_BRACKET -> MAT_BRACKET OPEN_BRACKET CONSTANT CLOSING_BRACKET .)
+    DIVISION        reduce using rule 70 (MAT_BRACKET -> MAT_BRACKET OPEN_BRACKET CONSTANT CLOSING_BRACKET .)
+    PLUS            reduce using rule 70 (MAT_BRACKET -> MAT_BRACKET OPEN_BRACKET CONSTANT CLOSING_BRACKET .)
+    MINUS           reduce using rule 70 (MAT_BRACKET -> MAT_BRACKET OPEN_BRACKET CONSTANT CLOSING_BRACKET .)
+    SEMICOLON       reduce using rule 70 (MAT_BRACKET -> MAT_BRACKET OPEN_BRACKET CONSTANT CLOSING_BRACKET .)
+    COMA            reduce using rule 70 (MAT_BRACKET -> MAT_BRACKET OPEN_BRACKET CONSTANT CLOSING_BRACKET .)
+    CLOSING_PARENTH reduce using rule 70 (MAT_BRACKET -> MAT_BRACKET OPEN_BRACKET CONSTANT CLOSING_BRACKET .)
+    NOT_EQUAL       reduce using rule 70 (MAT_BRACKET -> MAT_BRACKET OPEN_BRACKET CONSTANT CLOSING_BRACKET .)
+    LOWER_THAN      reduce using rule 70 (MAT_BRACKET -> MAT_BRACKET OPEN_BRACKET CONSTANT CLOSING_BRACKET .)
+    BIGGER_THAN     reduce using rule 70 (MAT_BRACKET -> MAT_BRACKET OPEN_BRACKET CONSTANT CLOSING_BRACKET .)
+    EQUAL_EQUAL     reduce using rule 70 (MAT_BRACKET -> MAT_BRACKET OPEN_BRACKET CONSTANT CLOSING_BRACKET .)
+    AND             reduce using rule 70 (MAT_BRACKET -> MAT_BRACKET OPEN_BRACKET CONSTANT CLOSING_BRACKET .)
+    OR              reduce using rule 70 (MAT_BRACKET -> MAT_BRACKET OPEN_BRACKET CONSTANT CLOSING_BRACKET .)
+
+
+state 63
+
+    (72) MAT_BRACKET -> MAT_BRACKET OPEN_BRACKET ID CLOSING_BRACKET .
+
+    OPEN_BRACKET    reduce using rule 72 (MAT_BRACKET -> MAT_BRACKET OPEN_BRACKET ID CLOSING_BRACKET .)
+    MULTIPLY        reduce using rule 72 (MAT_BRACKET -> MAT_BRACKET OPEN_BRACKET ID CLOSING_BRACKET .)
+    DIVISION        reduce using rule 72 (MAT_BRACKET -> MAT_BRACKET OPEN_BRACKET ID CLOSING_BRACKET .)
+    PLUS            reduce using rule 72 (MAT_BRACKET -> MAT_BRACKET OPEN_BRACKET ID CLOSING_BRACKET .)
+    MINUS           reduce using rule 72 (MAT_BRACKET -> MAT_BRACKET OPEN_BRACKET ID CLOSING_BRACKET .)
+    SEMICOLON       reduce using rule 72 (MAT_BRACKET -> MAT_BRACKET OPEN_BRACKET ID CLOSING_BRACKET .)
+    COMA            reduce using rule 72 (MAT_BRACKET -> MAT_BRACKET OPEN_BRACKET ID CLOSING_BRACKET .)
+    CLOSING_PARENTH reduce using rule 72 (MAT_BRACKET -> MAT_BRACKET OPEN_BRACKET ID CLOSING_BRACKET .)
+    NOT_EQUAL       reduce using rule 72 (MAT_BRACKET -> MAT_BRACKET OPEN_BRACKET ID CLOSING_BRACKET .)
+    LOWER_THAN      reduce using rule 72 (MAT_BRACKET -> MAT_BRACKET OPEN_BRACKET ID CLOSING_BRACKET .)
+    BIGGER_THAN     reduce using rule 72 (MAT_BRACKET -> MAT_BRACKET OPEN_BRACKET ID CLOSING_BRACKET .)
+    EQUAL_EQUAL     reduce using rule 72 (MAT_BRACKET -> MAT_BRACKET OPEN_BRACKET ID CLOSING_BRACKET .)
+    AND             reduce using rule 72 (MAT_BRACKET -> MAT_BRACKET OPEN_BRACKET ID CLOSING_BRACKET .)
+    OR              reduce using rule 72 (MAT_BRACKET -> MAT_BRACKET OPEN_BRACKET ID CLOSING_BRACKET .)
+
+
+state 64
+
+    (35) READSTAT -> READ . OPEN_PARENTH EA CLOSING_PARENTH SEMICOLON
+
+    OPEN_PARENTH    shift and go to state 86
+
+
+state 65
+
+    (26) STATEMENTS -> WHILESTAT .
+
+    CLOSING_BRACES  reduce using rule 26 (STATEMENTS -> WHILESTAT .)
+    PRINT           reduce using rule 26 (STATEMENTS -> WHILESTAT .)
+    READ            reduce using rule 26 (STATEMENTS -> WHILESTAT .)
+    IF              reduce using rule 26 (STATEMENTS -> WHILESTAT .)
+    WHILE           reduce using rule 26 (STATEMENTS -> WHILESTAT .)
+    DO              reduce using rule 26 (STATEMENTS -> WHILESTAT .)
+    FOR             reduce using rule 26 (STATEMENTS -> WHILESTAT .)
+    ID              reduce using rule 26 (STATEMENTS -> WHILESTAT .)
+    INT             reduce using rule 26 (STATEMENTS -> WHILESTAT .)
+    DOUBLE          reduce using rule 26 (STATEMENTS -> WHILESTAT .)
+
+
+state 66
+
+    (29) STATEMENTS -> FUNCSTAT .
+
+    CLOSING_BRACES  reduce using rule 29 (STATEMENTS -> FUNCSTAT .)
+    PRINT           reduce using rule 29 (STATEMENTS -> FUNCSTAT .)
+    READ            reduce using rule 29 (STATEMENTS -> FUNCSTAT .)
+    IF              reduce using rule 29 (STATEMENTS -> FUNCSTAT .)
+    WHILE           reduce using rule 29 (STATEMENTS -> FUNCSTAT .)
+    DO              reduce using rule 29 (STATEMENTS -> FUNCSTAT .)
+    FOR             reduce using rule 29 (STATEMENTS -> FUNCSTAT .)
+    ID              reduce using rule 29 (STATEMENTS -> FUNCSTAT .)
+    INT             reduce using rule 29 (STATEMENTS -> FUNCSTAT .)
+    DOUBLE          reduce using rule 29 (STATEMENTS -> FUNCSTAT .)
+
+
+state 67
+
+    (39) DOSTAT -> DO . IN_S WHILE OPEN_PARENTH EL CLOSING_PARENTH SEMICOLON
+    (44) IN_S -> . OPEN_BRACES S CLOSING_BRACES
+
+    OPEN_BRACES     shift and go to state 87
+
+    IN_S                           shift and go to state 88
+
+state 68
+
+    (40) FORSTAT -> FOR . OPEN_PARENTH ID EQUAL EA SEMICOLON EL SEMICOLON ID EQUAL EA CLOSING_PARENTH IN_S
+
+    OPEN_PARENTH    shift and go to state 89
+
+
+state 69
+
+    (41) FUNCSTAT -> ID . OPEN_PARENTH CLOSING_PARENTH SEMICOLON
+    (42) INC_STAT -> ID . PLUSPLUS SEMICOLON
+    (43) INC_STAT -> ID . MINUSMINUS SEMICOLON
+    (11) ASSIGN -> ID . EQUAL EA
+
+    OPEN_PARENTH    shift and go to state 91
+    PLUSPLUS        shift and go to state 92
+    MINUSMINUS      shift and go to state 90
+    EQUAL           shift and go to state 22
+
+
+state 70
+
+    (28) STATEMENTS -> FORSTAT .
+
+    CLOSING_BRACES  reduce using rule 28 (STATEMENTS -> FORSTAT .)
+    PRINT           reduce using rule 28 (STATEMENTS -> FORSTAT .)
+    READ            reduce using rule 28 (STATEMENTS -> FORSTAT .)
+    IF              reduce using rule 28 (STATEMENTS -> FORSTAT .)
+    WHILE           reduce using rule 28 (STATEMENTS -> FORSTAT .)
+    DO              reduce using rule 28 (STATEMENTS -> FORSTAT .)
+    FOR             reduce using rule 28 (STATEMENTS -> FORSTAT .)
+    ID              reduce using rule 28 (STATEMENTS -> FORSTAT .)
+    INT             reduce using rule 28 (STATEMENTS -> FORSTAT .)
+    DOUBLE          reduce using rule 28 (STATEMENTS -> FORSTAT .)
+
+
+state 71
+
+    (32) IDSTAT -> ASSIGN . SEMICOLON
+
+    SEMICOLON       shift and go to state 93
+
+
+state 72
+
+    (24) STATEMENTS -> READSTAT .
+
+    CLOSING_BRACES  reduce using rule 24 (STATEMENTS -> READSTAT .)
+    PRINT           reduce using rule 24 (STATEMENTS -> READSTAT .)
+    READ            reduce using rule 24 (STATEMENTS -> READSTAT .)
+    IF              reduce using rule 24 (STATEMENTS -> READSTAT .)
+    WHILE           reduce using rule 24 (STATEMENTS -> READSTAT .)
+    DO              reduce using rule 24 (STATEMENTS -> READSTAT .)
+    FOR             reduce using rule 24 (STATEMENTS -> READSTAT .)
+    ID              reduce using rule 24 (STATEMENTS -> READSTAT .)
+    INT             reduce using rule 24 (STATEMENTS -> READSTAT .)
+    DOUBLE          reduce using rule 24 (STATEMENTS -> READSTAT .)
+
+
+state 73
+
+    (27) STATEMENTS -> DOSTAT .
+
+    CLOSING_BRACES  reduce using rule 27 (STATEMENTS -> DOSTAT .)
+    PRINT           reduce using rule 27 (STATEMENTS -> DOSTAT .)
+    READ            reduce using rule 27 (STATEMENTS -> DOSTAT .)
+    IF              reduce using rule 27 (STATEMENTS -> DOSTAT .)
+    WHILE           reduce using rule 27 (STATEMENTS -> DOSTAT .)
+    DO              reduce using rule 27 (STATEMENTS -> DOSTAT .)
+    FOR             reduce using rule 27 (STATEMENTS -> DOSTAT .)
+    ID              reduce using rule 27 (STATEMENTS -> DOSTAT .)
+    INT             reduce using rule 27 (STATEMENTS -> DOSTAT .)
+    DOUBLE          reduce using rule 27 (STATEMENTS -> DOSTAT .)
+
+
+state 74
+
+    (25) STATEMENTS -> IFSTAT .
+
+    CLOSING_BRACES  reduce using rule 25 (STATEMENTS -> IFSTAT .)
+    PRINT           reduce using rule 25 (STATEMENTS -> IFSTAT .)
+    READ            reduce using rule 25 (STATEMENTS -> IFSTAT .)
+    IF              reduce using rule 25 (STATEMENTS -> IFSTAT .)
+    WHILE           reduce using rule 25 (STATEMENTS -> IFSTAT .)
+    DO              reduce using rule 25 (STATEMENTS -> IFSTAT .)
+    FOR             reduce using rule 25 (STATEMENTS -> IFSTAT .)
+    ID              reduce using rule 25 (STATEMENTS -> IFSTAT .)
+    INT             reduce using rule 25 (STATEMENTS -> IFSTAT .)
+    DOUBLE          reduce using rule 25 (STATEMENTS -> IFSTAT .)
+
+
+state 75
+
+    (12) FUNC -> FUNCTION ID OPEN_PARENTH CLOSING_PARENTH OPEN_BRACES S . CLOSING_BRACES
+    (19) S -> S . STATEMENTS
+    (21) STATEMENTS -> . VAR
+    (22) STATEMENTS -> . IDSTAT
+    (23) STATEMENTS -> . PRINTSTAT
+    (24) STATEMENTS -> . READSTAT
+    (25) STATEMENTS -> . IFSTAT
+    (26) STATEMENTS -> . WHILESTAT
+    (27) STATEMENTS -> . DOSTAT
+    (28) STATEMENTS -> . FORSTAT
+    (29) STATEMENTS -> . FUNCSTAT
+    (30) STATEMENTS -> . INC_STAT
+    (31) STATEMENTS -> .
+    (2) VAR -> . TIPO DECLARE SEMICOLON
+    (3) VAR -> . TIPO MAT SEMICOLON
+    (4) VAR -> . VAR TIPO DECLARE SEMICOLON
+    (5) VAR -> . VAR TIPO MAT SEMICOLON
+    (6) VAR -> .
+    (32) IDSTAT -> . ASSIGN SEMICOLON
+    (33) PRINTSTAT -> . PRINT OPEN_PARENTH EA CLOSING_PARENTH SEMICOLON
+    (34) PRINTSTAT -> . PRINT OPEN_PARENTH STRING CLOSING_PARENTH SEMICOLON
+    (35) READSTAT -> . READ OPEN_PARENTH EA CLOSING_PARENTH SEMICOLON
+    (36) IFSTAT -> . IF OPEN_PARENTH EL CLOSING_PARENTH IN_S
+    (37) IFSTAT -> . IF OPEN_PARENTH EL CLOSING_PARENTH IN_S ELSE IN_S
+    (38) WHILESTAT -> . WHILE OPEN_PARENTH EL CLOSING_PARENTH IN_S
+    (39) DOSTAT -> . DO IN_S WHILE OPEN_PARENTH EL CLOSING_PARENTH SEMICOLON
+    (40) FORSTAT -> . FOR OPEN_PARENTH ID EQUAL EA SEMICOLON EL SEMICOLON ID EQUAL EA CLOSING_PARENTH IN_S
+    (41) FUNCSTAT -> . ID OPEN_PARENTH CLOSING_PARENTH SEMICOLON
+    (42) INC_STAT -> . ID PLUSPLUS SEMICOLON
+    (43) INC_STAT -> . ID MINUSMINUS SEMICOLON
+    (16) TIPO -> . INT
+    (17) TIPO -> . DOUBLE
+    (11) ASSIGN -> . ID EQUAL EA
+
+  ! shift/reduce conflict for CLOSING_BRACES resolved as shift
+  ! reduce/reduce conflict for INT resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for DOUBLE resolved using rule 6 (VAR -> .)
+  ! shift/reduce conflict for CLOSING_BRACES resolved as shift
+  ! reduce/reduce conflict for PRINT resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for READ resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for IF resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for WHILE resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for DO resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for FOR resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for ID resolved using rule 6 (VAR -> .)
+  ! shift/reduce conflict for PRINT resolved as shift
+  ! shift/reduce conflict for READ resolved as shift
+  ! shift/reduce conflict for IF resolved as shift
+  ! shift/reduce conflict for WHILE resolved as shift
+  ! shift/reduce conflict for DO resolved as shift
+  ! shift/reduce conflict for FOR resolved as shift
+  ! shift/reduce conflict for ID resolved as shift
+  ! shift/reduce conflict for INT resolved as shift
+  ! shift/reduce conflict for DOUBLE resolved as shift
+    CLOSING_BRACES  shift and go to state 94
+    PRINT           shift and go to state 80
+    READ            shift and go to state 64
+    IF              shift and go to state 82
+    WHILE           shift and go to state 78
+    DO              shift and go to state 67
+    FOR             shift and go to state 68
+    ID              shift and go to state 69
+    INT             shift and go to state 1
+    DOUBLE          shift and go to state 2
+
+  ! CLOSING_BRACES  [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! PRINT           [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! READ            [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! IF              [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! WHILE           [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! DO              [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! FOR             [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! ID              [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! INT             [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! DOUBLE          [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! INT             [ reduce using rule 6 (VAR -> .) ]
+  ! DOUBLE          [ reduce using rule 6 (VAR -> .) ]
+  ! CLOSING_BRACES  [ reduce using rule 6 (VAR -> .) ]
+  ! PRINT           [ reduce using rule 6 (VAR -> .) ]
+  ! READ            [ reduce using rule 6 (VAR -> .) ]
+  ! IF              [ reduce using rule 6 (VAR -> .) ]
+  ! WHILE           [ reduce using rule 6 (VAR -> .) ]
+  ! DO              [ reduce using rule 6 (VAR -> .) ]
+  ! FOR             [ reduce using rule 6 (VAR -> .) ]
+  ! ID              [ reduce using rule 6 (VAR -> .) ]
+
+    STATEMENTS                     shift and go to state 95
+    PRINTSTAT                      shift and go to state 79
+    FUNCSTAT                       shift and go to state 66
+    INC_STAT                       shift and go to state 81
+    VAR                            shift and go to state 83
+    FORSTAT                        shift and go to state 70
+    ASSIGN                         shift and go to state 71
+    READSTAT                       shift and go to state 72
+    WHILESTAT                      shift and go to state 65
+    DOSTAT                         shift and go to state 73
+    IFSTAT                         shift and go to state 74
+    IDSTAT                         shift and go to state 76
+    TIPO                           shift and go to state 5
+
+state 76
+
+    (22) STATEMENTS -> IDSTAT .
+
+    CLOSING_BRACES  reduce using rule 22 (STATEMENTS -> IDSTAT .)
+    PRINT           reduce using rule 22 (STATEMENTS -> IDSTAT .)
+    READ            reduce using rule 22 (STATEMENTS -> IDSTAT .)
+    IF              reduce using rule 22 (STATEMENTS -> IDSTAT .)
+    WHILE           reduce using rule 22 (STATEMENTS -> IDSTAT .)
+    DO              reduce using rule 22 (STATEMENTS -> IDSTAT .)
+    FOR             reduce using rule 22 (STATEMENTS -> IDSTAT .)
+    ID              reduce using rule 22 (STATEMENTS -> IDSTAT .)
+    INT             reduce using rule 22 (STATEMENTS -> IDSTAT .)
+    DOUBLE          reduce using rule 22 (STATEMENTS -> IDSTAT .)
+
+
+state 77
+
+    (18) S -> STATEMENTS .
+
+    CLOSING_BRACES  reduce using rule 18 (S -> STATEMENTS .)
+    PRINT           reduce using rule 18 (S -> STATEMENTS .)
+    READ            reduce using rule 18 (S -> STATEMENTS .)
+    IF              reduce using rule 18 (S -> STATEMENTS .)
+    WHILE           reduce using rule 18 (S -> STATEMENTS .)
+    DO              reduce using rule 18 (S -> STATEMENTS .)
+    FOR             reduce using rule 18 (S -> STATEMENTS .)
+    ID              reduce using rule 18 (S -> STATEMENTS .)
+    INT             reduce using rule 18 (S -> STATEMENTS .)
+    DOUBLE          reduce using rule 18 (S -> STATEMENTS .)
+
+
+state 78
+
+    (38) WHILESTAT -> WHILE . OPEN_PARENTH EL CLOSING_PARENTH IN_S
+
+    OPEN_PARENTH    shift and go to state 96
+
+
+state 79
+
+    (23) STATEMENTS -> PRINTSTAT .
+
+    CLOSING_BRACES  reduce using rule 23 (STATEMENTS -> PRINTSTAT .)
+    PRINT           reduce using rule 23 (STATEMENTS -> PRINTSTAT .)
+    READ            reduce using rule 23 (STATEMENTS -> PRINTSTAT .)
+    IF              reduce using rule 23 (STATEMENTS -> PRINTSTAT .)
+    WHILE           reduce using rule 23 (STATEMENTS -> PRINTSTAT .)
+    DO              reduce using rule 23 (STATEMENTS -> PRINTSTAT .)
+    FOR             reduce using rule 23 (STATEMENTS -> PRINTSTAT .)
+    ID              reduce using rule 23 (STATEMENTS -> PRINTSTAT .)
+    INT             reduce using rule 23 (STATEMENTS -> PRINTSTAT .)
+    DOUBLE          reduce using rule 23 (STATEMENTS -> PRINTSTAT .)
+
+
+state 80
+
+    (33) PRINTSTAT -> PRINT . OPEN_PARENTH EA CLOSING_PARENTH SEMICOLON
+    (34) PRINTSTAT -> PRINT . OPEN_PARENTH STRING CLOSING_PARENTH SEMICOLON
+
+    OPEN_PARENTH    shift and go to state 97
+
+
+state 81
+
+    (30) STATEMENTS -> INC_STAT .
+
+    CLOSING_BRACES  reduce using rule 30 (STATEMENTS -> INC_STAT .)
+    PRINT           reduce using rule 30 (STATEMENTS -> INC_STAT .)
+    READ            reduce using rule 30 (STATEMENTS -> INC_STAT .)
+    IF              reduce using rule 30 (STATEMENTS -> INC_STAT .)
+    WHILE           reduce using rule 30 (STATEMENTS -> INC_STAT .)
+    DO              reduce using rule 30 (STATEMENTS -> INC_STAT .)
+    FOR             reduce using rule 30 (STATEMENTS -> INC_STAT .)
+    ID              reduce using rule 30 (STATEMENTS -> INC_STAT .)
+    INT             reduce using rule 30 (STATEMENTS -> INC_STAT .)
+    DOUBLE          reduce using rule 30 (STATEMENTS -> INC_STAT .)
+
+
+state 82
+
+    (36) IFSTAT -> IF . OPEN_PARENTH EL CLOSING_PARENTH IN_S
+    (37) IFSTAT -> IF . OPEN_PARENTH EL CLOSING_PARENTH IN_S ELSE IN_S
+
+    OPEN_PARENTH    shift and go to state 98
+
+
+state 83
+
+    (21) STATEMENTS -> VAR .
+    (4) VAR -> VAR . TIPO DECLARE SEMICOLON
+    (5) VAR -> VAR . TIPO MAT SEMICOLON
+    (16) TIPO -> . INT
+    (17) TIPO -> . DOUBLE
+
+  ! shift/reduce conflict for INT resolved as shift
+  ! shift/reduce conflict for DOUBLE resolved as shift
+    CLOSING_BRACES  reduce using rule 21 (STATEMENTS -> VAR .)
+    PRINT           reduce using rule 21 (STATEMENTS -> VAR .)
+    READ            reduce using rule 21 (STATEMENTS -> VAR .)
+    IF              reduce using rule 21 (STATEMENTS -> VAR .)
+    WHILE           reduce using rule 21 (STATEMENTS -> VAR .)
+    DO              reduce using rule 21 (STATEMENTS -> VAR .)
+    FOR             reduce using rule 21 (STATEMENTS -> VAR .)
+    ID              reduce using rule 21 (STATEMENTS -> VAR .)
+    INT             shift and go to state 1
+    DOUBLE          shift and go to state 2
+
+  ! INT             [ reduce using rule 21 (STATEMENTS -> VAR .) ]
+  ! DOUBLE          [ reduce using rule 21 (STATEMENTS -> VAR .) ]
+
+    TIPO                           shift and go to state 8
+
+state 84
+
+    (15) M -> MAIN OPEN_PARENTH CLOSING_PARENTH OPEN_BRACES S . CLOSING_BRACES
+    (19) S -> S . STATEMENTS
+    (21) STATEMENTS -> . VAR
+    (22) STATEMENTS -> . IDSTAT
+    (23) STATEMENTS -> . PRINTSTAT
+    (24) STATEMENTS -> . READSTAT
+    (25) STATEMENTS -> . IFSTAT
+    (26) STATEMENTS -> . WHILESTAT
+    (27) STATEMENTS -> . DOSTAT
+    (28) STATEMENTS -> . FORSTAT
+    (29) STATEMENTS -> . FUNCSTAT
+    (30) STATEMENTS -> . INC_STAT
+    (31) STATEMENTS -> .
+    (2) VAR -> . TIPO DECLARE SEMICOLON
+    (3) VAR -> . TIPO MAT SEMICOLON
+    (4) VAR -> . VAR TIPO DECLARE SEMICOLON
+    (5) VAR -> . VAR TIPO MAT SEMICOLON
+    (6) VAR -> .
+    (32) IDSTAT -> . ASSIGN SEMICOLON
+    (33) PRINTSTAT -> . PRINT OPEN_PARENTH EA CLOSING_PARENTH SEMICOLON
+    (34) PRINTSTAT -> . PRINT OPEN_PARENTH STRING CLOSING_PARENTH SEMICOLON
+    (35) READSTAT -> . READ OPEN_PARENTH EA CLOSING_PARENTH SEMICOLON
+    (36) IFSTAT -> . IF OPEN_PARENTH EL CLOSING_PARENTH IN_S
+    (37) IFSTAT -> . IF OPEN_PARENTH EL CLOSING_PARENTH IN_S ELSE IN_S
+    (38) WHILESTAT -> . WHILE OPEN_PARENTH EL CLOSING_PARENTH IN_S
+    (39) DOSTAT -> . DO IN_S WHILE OPEN_PARENTH EL CLOSING_PARENTH SEMICOLON
+    (40) FORSTAT -> . FOR OPEN_PARENTH ID EQUAL EA SEMICOLON EL SEMICOLON ID EQUAL EA CLOSING_PARENTH IN_S
+    (41) FUNCSTAT -> . ID OPEN_PARENTH CLOSING_PARENTH SEMICOLON
+    (42) INC_STAT -> . ID PLUSPLUS SEMICOLON
+    (43) INC_STAT -> . ID MINUSMINUS SEMICOLON
+    (16) TIPO -> . INT
+    (17) TIPO -> . DOUBLE
+    (11) ASSIGN -> . ID EQUAL EA
+
+  ! shift/reduce conflict for CLOSING_BRACES resolved as shift
+  ! reduce/reduce conflict for INT resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for DOUBLE resolved using rule 6 (VAR -> .)
+  ! shift/reduce conflict for CLOSING_BRACES resolved as shift
+  ! reduce/reduce conflict for PRINT resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for READ resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for IF resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for WHILE resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for DO resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for FOR resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for ID resolved using rule 6 (VAR -> .)
+  ! shift/reduce conflict for PRINT resolved as shift
+  ! shift/reduce conflict for READ resolved as shift
+  ! shift/reduce conflict for IF resolved as shift
+  ! shift/reduce conflict for WHILE resolved as shift
+  ! shift/reduce conflict for DO resolved as shift
+  ! shift/reduce conflict for FOR resolved as shift
+  ! shift/reduce conflict for ID resolved as shift
+  ! shift/reduce conflict for INT resolved as shift
+  ! shift/reduce conflict for DOUBLE resolved as shift
+    CLOSING_BRACES  shift and go to state 99
+    PRINT           shift and go to state 80
+    READ            shift and go to state 64
+    IF              shift and go to state 82
+    WHILE           shift and go to state 78
+    DO              shift and go to state 67
+    FOR             shift and go to state 68
+    ID              shift and go to state 69
+    INT             shift and go to state 1
+    DOUBLE          shift and go to state 2
+
+  ! CLOSING_BRACES  [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! PRINT           [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! READ            [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! IF              [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! WHILE           [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! DO              [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! FOR             [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! ID              [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! INT             [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! DOUBLE          [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! INT             [ reduce using rule 6 (VAR -> .) ]
+  ! DOUBLE          [ reduce using rule 6 (VAR -> .) ]
+  ! CLOSING_BRACES  [ reduce using rule 6 (VAR -> .) ]
+  ! PRINT           [ reduce using rule 6 (VAR -> .) ]
+  ! READ            [ reduce using rule 6 (VAR -> .) ]
+  ! IF              [ reduce using rule 6 (VAR -> .) ]
+  ! WHILE           [ reduce using rule 6 (VAR -> .) ]
+  ! DO              [ reduce using rule 6 (VAR -> .) ]
+  ! FOR             [ reduce using rule 6 (VAR -> .) ]
+  ! ID              [ reduce using rule 6 (VAR -> .) ]
+
+    STATEMENTS                     shift and go to state 95
+    PRINTSTAT                      shift and go to state 79
+    FUNCSTAT                       shift and go to state 66
+    INC_STAT                       shift and go to state 81
+    VAR                            shift and go to state 83
+    FORSTAT                        shift and go to state 70
+    ASSIGN                         shift and go to state 71
+    READSTAT                       shift and go to state 72
+    WHILESTAT                      shift and go to state 65
+    DOSTAT                         shift and go to state 73
+    IFSTAT                         shift and go to state 74
+    IDSTAT                         shift and go to state 76
+    TIPO                           shift and go to state 5
+
+state 85
+
+    (13) FUNC -> FUNC FUNCTION ID OPEN_PARENTH CLOSING_PARENTH OPEN_BRACES . S CLOSING_BRACES
+    (18) S -> . STATEMENTS
+    (19) S -> . S STATEMENTS
+    (20) S -> .
+    (21) STATEMENTS -> . VAR
+    (22) STATEMENTS -> . IDSTAT
+    (23) STATEMENTS -> . PRINTSTAT
+    (24) STATEMENTS -> . READSTAT
+    (25) STATEMENTS -> . IFSTAT
+    (26) STATEMENTS -> . WHILESTAT
+    (27) STATEMENTS -> . DOSTAT
+    (28) STATEMENTS -> . FORSTAT
+    (29) STATEMENTS -> . FUNCSTAT
+    (30) STATEMENTS -> . INC_STAT
+    (31) STATEMENTS -> .
+    (2) VAR -> . TIPO DECLARE SEMICOLON
+    (3) VAR -> . TIPO MAT SEMICOLON
+    (4) VAR -> . VAR TIPO DECLARE SEMICOLON
+    (5) VAR -> . VAR TIPO MAT SEMICOLON
+    (6) VAR -> .
+    (32) IDSTAT -> . ASSIGN SEMICOLON
+    (33) PRINTSTAT -> . PRINT OPEN_PARENTH EA CLOSING_PARENTH SEMICOLON
+    (34) PRINTSTAT -> . PRINT OPEN_PARENTH STRING CLOSING_PARENTH SEMICOLON
+    (35) READSTAT -> . READ OPEN_PARENTH EA CLOSING_PARENTH SEMICOLON
+    (36) IFSTAT -> . IF OPEN_PARENTH EL CLOSING_PARENTH IN_S
+    (37) IFSTAT -> . IF OPEN_PARENTH EL CLOSING_PARENTH IN_S ELSE IN_S
+    (38) WHILESTAT -> . WHILE OPEN_PARENTH EL CLOSING_PARENTH IN_S
+    (39) DOSTAT -> . DO IN_S WHILE OPEN_PARENTH EL CLOSING_PARENTH SEMICOLON
+    (40) FORSTAT -> . FOR OPEN_PARENTH ID EQUAL EA SEMICOLON EL SEMICOLON ID EQUAL EA CLOSING_PARENTH IN_S
+    (41) FUNCSTAT -> . ID OPEN_PARENTH CLOSING_PARENTH SEMICOLON
+    (42) INC_STAT -> . ID PLUSPLUS SEMICOLON
+    (43) INC_STAT -> . ID MINUSMINUS SEMICOLON
+    (16) TIPO -> . INT
+    (17) TIPO -> . DOUBLE
+    (11) ASSIGN -> . ID EQUAL EA
+
+  ! reduce/reduce conflict for CLOSING_BRACES resolved using rule 20 (S -> .)
+  ! reduce/reduce conflict for PRINT resolved using rule 20 (S -> .)
+  ! reduce/reduce conflict for READ resolved using rule 20 (S -> .)
+  ! reduce/reduce conflict for IF resolved using rule 20 (S -> .)
+  ! reduce/reduce conflict for WHILE resolved using rule 20 (S -> .)
+  ! reduce/reduce conflict for DO resolved using rule 20 (S -> .)
+  ! reduce/reduce conflict for FOR resolved using rule 20 (S -> .)
+  ! reduce/reduce conflict for ID resolved using rule 20 (S -> .)
+  ! reduce/reduce conflict for INT resolved using rule 20 (S -> .)
+  ! reduce/reduce conflict for DOUBLE resolved using rule 20 (S -> .)
+  ! reduce/reduce conflict for INT resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for DOUBLE resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for CLOSING_BRACES resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for PRINT resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for READ resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for IF resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for WHILE resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for DO resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for FOR resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for ID resolved using rule 6 (VAR -> .)
+  ! shift/reduce conflict for PRINT resolved as shift
+  ! shift/reduce conflict for READ resolved as shift
+  ! shift/reduce conflict for IF resolved as shift
+  ! shift/reduce conflict for WHILE resolved as shift
+  ! shift/reduce conflict for DO resolved as shift
+  ! shift/reduce conflict for FOR resolved as shift
+  ! shift/reduce conflict for ID resolved as shift
+  ! shift/reduce conflict for INT resolved as shift
+  ! shift/reduce conflict for DOUBLE resolved as shift
+    CLOSING_BRACES  reduce using rule 6 (VAR -> .)
+    PRINT           shift and go to state 80
+    READ            shift and go to state 64
+    IF              shift and go to state 82
+    WHILE           shift and go to state 78
+    DO              shift and go to state 67
+    FOR             shift and go to state 68
+    ID              shift and go to state 69
+    INT             shift and go to state 1
+    DOUBLE          shift and go to state 2
+
+  ! CLOSING_BRACES  [ reduce using rule 20 (S -> .) ]
+  ! PRINT           [ reduce using rule 20 (S -> .) ]
+  ! READ            [ reduce using rule 20 (S -> .) ]
+  ! IF              [ reduce using rule 20 (S -> .) ]
+  ! WHILE           [ reduce using rule 20 (S -> .) ]
+  ! DO              [ reduce using rule 20 (S -> .) ]
+  ! FOR             [ reduce using rule 20 (S -> .) ]
+  ! ID              [ reduce using rule 20 (S -> .) ]
+  ! INT             [ reduce using rule 20 (S -> .) ]
+  ! DOUBLE          [ reduce using rule 20 (S -> .) ]
+  ! CLOSING_BRACES  [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! PRINT           [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! READ            [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! IF              [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! WHILE           [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! DO              [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! FOR             [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! ID              [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! INT             [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! DOUBLE          [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! INT             [ reduce using rule 6 (VAR -> .) ]
+  ! DOUBLE          [ reduce using rule 6 (VAR -> .) ]
+  ! PRINT           [ reduce using rule 6 (VAR -> .) ]
+  ! READ            [ reduce using rule 6 (VAR -> .) ]
+  ! IF              [ reduce using rule 6 (VAR -> .) ]
+  ! WHILE           [ reduce using rule 6 (VAR -> .) ]
+  ! DO              [ reduce using rule 6 (VAR -> .) ]
+  ! FOR             [ reduce using rule 6 (VAR -> .) ]
+  ! ID              [ reduce using rule 6 (VAR -> .) ]
+
+    STATEMENTS                     shift and go to state 77
+    PRINTSTAT                      shift and go to state 79
+    FUNCSTAT                       shift and go to state 66
+    INC_STAT                       shift and go to state 81
+    VAR                            shift and go to state 83
+    FORSTAT                        shift and go to state 70
+    ASSIGN                         shift and go to state 71
+    READSTAT                       shift and go to state 72
+    WHILESTAT                      shift and go to state 65
+    DOSTAT                         shift and go to state 73
+    IFSTAT                         shift and go to state 74
+    S                              shift and go to state 100
+    IDSTAT                         shift and go to state 76
+    TIPO                           shift and go to state 5
+
+state 86
+
+    (35) READSTAT -> READ OPEN_PARENTH . EA CLOSING_PARENTH SEMICOLON
+    (45) EA -> . TA
+    (46) EA -> . EA PLUS TA
+    (47) EA -> . EA MINUS TA
+    (52) TA -> . FA
+    (53) TA -> . TA MULTIPLY FA
+    (54) TA -> . TA DIVISION FA
+    (48) FA -> . CONSTANT
+    (49) FA -> . ID
+    (50) FA -> . MAT
+    (51) FA -> . OPEN_PARENTH EA CLOSING_PARENTH
+    (68) MAT -> . ID MAT_BRACKET
+
+    CONSTANT        shift and go to state 37
+    ID              shift and go to state 34
+    OPEN_PARENTH    shift and go to state 32
+
+    EA                             shift and go to state 101
+    MAT                            shift and go to state 33
+    FA                             shift and go to state 36
+    TA                             shift and go to state 38
+
+state 87
+
+    (44) IN_S -> OPEN_BRACES . S CLOSING_BRACES
+    (18) S -> . STATEMENTS
+    (19) S -> . S STATEMENTS
+    (20) S -> .
+    (21) STATEMENTS -> . VAR
+    (22) STATEMENTS -> . IDSTAT
+    (23) STATEMENTS -> . PRINTSTAT
+    (24) STATEMENTS -> . READSTAT
+    (25) STATEMENTS -> . IFSTAT
+    (26) STATEMENTS -> . WHILESTAT
+    (27) STATEMENTS -> . DOSTAT
+    (28) STATEMENTS -> . FORSTAT
+    (29) STATEMENTS -> . FUNCSTAT
+    (30) STATEMENTS -> . INC_STAT
+    (31) STATEMENTS -> .
+    (2) VAR -> . TIPO DECLARE SEMICOLON
+    (3) VAR -> . TIPO MAT SEMICOLON
+    (4) VAR -> . VAR TIPO DECLARE SEMICOLON
+    (5) VAR -> . VAR TIPO MAT SEMICOLON
+    (6) VAR -> .
+    (32) IDSTAT -> . ASSIGN SEMICOLON
+    (33) PRINTSTAT -> . PRINT OPEN_PARENTH EA CLOSING_PARENTH SEMICOLON
+    (34) PRINTSTAT -> . PRINT OPEN_PARENTH STRING CLOSING_PARENTH SEMICOLON
+    (35) READSTAT -> . READ OPEN_PARENTH EA CLOSING_PARENTH SEMICOLON
+    (36) IFSTAT -> . IF OPEN_PARENTH EL CLOSING_PARENTH IN_S
+    (37) IFSTAT -> . IF OPEN_PARENTH EL CLOSING_PARENTH IN_S ELSE IN_S
+    (38) WHILESTAT -> . WHILE OPEN_PARENTH EL CLOSING_PARENTH IN_S
+    (39) DOSTAT -> . DO IN_S WHILE OPEN_PARENTH EL CLOSING_PARENTH SEMICOLON
+    (40) FORSTAT -> . FOR OPEN_PARENTH ID EQUAL EA SEMICOLON EL SEMICOLON ID EQUAL EA CLOSING_PARENTH IN_S
+    (41) FUNCSTAT -> . ID OPEN_PARENTH CLOSING_PARENTH SEMICOLON
+    (42) INC_STAT -> . ID PLUSPLUS SEMICOLON
+    (43) INC_STAT -> . ID MINUSMINUS SEMICOLON
+    (16) TIPO -> . INT
+    (17) TIPO -> . DOUBLE
+    (11) ASSIGN -> . ID EQUAL EA
+
+  ! reduce/reduce conflict for CLOSING_BRACES resolved using rule 20 (S -> .)
+  ! reduce/reduce conflict for PRINT resolved using rule 20 (S -> .)
+  ! reduce/reduce conflict for READ resolved using rule 20 (S -> .)
+  ! reduce/reduce conflict for IF resolved using rule 20 (S -> .)
+  ! reduce/reduce conflict for WHILE resolved using rule 20 (S -> .)
+  ! reduce/reduce conflict for DO resolved using rule 20 (S -> .)
+  ! reduce/reduce conflict for FOR resolved using rule 20 (S -> .)
+  ! reduce/reduce conflict for ID resolved using rule 20 (S -> .)
+  ! reduce/reduce conflict for INT resolved using rule 20 (S -> .)
+  ! reduce/reduce conflict for DOUBLE resolved using rule 20 (S -> .)
+  ! reduce/reduce conflict for INT resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for DOUBLE resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for CLOSING_BRACES resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for PRINT resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for READ resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for IF resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for WHILE resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for DO resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for FOR resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for ID resolved using rule 6 (VAR -> .)
+  ! shift/reduce conflict for PRINT resolved as shift
+  ! shift/reduce conflict for READ resolved as shift
+  ! shift/reduce conflict for IF resolved as shift
+  ! shift/reduce conflict for WHILE resolved as shift
+  ! shift/reduce conflict for DO resolved as shift
+  ! shift/reduce conflict for FOR resolved as shift
+  ! shift/reduce conflict for ID resolved as shift
+  ! shift/reduce conflict for INT resolved as shift
+  ! shift/reduce conflict for DOUBLE resolved as shift
+    CLOSING_BRACES  reduce using rule 6 (VAR -> .)
+    PRINT           shift and go to state 80
+    READ            shift and go to state 64
+    IF              shift and go to state 82
+    WHILE           shift and go to state 78
+    DO              shift and go to state 67
+    FOR             shift and go to state 68
+    ID              shift and go to state 69
+    INT             shift and go to state 1
+    DOUBLE          shift and go to state 2
+
+  ! CLOSING_BRACES  [ reduce using rule 20 (S -> .) ]
+  ! PRINT           [ reduce using rule 20 (S -> .) ]
+  ! READ            [ reduce using rule 20 (S -> .) ]
+  ! IF              [ reduce using rule 20 (S -> .) ]
+  ! WHILE           [ reduce using rule 20 (S -> .) ]
+  ! DO              [ reduce using rule 20 (S -> .) ]
+  ! FOR             [ reduce using rule 20 (S -> .) ]
+  ! ID              [ reduce using rule 20 (S -> .) ]
+  ! INT             [ reduce using rule 20 (S -> .) ]
+  ! DOUBLE          [ reduce using rule 20 (S -> .) ]
+  ! CLOSING_BRACES  [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! PRINT           [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! READ            [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! IF              [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! WHILE           [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! DO              [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! FOR             [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! ID              [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! INT             [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! DOUBLE          [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! INT             [ reduce using rule 6 (VAR -> .) ]
+  ! DOUBLE          [ reduce using rule 6 (VAR -> .) ]
+  ! PRINT           [ reduce using rule 6 (VAR -> .) ]
+  ! READ            [ reduce using rule 6 (VAR -> .) ]
+  ! IF              [ reduce using rule 6 (VAR -> .) ]
+  ! WHILE           [ reduce using rule 6 (VAR -> .) ]
+  ! DO              [ reduce using rule 6 (VAR -> .) ]
+  ! FOR             [ reduce using rule 6 (VAR -> .) ]
+  ! ID              [ reduce using rule 6 (VAR -> .) ]
+
+    STATEMENTS                     shift and go to state 77
+    PRINTSTAT                      shift and go to state 79
+    FUNCSTAT                       shift and go to state 66
+    INC_STAT                       shift and go to state 81
+    VAR                            shift and go to state 83
+    FORSTAT                        shift and go to state 70
+    ASSIGN                         shift and go to state 71
+    READSTAT                       shift and go to state 72
+    WHILESTAT                      shift and go to state 65
+    DOSTAT                         shift and go to state 73
+    IFSTAT                         shift and go to state 74
+    S                              shift and go to state 102
+    IDSTAT                         shift and go to state 76
+    TIPO                           shift and go to state 5
+
+state 88
+
+    (39) DOSTAT -> DO IN_S . WHILE OPEN_PARENTH EL CLOSING_PARENTH SEMICOLON
+
+    WHILE           shift and go to state 103
+
+
+state 89
+
+    (40) FORSTAT -> FOR OPEN_PARENTH . ID EQUAL EA SEMICOLON EL SEMICOLON ID EQUAL EA CLOSING_PARENTH IN_S
+
+    ID              shift and go to state 104
+
+
+state 90
+
+    (43) INC_STAT -> ID MINUSMINUS . SEMICOLON
+
+    SEMICOLON       shift and go to state 105
+
+
+state 91
+
+    (41) FUNCSTAT -> ID OPEN_PARENTH . CLOSING_PARENTH SEMICOLON
+
+    CLOSING_PARENTH shift and go to state 106
+
+
+state 92
+
+    (42) INC_STAT -> ID PLUSPLUS . SEMICOLON
+
+    SEMICOLON       shift and go to state 107
+
+
+state 93
+
+    (32) IDSTAT -> ASSIGN SEMICOLON .
+
+    CLOSING_BRACES  reduce using rule 32 (IDSTAT -> ASSIGN SEMICOLON .)
+    PRINT           reduce using rule 32 (IDSTAT -> ASSIGN SEMICOLON .)
+    READ            reduce using rule 32 (IDSTAT -> ASSIGN SEMICOLON .)
+    IF              reduce using rule 32 (IDSTAT -> ASSIGN SEMICOLON .)
+    WHILE           reduce using rule 32 (IDSTAT -> ASSIGN SEMICOLON .)
+    DO              reduce using rule 32 (IDSTAT -> ASSIGN SEMICOLON .)
+    FOR             reduce using rule 32 (IDSTAT -> ASSIGN SEMICOLON .)
+    ID              reduce using rule 32 (IDSTAT -> ASSIGN SEMICOLON .)
+    INT             reduce using rule 32 (IDSTAT -> ASSIGN SEMICOLON .)
+    DOUBLE          reduce using rule 32 (IDSTAT -> ASSIGN SEMICOLON .)
+
+
+state 94
+
+    (12) FUNC -> FUNCTION ID OPEN_PARENTH CLOSING_PARENTH OPEN_BRACES S CLOSING_BRACES .
+
+    FUNCTION        reduce using rule 12 (FUNC -> FUNCTION ID OPEN_PARENTH CLOSING_PARENTH OPEN_BRACES S CLOSING_BRACES .)
+    MAIN            reduce using rule 12 (FUNC -> FUNCTION ID OPEN_PARENTH CLOSING_PARENTH OPEN_BRACES S CLOSING_BRACES .)
+
+
+state 95
+
+    (19) S -> S STATEMENTS .
+
+    CLOSING_BRACES  reduce using rule 19 (S -> S STATEMENTS .)
+    PRINT           reduce using rule 19 (S -> S STATEMENTS .)
+    READ            reduce using rule 19 (S -> S STATEMENTS .)
+    IF              reduce using rule 19 (S -> S STATEMENTS .)
+    WHILE           reduce using rule 19 (S -> S STATEMENTS .)
+    DO              reduce using rule 19 (S -> S STATEMENTS .)
+    FOR             reduce using rule 19 (S -> S STATEMENTS .)
+    ID              reduce using rule 19 (S -> S STATEMENTS .)
+    INT             reduce using rule 19 (S -> S STATEMENTS .)
+    DOUBLE          reduce using rule 19 (S -> S STATEMENTS .)
+
+
+state 96
+
+    (38) WHILESTAT -> WHILE OPEN_PARENTH . EL CLOSING_PARENTH IN_S
+    (55) EL -> . TL
+    (56) EL -> . EL OR TL
+    (57) TL -> . FL
+    (58) TL -> . TL AND FL
+    (59) FL -> . NL OPERATORS NL
+    (60) FL -> . EA OPERATORS EA
+    (61) FL -> . NL
+    (62) FL -> . OPEN_PARENTH EL CLOSING_PARENTH
+    (63) NL -> . NOT EL
+    (45) EA -> . TA
+    (46) EA -> . EA PLUS TA
+    (47) EA -> . EA MINUS TA
+    (52) TA -> . FA
+    (53) TA -> . TA MULTIPLY FA
+    (54) TA -> . TA DIVISION FA
+    (48) FA -> . CONSTANT
+    (49) FA -> . ID
+    (50) FA -> . MAT
+    (51) FA -> . OPEN_PARENTH EA CLOSING_PARENTH
+    (68) MAT -> . ID MAT_BRACKET
+
+    OPEN_PARENTH    shift and go to state 111
+    NOT             shift and go to state 109
+    CONSTANT        shift and go to state 37
+    ID              shift and go to state 34
+
+    EA                             shift and go to state 110
+    FA                             shift and go to state 36
+    FL                             shift and go to state 108
+    TL                             shift and go to state 112
+    EL                             shift and go to state 113
+    MAT                            shift and go to state 33
+    TA                             shift and go to state 38
+    NL                             shift and go to state 114
+
+state 97
+
+    (33) PRINTSTAT -> PRINT OPEN_PARENTH . EA CLOSING_PARENTH SEMICOLON
+    (34) PRINTSTAT -> PRINT OPEN_PARENTH . STRING CLOSING_PARENTH SEMICOLON
+    (45) EA -> . TA
+    (46) EA -> . EA PLUS TA
+    (47) EA -> . EA MINUS TA
+    (52) TA -> . FA
+    (53) TA -> . TA MULTIPLY FA
+    (54) TA -> . TA DIVISION FA
+    (48) FA -> . CONSTANT
+    (49) FA -> . ID
+    (50) FA -> . MAT
+    (51) FA -> . OPEN_PARENTH EA CLOSING_PARENTH
+    (68) MAT -> . ID MAT_BRACKET
+
+    STRING          shift and go to state 116
+    CONSTANT        shift and go to state 37
+    ID              shift and go to state 34
+    OPEN_PARENTH    shift and go to state 32
+
+    EA                             shift and go to state 115
+    MAT                            shift and go to state 33
+    FA                             shift and go to state 36
+    TA                             shift and go to state 38
+
+state 98
+
+    (36) IFSTAT -> IF OPEN_PARENTH . EL CLOSING_PARENTH IN_S
+    (37) IFSTAT -> IF OPEN_PARENTH . EL CLOSING_PARENTH IN_S ELSE IN_S
+    (55) EL -> . TL
+    (56) EL -> . EL OR TL
+    (57) TL -> . FL
+    (58) TL -> . TL AND FL
+    (59) FL -> . NL OPERATORS NL
+    (60) FL -> . EA OPERATORS EA
+    (61) FL -> . NL
+    (62) FL -> . OPEN_PARENTH EL CLOSING_PARENTH
+    (63) NL -> . NOT EL
+    (45) EA -> . TA
+    (46) EA -> . EA PLUS TA
+    (47) EA -> . EA MINUS TA
+    (52) TA -> . FA
+    (53) TA -> . TA MULTIPLY FA
+    (54) TA -> . TA DIVISION FA
+    (48) FA -> . CONSTANT
+    (49) FA -> . ID
+    (50) FA -> . MAT
+    (51) FA -> . OPEN_PARENTH EA CLOSING_PARENTH
+    (68) MAT -> . ID MAT_BRACKET
+
+    OPEN_PARENTH    shift and go to state 111
+    NOT             shift and go to state 109
+    CONSTANT        shift and go to state 37
+    ID              shift and go to state 34
+
+    EA                             shift and go to state 110
+    FA                             shift and go to state 36
+    FL                             shift and go to state 108
+    TL                             shift and go to state 112
+    EL                             shift and go to state 117
+    MAT                            shift and go to state 33
+    TA                             shift and go to state 38
+    NL                             shift and go to state 114
+
+state 99
+
+    (15) M -> MAIN OPEN_PARENTH CLOSING_PARENTH OPEN_BRACES S CLOSING_BRACES .
+
+    $end            reduce using rule 15 (M -> MAIN OPEN_PARENTH CLOSING_PARENTH OPEN_BRACES S CLOSING_BRACES .)
+
+
+state 100
+
+    (13) FUNC -> FUNC FUNCTION ID OPEN_PARENTH CLOSING_PARENTH OPEN_BRACES S . CLOSING_BRACES
+    (19) S -> S . STATEMENTS
+    (21) STATEMENTS -> . VAR
+    (22) STATEMENTS -> . IDSTAT
+    (23) STATEMENTS -> . PRINTSTAT
+    (24) STATEMENTS -> . READSTAT
+    (25) STATEMENTS -> . IFSTAT
+    (26) STATEMENTS -> . WHILESTAT
+    (27) STATEMENTS -> . DOSTAT
+    (28) STATEMENTS -> . FORSTAT
+    (29) STATEMENTS -> . FUNCSTAT
+    (30) STATEMENTS -> . INC_STAT
+    (31) STATEMENTS -> .
+    (2) VAR -> . TIPO DECLARE SEMICOLON
+    (3) VAR -> . TIPO MAT SEMICOLON
+    (4) VAR -> . VAR TIPO DECLARE SEMICOLON
+    (5) VAR -> . VAR TIPO MAT SEMICOLON
+    (6) VAR -> .
+    (32) IDSTAT -> . ASSIGN SEMICOLON
+    (33) PRINTSTAT -> . PRINT OPEN_PARENTH EA CLOSING_PARENTH SEMICOLON
+    (34) PRINTSTAT -> . PRINT OPEN_PARENTH STRING CLOSING_PARENTH SEMICOLON
+    (35) READSTAT -> . READ OPEN_PARENTH EA CLOSING_PARENTH SEMICOLON
+    (36) IFSTAT -> . IF OPEN_PARENTH EL CLOSING_PARENTH IN_S
+    (37) IFSTAT -> . IF OPEN_PARENTH EL CLOSING_PARENTH IN_S ELSE IN_S
+    (38) WHILESTAT -> . WHILE OPEN_PARENTH EL CLOSING_PARENTH IN_S
+    (39) DOSTAT -> . DO IN_S WHILE OPEN_PARENTH EL CLOSING_PARENTH SEMICOLON
+    (40) FORSTAT -> . FOR OPEN_PARENTH ID EQUAL EA SEMICOLON EL SEMICOLON ID EQUAL EA CLOSING_PARENTH IN_S
+    (41) FUNCSTAT -> . ID OPEN_PARENTH CLOSING_PARENTH SEMICOLON
+    (42) INC_STAT -> . ID PLUSPLUS SEMICOLON
+    (43) INC_STAT -> . ID MINUSMINUS SEMICOLON
+    (16) TIPO -> . INT
+    (17) TIPO -> . DOUBLE
+    (11) ASSIGN -> . ID EQUAL EA
+
+  ! shift/reduce conflict for CLOSING_BRACES resolved as shift
+  ! reduce/reduce conflict for INT resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for DOUBLE resolved using rule 6 (VAR -> .)
+  ! shift/reduce conflict for CLOSING_BRACES resolved as shift
+  ! reduce/reduce conflict for PRINT resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for READ resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for IF resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for WHILE resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for DO resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for FOR resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for ID resolved using rule 6 (VAR -> .)
+  ! shift/reduce conflict for PRINT resolved as shift
+  ! shift/reduce conflict for READ resolved as shift
+  ! shift/reduce conflict for IF resolved as shift
+  ! shift/reduce conflict for WHILE resolved as shift
+  ! shift/reduce conflict for DO resolved as shift
+  ! shift/reduce conflict for FOR resolved as shift
+  ! shift/reduce conflict for ID resolved as shift
+  ! shift/reduce conflict for INT resolved as shift
+  ! shift/reduce conflict for DOUBLE resolved as shift
+    CLOSING_BRACES  shift and go to state 118
+    PRINT           shift and go to state 80
+    READ            shift and go to state 64
+    IF              shift and go to state 82
+    WHILE           shift and go to state 78
+    DO              shift and go to state 67
+    FOR             shift and go to state 68
+    ID              shift and go to state 69
+    INT             shift and go to state 1
+    DOUBLE          shift and go to state 2
+
+  ! CLOSING_BRACES  [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! PRINT           [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! READ            [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! IF              [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! WHILE           [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! DO              [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! FOR             [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! ID              [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! INT             [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! DOUBLE          [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! INT             [ reduce using rule 6 (VAR -> .) ]
+  ! DOUBLE          [ reduce using rule 6 (VAR -> .) ]
+  ! CLOSING_BRACES  [ reduce using rule 6 (VAR -> .) ]
+  ! PRINT           [ reduce using rule 6 (VAR -> .) ]
+  ! READ            [ reduce using rule 6 (VAR -> .) ]
+  ! IF              [ reduce using rule 6 (VAR -> .) ]
+  ! WHILE           [ reduce using rule 6 (VAR -> .) ]
+  ! DO              [ reduce using rule 6 (VAR -> .) ]
+  ! FOR             [ reduce using rule 6 (VAR -> .) ]
+  ! ID              [ reduce using rule 6 (VAR -> .) ]
+
+    STATEMENTS                     shift and go to state 95
+    PRINTSTAT                      shift and go to state 79
+    FUNCSTAT                       shift and go to state 66
+    INC_STAT                       shift and go to state 81
+    VAR                            shift and go to state 83
+    FORSTAT                        shift and go to state 70
+    ASSIGN                         shift and go to state 71
+    READSTAT                       shift and go to state 72
+    WHILESTAT                      shift and go to state 65
+    DOSTAT                         shift and go to state 73
+    IFSTAT                         shift and go to state 74
+    IDSTAT                         shift and go to state 76
+    TIPO                           shift and go to state 5
+
+state 101
+
+    (35) READSTAT -> READ OPEN_PARENTH EA . CLOSING_PARENTH SEMICOLON
+    (46) EA -> EA . PLUS TA
+    (47) EA -> EA . MINUS TA
+
+    CLOSING_PARENTH shift and go to state 119
+    PLUS            shift and go to state 47
+    MINUS           shift and go to state 46
+
+
+state 102
+
+    (44) IN_S -> OPEN_BRACES S . CLOSING_BRACES
+    (19) S -> S . STATEMENTS
+    (21) STATEMENTS -> . VAR
+    (22) STATEMENTS -> . IDSTAT
+    (23) STATEMENTS -> . PRINTSTAT
+    (24) STATEMENTS -> . READSTAT
+    (25) STATEMENTS -> . IFSTAT
+    (26) STATEMENTS -> . WHILESTAT
+    (27) STATEMENTS -> . DOSTAT
+    (28) STATEMENTS -> . FORSTAT
+    (29) STATEMENTS -> . FUNCSTAT
+    (30) STATEMENTS -> . INC_STAT
+    (31) STATEMENTS -> .
+    (2) VAR -> . TIPO DECLARE SEMICOLON
+    (3) VAR -> . TIPO MAT SEMICOLON
+    (4) VAR -> . VAR TIPO DECLARE SEMICOLON
+    (5) VAR -> . VAR TIPO MAT SEMICOLON
+    (6) VAR -> .
+    (32) IDSTAT -> . ASSIGN SEMICOLON
+    (33) PRINTSTAT -> . PRINT OPEN_PARENTH EA CLOSING_PARENTH SEMICOLON
+    (34) PRINTSTAT -> . PRINT OPEN_PARENTH STRING CLOSING_PARENTH SEMICOLON
+    (35) READSTAT -> . READ OPEN_PARENTH EA CLOSING_PARENTH SEMICOLON
+    (36) IFSTAT -> . IF OPEN_PARENTH EL CLOSING_PARENTH IN_S
+    (37) IFSTAT -> . IF OPEN_PARENTH EL CLOSING_PARENTH IN_S ELSE IN_S
+    (38) WHILESTAT -> . WHILE OPEN_PARENTH EL CLOSING_PARENTH IN_S
+    (39) DOSTAT -> . DO IN_S WHILE OPEN_PARENTH EL CLOSING_PARENTH SEMICOLON
+    (40) FORSTAT -> . FOR OPEN_PARENTH ID EQUAL EA SEMICOLON EL SEMICOLON ID EQUAL EA CLOSING_PARENTH IN_S
+    (41) FUNCSTAT -> . ID OPEN_PARENTH CLOSING_PARENTH SEMICOLON
+    (42) INC_STAT -> . ID PLUSPLUS SEMICOLON
+    (43) INC_STAT -> . ID MINUSMINUS SEMICOLON
+    (16) TIPO -> . INT
+    (17) TIPO -> . DOUBLE
+    (11) ASSIGN -> . ID EQUAL EA
+
+  ! shift/reduce conflict for CLOSING_BRACES resolved as shift
+  ! reduce/reduce conflict for INT resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for DOUBLE resolved using rule 6 (VAR -> .)
+  ! shift/reduce conflict for CLOSING_BRACES resolved as shift
+  ! reduce/reduce conflict for PRINT resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for READ resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for IF resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for WHILE resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for DO resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for FOR resolved using rule 6 (VAR -> .)
+  ! reduce/reduce conflict for ID resolved using rule 6 (VAR -> .)
+  ! shift/reduce conflict for PRINT resolved as shift
+  ! shift/reduce conflict for READ resolved as shift
+  ! shift/reduce conflict for IF resolved as shift
+  ! shift/reduce conflict for WHILE resolved as shift
+  ! shift/reduce conflict for DO resolved as shift
+  ! shift/reduce conflict for FOR resolved as shift
+  ! shift/reduce conflict for ID resolved as shift
+  ! shift/reduce conflict for INT resolved as shift
+  ! shift/reduce conflict for DOUBLE resolved as shift
+    CLOSING_BRACES  shift and go to state 120
+    PRINT           shift and go to state 80
+    READ            shift and go to state 64
+    IF              shift and go to state 82
+    WHILE           shift and go to state 78
+    DO              shift and go to state 67
+    FOR             shift and go to state 68
+    ID              shift and go to state 69
+    INT             shift and go to state 1
+    DOUBLE          shift and go to state 2
+
+  ! CLOSING_BRACES  [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! PRINT           [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! READ            [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! IF              [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! WHILE           [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! DO              [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! FOR             [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! ID              [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! INT             [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! DOUBLE          [ reduce using rule 31 (STATEMENTS -> .) ]
+  ! INT             [ reduce using rule 6 (VAR -> .) ]
+  ! DOUBLE          [ reduce using rule 6 (VAR -> .) ]
+  ! CLOSING_BRACES  [ reduce using rule 6 (VAR -> .) ]
+  ! PRINT           [ reduce using rule 6 (VAR -> .) ]
+  ! READ            [ reduce using rule 6 (VAR -> .) ]
+  ! IF              [ reduce using rule 6 (VAR -> .) ]
+  ! WHILE           [ reduce using rule 6 (VAR -> .) ]
+  ! DO              [ reduce using rule 6 (VAR -> .) ]
+  ! FOR             [ reduce using rule 6 (VAR -> .) ]
+  ! ID              [ reduce using rule 6 (VAR -> .) ]
+
+    STATEMENTS                     shift and go to state 95
+    PRINTSTAT                      shift and go to state 79
+    FUNCSTAT                       shift and go to state 66
+    INC_STAT                       shift and go to state 81
+    VAR                            shift and go to state 83
+    FORSTAT                        shift and go to state 70
+    ASSIGN                         shift and go to state 71
+    READSTAT                       shift and go to state 72
+    WHILESTAT                      shift and go to state 65
+    DOSTAT                         shift and go to state 73
+    IFSTAT                         shift and go to state 74
+    IDSTAT                         shift and go to state 76
+    TIPO                           shift and go to state 5
+
+state 103
+
+    (39) DOSTAT -> DO IN_S WHILE . OPEN_PARENTH EL CLOSING_PARENTH SEMICOLON
+
+    OPEN_PARENTH    shift and go to state 121
+
+
+state 104
+
+    (40) FORSTAT -> FOR OPEN_PARENTH ID . EQUAL EA SEMICOLON EL SEMICOLON ID EQUAL EA CLOSING_PARENTH IN_S
+
+    EQUAL           shift and go to state 122
+
+
+state 105
+
+    (43) INC_STAT -> ID MINUSMINUS SEMICOLON .
+
+    CLOSING_BRACES  reduce using rule 43 (INC_STAT -> ID MINUSMINUS SEMICOLON .)
+    PRINT           reduce using rule 43 (INC_STAT -> ID MINUSMINUS SEMICOLON .)
+    READ            reduce using rule 43 (INC_STAT -> ID MINUSMINUS SEMICOLON .)
+    IF              reduce using rule 43 (INC_STAT -> ID MINUSMINUS SEMICOLON .)
+    WHILE           reduce using rule 43 (INC_STAT -> ID MINUSMINUS SEMICOLON .)
+    DO              reduce using rule 43 (INC_STAT -> ID MINUSMINUS SEMICOLON .)
+    FOR             reduce using rule 43 (INC_STAT -> ID MINUSMINUS SEMICOLON .)
+    ID              reduce using rule 43 (INC_STAT -> ID MINUSMINUS SEMICOLON .)
+    INT             reduce using rule 43 (INC_STAT -> ID MINUSMINUS SEMICOLON .)
+    DOUBLE          reduce using rule 43 (INC_STAT -> ID MINUSMINUS SEMICOLON .)
+
+
+state 106
+
+    (41) FUNCSTAT -> ID OPEN_PARENTH CLOSING_PARENTH . SEMICOLON
+
+    SEMICOLON       shift and go to state 123
+
+
+state 107
+
+    (42) INC_STAT -> ID PLUSPLUS SEMICOLON .
+
+    CLOSING_BRACES  reduce using rule 42 (INC_STAT -> ID PLUSPLUS SEMICOLON .)
+    PRINT           reduce using rule 42 (INC_STAT -> ID PLUSPLUS SEMICOLON .)
+    READ            reduce using rule 42 (INC_STAT -> ID PLUSPLUS SEMICOLON .)
+    IF              reduce using rule 42 (INC_STAT -> ID PLUSPLUS SEMICOLON .)
+    WHILE           reduce using rule 42 (INC_STAT -> ID PLUSPLUS SEMICOLON .)
+    DO              reduce using rule 42 (INC_STAT -> ID PLUSPLUS SEMICOLON .)
+    FOR             reduce using rule 42 (INC_STAT -> ID PLUSPLUS SEMICOLON .)
+    ID              reduce using rule 42 (INC_STAT -> ID PLUSPLUS SEMICOLON .)
+    INT             reduce using rule 42 (INC_STAT -> ID PLUSPLUS SEMICOLON .)
+    DOUBLE          reduce using rule 42 (INC_STAT -> ID PLUSPLUS SEMICOLON .)
+
+
+state 108
+
+    (57) TL -> FL .
+
+    AND             reduce using rule 57 (TL -> FL .)
+    CLOSING_PARENTH reduce using rule 57 (TL -> FL .)
+    OR              reduce using rule 57 (TL -> FL .)
+    SEMICOLON       reduce using rule 57 (TL -> FL .)
+    NOT_EQUAL       reduce using rule 57 (TL -> FL .)
+    LOWER_THAN      reduce using rule 57 (TL -> FL .)
+    BIGGER_THAN     reduce using rule 57 (TL -> FL .)
+    EQUAL_EQUAL     reduce using rule 57 (TL -> FL .)
+
+
+state 109
+
+    (63) NL -> NOT . EL
+    (55) EL -> . TL
+    (56) EL -> . EL OR TL
+    (57) TL -> . FL
+    (58) TL -> . TL AND FL
+    (59) FL -> . NL OPERATORS NL
+    (60) FL -> . EA OPERATORS EA
+    (61) FL -> . NL
+    (62) FL -> . OPEN_PARENTH EL CLOSING_PARENTH
+    (63) NL -> . NOT EL
+    (45) EA -> . TA
+    (46) EA -> . EA PLUS TA
+    (47) EA -> . EA MINUS TA
+    (52) TA -> . FA
+    (53) TA -> . TA MULTIPLY FA
+    (54) TA -> . TA DIVISION FA
+    (48) FA -> . CONSTANT
+    (49) FA -> . ID
+    (50) FA -> . MAT
+    (51) FA -> . OPEN_PARENTH EA CLOSING_PARENTH
+    (68) MAT -> . ID MAT_BRACKET
+
+    OPEN_PARENTH    shift and go to state 111
+    NOT             shift and go to state 109
+    CONSTANT        shift and go to state 37
+    ID              shift and go to state 34
+
+    EA                             shift and go to state 110
+    FA                             shift and go to state 36
+    FL                             shift and go to state 108
+    TL                             shift and go to state 112
+    EL                             shift and go to state 124
+    MAT                            shift and go to state 33
+    TA                             shift and go to state 38
+    NL                             shift and go to state 114
+
+state 110
+
+    (60) FL -> EA . OPERATORS EA
+    (46) EA -> EA . PLUS TA
+    (47) EA -> EA . MINUS TA
+    (64) OPERATORS -> . NOT_EQUAL
+    (65) OPERATORS -> . LOWER_THAN
+    (66) OPERATORS -> . BIGGER_THAN
+    (67) OPERATORS -> . EQUAL_EQUAL
+
+    PLUS            shift and go to state 47
+    MINUS           shift and go to state 46
+    NOT_EQUAL       shift and go to state 126
+    LOWER_THAN      shift and go to state 128
+    BIGGER_THAN     shift and go to state 125
+    EQUAL_EQUAL     shift and go to state 127
+
+    OPERATORS                      shift and go to state 129
+
+state 111
+
+    (62) FL -> OPEN_PARENTH . EL CLOSING_PARENTH
+    (51) FA -> OPEN_PARENTH . EA CLOSING_PARENTH
+    (55) EL -> . TL
+    (56) EL -> . EL OR TL
+    (45) EA -> . TA
+    (46) EA -> . EA PLUS TA
+    (47) EA -> . EA MINUS TA
+    (57) TL -> . FL
+    (58) TL -> . TL AND FL
+    (52) TA -> . FA
+    (53) TA -> . TA MULTIPLY FA
+    (54) TA -> . TA DIVISION FA
+    (59) FL -> . NL OPERATORS NL
+    (60) FL -> . EA OPERATORS EA
+    (61) FL -> . NL
+    (62) FL -> . OPEN_PARENTH EL CLOSING_PARENTH
+    (48) FA -> . CONSTANT
+    (49) FA -> . ID
+    (50) FA -> . MAT
+    (51) FA -> . OPEN_PARENTH EA CLOSING_PARENTH
+    (63) NL -> . NOT EL
+    (68) MAT -> . ID MAT_BRACKET
+
+    OPEN_PARENTH    shift and go to state 111
+    CONSTANT        shift and go to state 37
+    ID              shift and go to state 34
+    NOT             shift and go to state 109
+
+    EA                             shift and go to state 130
+    FL                             shift and go to state 108
+    TL                             shift and go to state 112
+    EL                             shift and go to state 131
+    NL                             shift and go to state 114
+    MAT                            shift and go to state 33
+    TA                             shift and go to state 38
+    FA                             shift and go to state 36
+
+state 112
+
+    (55) EL -> TL .
+    (58) TL -> TL . AND FL
+
+  ! shift/reduce conflict for AND resolved as shift
+    CLOSING_PARENTH reduce using rule 55 (EL -> TL .)
+    OR              reduce using rule 55 (EL -> TL .)
+    SEMICOLON       reduce using rule 55 (EL -> TL .)
+    NOT_EQUAL       reduce using rule 55 (EL -> TL .)
+    LOWER_THAN      reduce using rule 55 (EL -> TL .)
+    BIGGER_THAN     reduce using rule 55 (EL -> TL .)
+    EQUAL_EQUAL     reduce using rule 55 (EL -> TL .)
+    AND             shift and go to state 132
+
+  ! AND             [ reduce using rule 55 (EL -> TL .) ]
+
+
+state 113
+
+    (38) WHILESTAT -> WHILE OPEN_PARENTH EL . CLOSING_PARENTH IN_S
+    (56) EL -> EL . OR TL
+
+    CLOSING_PARENTH shift and go to state 133
+    OR              shift and go to state 134
+
+
+state 114
+
+    (59) FL -> NL . OPERATORS NL
+    (61) FL -> NL .
+    (64) OPERATORS -> . NOT_EQUAL
+    (65) OPERATORS -> . LOWER_THAN
+    (66) OPERATORS -> . BIGGER_THAN
+    (67) OPERATORS -> . EQUAL_EQUAL
+
+  ! shift/reduce conflict for NOT_EQUAL resolved as shift
+  ! shift/reduce conflict for LOWER_THAN resolved as shift
+  ! shift/reduce conflict for BIGGER_THAN resolved as shift
+  ! shift/reduce conflict for EQUAL_EQUAL resolved as shift
+    AND             reduce using rule 61 (FL -> NL .)
+    OR              reduce using rule 61 (FL -> NL .)
+    CLOSING_PARENTH reduce using rule 61 (FL -> NL .)
+    SEMICOLON       reduce using rule 61 (FL -> NL .)
+    NOT_EQUAL       shift and go to state 126
+    LOWER_THAN      shift and go to state 128
+    BIGGER_THAN     shift and go to state 125
+    EQUAL_EQUAL     shift and go to state 127
+
+  ! NOT_EQUAL       [ reduce using rule 61 (FL -> NL .) ]
+  ! LOWER_THAN      [ reduce using rule 61 (FL -> NL .) ]
+  ! BIGGER_THAN     [ reduce using rule 61 (FL -> NL .) ]
+  ! EQUAL_EQUAL     [ reduce using rule 61 (FL -> NL .) ]
+
+    OPERATORS                      shift and go to state 135
+
+state 115
+
+    (33) PRINTSTAT -> PRINT OPEN_PARENTH EA . CLOSING_PARENTH SEMICOLON
+    (46) EA -> EA . PLUS TA
+    (47) EA -> EA . MINUS TA
+
+    CLOSING_PARENTH shift and go to state 136
+    PLUS            shift and go to state 47
+    MINUS           shift and go to state 46
+
+
+state 116
+
+    (34) PRINTSTAT -> PRINT OPEN_PARENTH STRING . CLOSING_PARENTH SEMICOLON
+
+    CLOSING_PARENTH shift and go to state 137
+
+
+state 117
+
+    (36) IFSTAT -> IF OPEN_PARENTH EL . CLOSING_PARENTH IN_S
+    (37) IFSTAT -> IF OPEN_PARENTH EL . CLOSING_PARENTH IN_S ELSE IN_S
+    (56) EL -> EL . OR TL
+
+    CLOSING_PARENTH shift and go to state 138
+    OR              shift and go to state 134
+
+
+state 118
+
+    (13) FUNC -> FUNC FUNCTION ID OPEN_PARENTH CLOSING_PARENTH OPEN_BRACES S CLOSING_BRACES .
+
+    FUNCTION        reduce using rule 13 (FUNC -> FUNC FUNCTION ID OPEN_PARENTH CLOSING_PARENTH OPEN_BRACES S CLOSING_BRACES .)
+    MAIN            reduce using rule 13 (FUNC -> FUNC FUNCTION ID OPEN_PARENTH CLOSING_PARENTH OPEN_BRACES S CLOSING_BRACES .)
+
+
+state 119
+
+    (35) READSTAT -> READ OPEN_PARENTH EA CLOSING_PARENTH . SEMICOLON
+
+    SEMICOLON       shift and go to state 139
+
+
+state 120
+
+    (44) IN_S -> OPEN_BRACES S CLOSING_BRACES .
+
+    CLOSING_BRACES  reduce using rule 44 (IN_S -> OPEN_BRACES S CLOSING_BRACES .)
+    PRINT           reduce using rule 44 (IN_S -> OPEN_BRACES S CLOSING_BRACES .)
+    READ            reduce using rule 44 (IN_S -> OPEN_BRACES S CLOSING_BRACES .)
+    IF              reduce using rule 44 (IN_S -> OPEN_BRACES S CLOSING_BRACES .)
+    WHILE           reduce using rule 44 (IN_S -> OPEN_BRACES S CLOSING_BRACES .)
+    DO              reduce using rule 44 (IN_S -> OPEN_BRACES S CLOSING_BRACES .)
+    FOR             reduce using rule 44 (IN_S -> OPEN_BRACES S CLOSING_BRACES .)
+    ID              reduce using rule 44 (IN_S -> OPEN_BRACES S CLOSING_BRACES .)
+    INT             reduce using rule 44 (IN_S -> OPEN_BRACES S CLOSING_BRACES .)
+    DOUBLE          reduce using rule 44 (IN_S -> OPEN_BRACES S CLOSING_BRACES .)
+    ELSE            reduce using rule 44 (IN_S -> OPEN_BRACES S CLOSING_BRACES .)
+
+
+state 121
+
+    (39) DOSTAT -> DO IN_S WHILE OPEN_PARENTH . EL CLOSING_PARENTH SEMICOLON
+    (55) EL -> . TL
+    (56) EL -> . EL OR TL
+    (57) TL -> . FL
+    (58) TL -> . TL AND FL
+    (59) FL -> . NL OPERATORS NL
+    (60) FL -> . EA OPERATORS EA
+    (61) FL -> . NL
+    (62) FL -> . OPEN_PARENTH EL CLOSING_PARENTH
+    (63) NL -> . NOT EL
+    (45) EA -> . TA
+    (46) EA -> . EA PLUS TA
+    (47) EA -> . EA MINUS TA
+    (52) TA -> . FA
+    (53) TA -> . TA MULTIPLY FA
+    (54) TA -> . TA DIVISION FA
+    (48) FA -> . CONSTANT
+    (49) FA -> . ID
+    (50) FA -> . MAT
+    (51) FA -> . OPEN_PARENTH EA CLOSING_PARENTH
+    (68) MAT -> . ID MAT_BRACKET
+
+    OPEN_PARENTH    shift and go to state 111
+    NOT             shift and go to state 109
+    CONSTANT        shift and go to state 37
+    ID              shift and go to state 34
+
+    EA                             shift and go to state 110
+    FA                             shift and go to state 36
+    FL                             shift and go to state 108
+    TL                             shift and go to state 112
+    EL                             shift and go to state 140
+    MAT                            shift and go to state 33
+    TA                             shift and go to state 38
+    NL                             shift and go to state 114
+
+state 122
+
+    (40) FORSTAT -> FOR OPEN_PARENTH ID EQUAL . EA SEMICOLON EL SEMICOLON ID EQUAL EA CLOSING_PARENTH IN_S
+    (45) EA -> . TA
+    (46) EA -> . EA PLUS TA
+    (47) EA -> . EA MINUS TA
+    (52) TA -> . FA
+    (53) TA -> . TA MULTIPLY FA
+    (54) TA -> . TA DIVISION FA
+    (48) FA -> . CONSTANT
+    (49) FA -> . ID
+    (50) FA -> . MAT
+    (51) FA -> . OPEN_PARENTH EA CLOSING_PARENTH
+    (68) MAT -> . ID MAT_BRACKET
+
+    CONSTANT        shift and go to state 37
+    ID              shift and go to state 34
+    OPEN_PARENTH    shift and go to state 32
+
+    EA                             shift and go to state 141
+    FA                             shift and go to state 36
+    MAT                            shift and go to state 33
+    TA                             shift and go to state 38
+
+state 123
+
+    (41) FUNCSTAT -> ID OPEN_PARENTH CLOSING_PARENTH SEMICOLON .
+
+    CLOSING_BRACES  reduce using rule 41 (FUNCSTAT -> ID OPEN_PARENTH CLOSING_PARENTH SEMICOLON .)
+    PRINT           reduce using rule 41 (FUNCSTAT -> ID OPEN_PARENTH CLOSING_PARENTH SEMICOLON .)
+    READ            reduce using rule 41 (FUNCSTAT -> ID OPEN_PARENTH CLOSING_PARENTH SEMICOLON .)
+    IF              reduce using rule 41 (FUNCSTAT -> ID OPEN_PARENTH CLOSING_PARENTH SEMICOLON .)
+    WHILE           reduce using rule 41 (FUNCSTAT -> ID OPEN_PARENTH CLOSING_PARENTH SEMICOLON .)
+    DO              reduce using rule 41 (FUNCSTAT -> ID OPEN_PARENTH CLOSING_PARENTH SEMICOLON .)
+    FOR             reduce using rule 41 (FUNCSTAT -> ID OPEN_PARENTH CLOSING_PARENTH SEMICOLON .)
+    ID              reduce using rule 41 (FUNCSTAT -> ID OPEN_PARENTH CLOSING_PARENTH SEMICOLON .)
+    INT             reduce using rule 41 (FUNCSTAT -> ID OPEN_PARENTH CLOSING_PARENTH SEMICOLON .)
+    DOUBLE          reduce using rule 41 (FUNCSTAT -> ID OPEN_PARENTH CLOSING_PARENTH SEMICOLON .)
+
+
+state 124
+
+    (63) NL -> NOT EL .
+    (56) EL -> EL . OR TL
+
+  ! shift/reduce conflict for OR resolved as shift
+    AND             reduce using rule 63 (NL -> NOT EL .)
+    NOT_EQUAL       reduce using rule 63 (NL -> NOT EL .)
+    LOWER_THAN      reduce using rule 63 (NL -> NOT EL .)
+    BIGGER_THAN     reduce using rule 63 (NL -> NOT EL .)
+    EQUAL_EQUAL     reduce using rule 63 (NL -> NOT EL .)
+    CLOSING_PARENTH reduce using rule 63 (NL -> NOT EL .)
+    SEMICOLON       reduce using rule 63 (NL -> NOT EL .)
+    OR              shift and go to state 134
+
+  ! OR              [ reduce using rule 63 (NL -> NOT EL .) ]
+
+
+state 125
+
+    (66) OPERATORS -> BIGGER_THAN .
+
+    CONSTANT        reduce using rule 66 (OPERATORS -> BIGGER_THAN .)
+    ID              reduce using rule 66 (OPERATORS -> BIGGER_THAN .)
+    OPEN_PARENTH    reduce using rule 66 (OPERATORS -> BIGGER_THAN .)
+    NOT             reduce using rule 66 (OPERATORS -> BIGGER_THAN .)
+
+
+state 126
+
+    (64) OPERATORS -> NOT_EQUAL .
+
+    CONSTANT        reduce using rule 64 (OPERATORS -> NOT_EQUAL .)
+    ID              reduce using rule 64 (OPERATORS -> NOT_EQUAL .)
+    OPEN_PARENTH    reduce using rule 64 (OPERATORS -> NOT_EQUAL .)
+    NOT             reduce using rule 64 (OPERATORS -> NOT_EQUAL .)
+
+
+state 127
+
+    (67) OPERATORS -> EQUAL_EQUAL .
+
+    CONSTANT        reduce using rule 67 (OPERATORS -> EQUAL_EQUAL .)
+    ID              reduce using rule 67 (OPERATORS -> EQUAL_EQUAL .)
+    OPEN_PARENTH    reduce using rule 67 (OPERATORS -> EQUAL_EQUAL .)
+    NOT             reduce using rule 67 (OPERATORS -> EQUAL_EQUAL .)
+
+
+state 128
+
+    (65) OPERATORS -> LOWER_THAN .
+
+    CONSTANT        reduce using rule 65 (OPERATORS -> LOWER_THAN .)
+    ID              reduce using rule 65 (OPERATORS -> LOWER_THAN .)
+    OPEN_PARENTH    reduce using rule 65 (OPERATORS -> LOWER_THAN .)
+    NOT             reduce using rule 65 (OPERATORS -> LOWER_THAN .)
+
+
+state 129
+
+    (60) FL -> EA OPERATORS . EA
+    (45) EA -> . TA
+    (46) EA -> . EA PLUS TA
+    (47) EA -> . EA MINUS TA
+    (52) TA -> . FA
+    (53) TA -> . TA MULTIPLY FA
+    (54) TA -> . TA DIVISION FA
+    (48) FA -> . CONSTANT
+    (49) FA -> . ID
+    (50) FA -> . MAT
+    (51) FA -> . OPEN_PARENTH EA CLOSING_PARENTH
+    (68) MAT -> . ID MAT_BRACKET
+
+    CONSTANT        shift and go to state 37
+    ID              shift and go to state 34
+    OPEN_PARENTH    shift and go to state 32
+
+    EA                             shift and go to state 142
+    FA                             shift and go to state 36
+    MAT                            shift and go to state 33
+    TA                             shift and go to state 38
+
+state 130
+
+    (51) FA -> OPEN_PARENTH EA . CLOSING_PARENTH
+    (46) EA -> EA . PLUS TA
+    (47) EA -> EA . MINUS TA
+    (60) FL -> EA . OPERATORS EA
+    (64) OPERATORS -> . NOT_EQUAL
+    (65) OPERATORS -> . LOWER_THAN
+    (66) OPERATORS -> . BIGGER_THAN
+    (67) OPERATORS -> . EQUAL_EQUAL
+
+    CLOSING_PARENTH shift and go to state 57
+    PLUS            shift and go to state 47
+    MINUS           shift and go to state 46
+    NOT_EQUAL       shift and go to state 126
+    LOWER_THAN      shift and go to state 128
+    BIGGER_THAN     shift and go to state 125
+    EQUAL_EQUAL     shift and go to state 127
+
+    OPERATORS                      shift and go to state 129
+
+state 131
+
+    (62) FL -> OPEN_PARENTH EL . CLOSING_PARENTH
+    (56) EL -> EL . OR TL
+
+    CLOSING_PARENTH shift and go to state 143
+    OR              shift and go to state 134
+
+
+state 132
+
+    (58) TL -> TL AND . FL
+    (59) FL -> . NL OPERATORS NL
+    (60) FL -> . EA OPERATORS EA
+    (61) FL -> . NL
+    (62) FL -> . OPEN_PARENTH EL CLOSING_PARENTH
+    (63) NL -> . NOT EL
+    (45) EA -> . TA
+    (46) EA -> . EA PLUS TA
+    (47) EA -> . EA MINUS TA
+    (52) TA -> . FA
+    (53) TA -> . TA MULTIPLY FA
+    (54) TA -> . TA DIVISION FA
+    (48) FA -> . CONSTANT
+    (49) FA -> . ID
+    (50) FA -> . MAT
+    (51) FA -> . OPEN_PARENTH EA CLOSING_PARENTH
+    (68) MAT -> . ID MAT_BRACKET
+
+    OPEN_PARENTH    shift and go to state 111
+    NOT             shift and go to state 109
+    CONSTANT        shift and go to state 37
+    ID              shift and go to state 34
+
+    EA                             shift and go to state 110
+    FA                             shift and go to state 36
+    FL                             shift and go to state 144
+    MAT                            shift and go to state 33
+    TA                             shift and go to state 38
+    NL                             shift and go to state 114
+
+state 133
+
+    (38) WHILESTAT -> WHILE OPEN_PARENTH EL CLOSING_PARENTH . IN_S
+    (44) IN_S -> . OPEN_BRACES S CLOSING_BRACES
+
+    OPEN_BRACES     shift and go to state 87
+
+    IN_S                           shift and go to state 145
+
+state 134
+
+    (56) EL -> EL OR . TL
+    (57) TL -> . FL
+    (58) TL -> . TL AND FL
+    (59) FL -> . NL OPERATORS NL
+    (60) FL -> . EA OPERATORS EA
+    (61) FL -> . NL
+    (62) FL -> . OPEN_PARENTH EL CLOSING_PARENTH
+    (63) NL -> . NOT EL
+    (45) EA -> . TA
+    (46) EA -> . EA PLUS TA
+    (47) EA -> . EA MINUS TA
+    (52) TA -> . FA
+    (53) TA -> . TA MULTIPLY FA
+    (54) TA -> . TA DIVISION FA
+    (48) FA -> . CONSTANT
+    (49) FA -> . ID
+    (50) FA -> . MAT
+    (51) FA -> . OPEN_PARENTH EA CLOSING_PARENTH
+    (68) MAT -> . ID MAT_BRACKET
+
+    OPEN_PARENTH    shift and go to state 111
+    NOT             shift and go to state 109
+    CONSTANT        shift and go to state 37
+    ID              shift and go to state 34
+
+    EA                             shift and go to state 110
+    FA                             shift and go to state 36
+    FL                             shift and go to state 108
+    TL                             shift and go to state 146
+    MAT                            shift and go to state 33
+    TA                             shift and go to state 38
+    NL                             shift and go to state 114
+
+state 135
+
+    (59) FL -> NL OPERATORS . NL
+    (63) NL -> . NOT EL
+
+    NOT             shift and go to state 109
+
+    NL                             shift and go to state 147
+
+state 136
+
+    (33) PRINTSTAT -> PRINT OPEN_PARENTH EA CLOSING_PARENTH . SEMICOLON
+
+    SEMICOLON       shift and go to state 148
+
+
+state 137
+
+    (34) PRINTSTAT -> PRINT OPEN_PARENTH STRING CLOSING_PARENTH . SEMICOLON
+
+    SEMICOLON       shift and go to state 149
+
+
+state 138
+
+    (36) IFSTAT -> IF OPEN_PARENTH EL CLOSING_PARENTH . IN_S
+    (37) IFSTAT -> IF OPEN_PARENTH EL CLOSING_PARENTH . IN_S ELSE IN_S
+    (44) IN_S -> . OPEN_BRACES S CLOSING_BRACES
+
+    OPEN_BRACES     shift and go to state 87
+
+    IN_S                           shift and go to state 150
+
+state 139
+
+    (35) READSTAT -> READ OPEN_PARENTH EA CLOSING_PARENTH SEMICOLON .
+
+    CLOSING_BRACES  reduce using rule 35 (READSTAT -> READ OPEN_PARENTH EA CLOSING_PARENTH SEMICOLON .)
+    PRINT           reduce using rule 35 (READSTAT -> READ OPEN_PARENTH EA CLOSING_PARENTH SEMICOLON .)
+    READ            reduce using rule 35 (READSTAT -> READ OPEN_PARENTH EA CLOSING_PARENTH SEMICOLON .)
+    IF              reduce using rule 35 (READSTAT -> READ OPEN_PARENTH EA CLOSING_PARENTH SEMICOLON .)
+    WHILE           reduce using rule 35 (READSTAT -> READ OPEN_PARENTH EA CLOSING_PARENTH SEMICOLON .)
+    DO              reduce using rule 35 (READSTAT -> READ OPEN_PARENTH EA CLOSING_PARENTH SEMICOLON .)
+    FOR             reduce using rule 35 (READSTAT -> READ OPEN_PARENTH EA CLOSING_PARENTH SEMICOLON .)
+    ID              reduce using rule 35 (READSTAT -> READ OPEN_PARENTH EA CLOSING_PARENTH SEMICOLON .)
+    INT             reduce using rule 35 (READSTAT -> READ OPEN_PARENTH EA CLOSING_PARENTH SEMICOLON .)
+    DOUBLE          reduce using rule 35 (READSTAT -> READ OPEN_PARENTH EA CLOSING_PARENTH SEMICOLON .)
+
+
+state 140
+
+    (39) DOSTAT -> DO IN_S WHILE OPEN_PARENTH EL . CLOSING_PARENTH SEMICOLON
+    (56) EL -> EL . OR TL
+
+    CLOSING_PARENTH shift and go to state 151
+    OR              shift and go to state 134
+
+
+state 141
+
+    (40) FORSTAT -> FOR OPEN_PARENTH ID EQUAL EA . SEMICOLON EL SEMICOLON ID EQUAL EA CLOSING_PARENTH IN_S
+    (46) EA -> EA . PLUS TA
+    (47) EA -> EA . MINUS TA
+
+    SEMICOLON       shift and go to state 152
+    PLUS            shift and go to state 47
+    MINUS           shift and go to state 46
+
+
+state 142
+
+    (60) FL -> EA OPERATORS EA .
+    (46) EA -> EA . PLUS TA
+    (47) EA -> EA . MINUS TA
+
+    AND             reduce using rule 60 (FL -> EA OPERATORS EA .)
+    OR              reduce using rule 60 (FL -> EA OPERATORS EA .)
+    NOT_EQUAL       reduce using rule 60 (FL -> EA OPERATORS EA .)
+    LOWER_THAN      reduce using rule 60 (FL -> EA OPERATORS EA .)
+    BIGGER_THAN     reduce using rule 60 (FL -> EA OPERATORS EA .)
+    EQUAL_EQUAL     reduce using rule 60 (FL -> EA OPERATORS EA .)
+    CLOSING_PARENTH reduce using rule 60 (FL -> EA OPERATORS EA .)
+    SEMICOLON       reduce using rule 60 (FL -> EA OPERATORS EA .)
+    PLUS            shift and go to state 47
+    MINUS           shift and go to state 46
+
+
+state 143
+
+    (62) FL -> OPEN_PARENTH EL CLOSING_PARENTH .
+
+    AND             reduce using rule 62 (FL -> OPEN_PARENTH EL CLOSING_PARENTH .)
+    OR              reduce using rule 62 (FL -> OPEN_PARENTH EL CLOSING_PARENTH .)
+    NOT_EQUAL       reduce using rule 62 (FL -> OPEN_PARENTH EL CLOSING_PARENTH .)
+    LOWER_THAN      reduce using rule 62 (FL -> OPEN_PARENTH EL CLOSING_PARENTH .)
+    BIGGER_THAN     reduce using rule 62 (FL -> OPEN_PARENTH EL CLOSING_PARENTH .)
+    EQUAL_EQUAL     reduce using rule 62 (FL -> OPEN_PARENTH EL CLOSING_PARENTH .)
+    CLOSING_PARENTH reduce using rule 62 (FL -> OPEN_PARENTH EL CLOSING_PARENTH .)
+    SEMICOLON       reduce using rule 62 (FL -> OPEN_PARENTH EL CLOSING_PARENTH .)
+
+
+state 144
+
+    (58) TL -> TL AND FL .
+
+    AND             reduce using rule 58 (TL -> TL AND FL .)
+    CLOSING_PARENTH reduce using rule 58 (TL -> TL AND FL .)
+    OR              reduce using rule 58 (TL -> TL AND FL .)
+    SEMICOLON       reduce using rule 58 (TL -> TL AND FL .)
+    NOT_EQUAL       reduce using rule 58 (TL -> TL AND FL .)
+    LOWER_THAN      reduce using rule 58 (TL -> TL AND FL .)
+    BIGGER_THAN     reduce using rule 58 (TL -> TL AND FL .)
+    EQUAL_EQUAL     reduce using rule 58 (TL -> TL AND FL .)
+
+
+state 145
+
+    (38) WHILESTAT -> WHILE OPEN_PARENTH EL CLOSING_PARENTH IN_S .
+
+    CLOSING_BRACES  reduce using rule 38 (WHILESTAT -> WHILE OPEN_PARENTH EL CLOSING_PARENTH IN_S .)
+    PRINT           reduce using rule 38 (WHILESTAT -> WHILE OPEN_PARENTH EL CLOSING_PARENTH IN_S .)
+    READ            reduce using rule 38 (WHILESTAT -> WHILE OPEN_PARENTH EL CLOSING_PARENTH IN_S .)
+    IF              reduce using rule 38 (WHILESTAT -> WHILE OPEN_PARENTH EL CLOSING_PARENTH IN_S .)
+    WHILE           reduce using rule 38 (WHILESTAT -> WHILE OPEN_PARENTH EL CLOSING_PARENTH IN_S .)
+    DO              reduce using rule 38 (WHILESTAT -> WHILE OPEN_PARENTH EL CLOSING_PARENTH IN_S .)
+    FOR             reduce using rule 38 (WHILESTAT -> WHILE OPEN_PARENTH EL CLOSING_PARENTH IN_S .)
+    ID              reduce using rule 38 (WHILESTAT -> WHILE OPEN_PARENTH EL CLOSING_PARENTH IN_S .)
+    INT             reduce using rule 38 (WHILESTAT -> WHILE OPEN_PARENTH EL CLOSING_PARENTH IN_S .)
+    DOUBLE          reduce using rule 38 (WHILESTAT -> WHILE OPEN_PARENTH EL CLOSING_PARENTH IN_S .)
+
+
+state 146
+
+    (56) EL -> EL OR TL .
+    (58) TL -> TL . AND FL
+
+  ! shift/reduce conflict for AND resolved as shift
+    CLOSING_PARENTH reduce using rule 56 (EL -> EL OR TL .)
+    OR              reduce using rule 56 (EL -> EL OR TL .)
+    SEMICOLON       reduce using rule 56 (EL -> EL OR TL .)
+    NOT_EQUAL       reduce using rule 56 (EL -> EL OR TL .)
+    LOWER_THAN      reduce using rule 56 (EL -> EL OR TL .)
+    BIGGER_THAN     reduce using rule 56 (EL -> EL OR TL .)
+    EQUAL_EQUAL     reduce using rule 56 (EL -> EL OR TL .)
+    AND             shift and go to state 132
+
+  ! AND             [ reduce using rule 56 (EL -> EL OR TL .) ]
+
+
+state 147
+
+    (59) FL -> NL OPERATORS NL .
+
+    AND             reduce using rule 59 (FL -> NL OPERATORS NL .)
+    OR              reduce using rule 59 (FL -> NL OPERATORS NL .)
+    NOT_EQUAL       reduce using rule 59 (FL -> NL OPERATORS NL .)
+    LOWER_THAN      reduce using rule 59 (FL -> NL OPERATORS NL .)
+    BIGGER_THAN     reduce using rule 59 (FL -> NL OPERATORS NL .)
+    EQUAL_EQUAL     reduce using rule 59 (FL -> NL OPERATORS NL .)
+    CLOSING_PARENTH reduce using rule 59 (FL -> NL OPERATORS NL .)
+    SEMICOLON       reduce using rule 59 (FL -> NL OPERATORS NL .)
+
+
+state 148
+
+    (33) PRINTSTAT -> PRINT OPEN_PARENTH EA CLOSING_PARENTH SEMICOLON .
+
+    CLOSING_BRACES  reduce using rule 33 (PRINTSTAT -> PRINT OPEN_PARENTH EA CLOSING_PARENTH SEMICOLON .)
+    PRINT           reduce using rule 33 (PRINTSTAT -> PRINT OPEN_PARENTH EA CLOSING_PARENTH SEMICOLON .)
+    READ            reduce using rule 33 (PRINTSTAT -> PRINT OPEN_PARENTH EA CLOSING_PARENTH SEMICOLON .)
+    IF              reduce using rule 33 (PRINTSTAT -> PRINT OPEN_PARENTH EA CLOSING_PARENTH SEMICOLON .)
+    WHILE           reduce using rule 33 (PRINTSTAT -> PRINT OPEN_PARENTH EA CLOSING_PARENTH SEMICOLON .)
+    DO              reduce using rule 33 (PRINTSTAT -> PRINT OPEN_PARENTH EA CLOSING_PARENTH SEMICOLON .)
+    FOR             reduce using rule 33 (PRINTSTAT -> PRINT OPEN_PARENTH EA CLOSING_PARENTH SEMICOLON .)
+    ID              reduce using rule 33 (PRINTSTAT -> PRINT OPEN_PARENTH EA CLOSING_PARENTH SEMICOLON .)
+    INT             reduce using rule 33 (PRINTSTAT -> PRINT OPEN_PARENTH EA CLOSING_PARENTH SEMICOLON .)
+    DOUBLE          reduce using rule 33 (PRINTSTAT -> PRINT OPEN_PARENTH EA CLOSING_PARENTH SEMICOLON .)
+
+
+state 149
+
+    (34) PRINTSTAT -> PRINT OPEN_PARENTH STRING CLOSING_PARENTH SEMICOLON .
+
+    CLOSING_BRACES  reduce using rule 34 (PRINTSTAT -> PRINT OPEN_PARENTH STRING CLOSING_PARENTH SEMICOLON .)
+    PRINT           reduce using rule 34 (PRINTSTAT -> PRINT OPEN_PARENTH STRING CLOSING_PARENTH SEMICOLON .)
+    READ            reduce using rule 34 (PRINTSTAT -> PRINT OPEN_PARENTH STRING CLOSING_PARENTH SEMICOLON .)
+    IF              reduce using rule 34 (PRINTSTAT -> PRINT OPEN_PARENTH STRING CLOSING_PARENTH SEMICOLON .)
+    WHILE           reduce using rule 34 (PRINTSTAT -> PRINT OPEN_PARENTH STRING CLOSING_PARENTH SEMICOLON .)
+    DO              reduce using rule 34 (PRINTSTAT -> PRINT OPEN_PARENTH STRING CLOSING_PARENTH SEMICOLON .)
+    FOR             reduce using rule 34 (PRINTSTAT -> PRINT OPEN_PARENTH STRING CLOSING_PARENTH SEMICOLON .)
+    ID              reduce using rule 34 (PRINTSTAT -> PRINT OPEN_PARENTH STRING CLOSING_PARENTH SEMICOLON .)
+    INT             reduce using rule 34 (PRINTSTAT -> PRINT OPEN_PARENTH STRING CLOSING_PARENTH SEMICOLON .)
+    DOUBLE          reduce using rule 34 (PRINTSTAT -> PRINT OPEN_PARENTH STRING CLOSING_PARENTH SEMICOLON .)
+
+
+state 150
+
+    (36) IFSTAT -> IF OPEN_PARENTH EL CLOSING_PARENTH IN_S .
+    (37) IFSTAT -> IF OPEN_PARENTH EL CLOSING_PARENTH IN_S . ELSE IN_S
+
+    CLOSING_BRACES  reduce using rule 36 (IFSTAT -> IF OPEN_PARENTH EL CLOSING_PARENTH IN_S .)
+    PRINT           reduce using rule 36 (IFSTAT -> IF OPEN_PARENTH EL CLOSING_PARENTH IN_S .)
+    READ            reduce using rule 36 (IFSTAT -> IF OPEN_PARENTH EL CLOSING_PARENTH IN_S .)
+    IF              reduce using rule 36 (IFSTAT -> IF OPEN_PARENTH EL CLOSING_PARENTH IN_S .)
+    WHILE           reduce using rule 36 (IFSTAT -> IF OPEN_PARENTH EL CLOSING_PARENTH IN_S .)
+    DO              reduce using rule 36 (IFSTAT -> IF OPEN_PARENTH EL CLOSING_PARENTH IN_S .)
+    FOR             reduce using rule 36 (IFSTAT -> IF OPEN_PARENTH EL CLOSING_PARENTH IN_S .)
+    ID              reduce using rule 36 (IFSTAT -> IF OPEN_PARENTH EL CLOSING_PARENTH IN_S .)
+    INT             reduce using rule 36 (IFSTAT -> IF OPEN_PARENTH EL CLOSING_PARENTH IN_S .)
+    DOUBLE          reduce using rule 36 (IFSTAT -> IF OPEN_PARENTH EL CLOSING_PARENTH IN_S .)
+    ELSE            shift and go to state 153
+
+
+state 151
+
+    (39) DOSTAT -> DO IN_S WHILE OPEN_PARENTH EL CLOSING_PARENTH . SEMICOLON
+
+    SEMICOLON       shift and go to state 154
+
+
+state 152
+
+    (40) FORSTAT -> FOR OPEN_PARENTH ID EQUAL EA SEMICOLON . EL SEMICOLON ID EQUAL EA CLOSING_PARENTH IN_S
+    (55) EL -> . TL
+    (56) EL -> . EL OR TL
+    (57) TL -> . FL
+    (58) TL -> . TL AND FL
+    (59) FL -> . NL OPERATORS NL
+    (60) FL -> . EA OPERATORS EA
+    (61) FL -> . NL
+    (62) FL -> . OPEN_PARENTH EL CLOSING_PARENTH
+    (63) NL -> . NOT EL
+    (45) EA -> . TA
+    (46) EA -> . EA PLUS TA
+    (47) EA -> . EA MINUS TA
+    (52) TA -> . FA
+    (53) TA -> . TA MULTIPLY FA
+    (54) TA -> . TA DIVISION FA
+    (48) FA -> . CONSTANT
+    (49) FA -> . ID
+    (50) FA -> . MAT
+    (51) FA -> . OPEN_PARENTH EA CLOSING_PARENTH
+    (68) MAT -> . ID MAT_BRACKET
+
+    OPEN_PARENTH    shift and go to state 111
+    NOT             shift and go to state 109
+    CONSTANT        shift and go to state 37
+    ID              shift and go to state 34
+
+    EA                             shift and go to state 110
+    FA                             shift and go to state 36
+    FL                             shift and go to state 108
+    TL                             shift and go to state 112
+    EL                             shift and go to state 155
+    MAT                            shift and go to state 33
+    TA                             shift and go to state 38
+    NL                             shift and go to state 114
+
+state 153
+
+    (37) IFSTAT -> IF OPEN_PARENTH EL CLOSING_PARENTH IN_S ELSE . IN_S
+    (44) IN_S -> . OPEN_BRACES S CLOSING_BRACES
+
+    OPEN_BRACES     shift and go to state 87
+
+    IN_S                           shift and go to state 156
+
+state 154
+
+    (39) DOSTAT -> DO IN_S WHILE OPEN_PARENTH EL CLOSING_PARENTH SEMICOLON .
+
+    CLOSING_BRACES  reduce using rule 39 (DOSTAT -> DO IN_S WHILE OPEN_PARENTH EL CLOSING_PARENTH SEMICOLON .)
+    PRINT           reduce using rule 39 (DOSTAT -> DO IN_S WHILE OPEN_PARENTH EL CLOSING_PARENTH SEMICOLON .)
+    READ            reduce using rule 39 (DOSTAT -> DO IN_S WHILE OPEN_PARENTH EL CLOSING_PARENTH SEMICOLON .)
+    IF              reduce using rule 39 (DOSTAT -> DO IN_S WHILE OPEN_PARENTH EL CLOSING_PARENTH SEMICOLON .)
+    WHILE           reduce using rule 39 (DOSTAT -> DO IN_S WHILE OPEN_PARENTH EL CLOSING_PARENTH SEMICOLON .)
+    DO              reduce using rule 39 (DOSTAT -> DO IN_S WHILE OPEN_PARENTH EL CLOSING_PARENTH SEMICOLON .)
+    FOR             reduce using rule 39 (DOSTAT -> DO IN_S WHILE OPEN_PARENTH EL CLOSING_PARENTH SEMICOLON .)
+    ID              reduce using rule 39 (DOSTAT -> DO IN_S WHILE OPEN_PARENTH EL CLOSING_PARENTH SEMICOLON .)
+    INT             reduce using rule 39 (DOSTAT -> DO IN_S WHILE OPEN_PARENTH EL CLOSING_PARENTH SEMICOLON .)
+    DOUBLE          reduce using rule 39 (DOSTAT -> DO IN_S WHILE OPEN_PARENTH EL CLOSING_PARENTH SEMICOLON .)
+
+
+state 155
+
+    (40) FORSTAT -> FOR OPEN_PARENTH ID EQUAL EA SEMICOLON EL . SEMICOLON ID EQUAL EA CLOSING_PARENTH IN_S
+    (56) EL -> EL . OR TL
+
+    SEMICOLON       shift and go to state 157
+    OR              shift and go to state 134
+
+
+state 156
+
+    (37) IFSTAT -> IF OPEN_PARENTH EL CLOSING_PARENTH IN_S ELSE IN_S .
+
+    CLOSING_BRACES  reduce using rule 37 (IFSTAT -> IF OPEN_PARENTH EL CLOSING_PARENTH IN_S ELSE IN_S .)
+    PRINT           reduce using rule 37 (IFSTAT -> IF OPEN_PARENTH EL CLOSING_PARENTH IN_S ELSE IN_S .)
+    READ            reduce using rule 37 (IFSTAT -> IF OPEN_PARENTH EL CLOSING_PARENTH IN_S ELSE IN_S .)
+    IF              reduce using rule 37 (IFSTAT -> IF OPEN_PARENTH EL CLOSING_PARENTH IN_S ELSE IN_S .)
+    WHILE           reduce using rule 37 (IFSTAT -> IF OPEN_PARENTH EL CLOSING_PARENTH IN_S ELSE IN_S .)
+    DO              reduce using rule 37 (IFSTAT -> IF OPEN_PARENTH EL CLOSING_PARENTH IN_S ELSE IN_S .)
+    FOR             reduce using rule 37 (IFSTAT -> IF OPEN_PARENTH EL CLOSING_PARENTH IN_S ELSE IN_S .)
+    ID              reduce using rule 37 (IFSTAT -> IF OPEN_PARENTH EL CLOSING_PARENTH IN_S ELSE IN_S .)
+    INT             reduce using rule 37 (IFSTAT -> IF OPEN_PARENTH EL CLOSING_PARENTH IN_S ELSE IN_S .)
+    DOUBLE          reduce using rule 37 (IFSTAT -> IF OPEN_PARENTH EL CLOSING_PARENTH IN_S ELSE IN_S .)
+
+
+state 157
+
+    (40) FORSTAT -> FOR OPEN_PARENTH ID EQUAL EA SEMICOLON EL SEMICOLON . ID EQUAL EA CLOSING_PARENTH IN_S
+
+    ID              shift and go to state 158
+
+
+state 158
+
+    (40) FORSTAT -> FOR OPEN_PARENTH ID EQUAL EA SEMICOLON EL SEMICOLON ID . EQUAL EA CLOSING_PARENTH IN_S
+
+    EQUAL           shift and go to state 159
+
+
+state 159
+
+    (40) FORSTAT -> FOR OPEN_PARENTH ID EQUAL EA SEMICOLON EL SEMICOLON ID EQUAL . EA CLOSING_PARENTH IN_S
+    (45) EA -> . TA
+    (46) EA -> . EA PLUS TA
+    (47) EA -> . EA MINUS TA
+    (52) TA -> . FA
+    (53) TA -> . TA MULTIPLY FA
+    (54) TA -> . TA DIVISION FA
+    (48) FA -> . CONSTANT
+    (49) FA -> . ID
+    (50) FA -> . MAT
+    (51) FA -> . OPEN_PARENTH EA CLOSING_PARENTH
+    (68) MAT -> . ID MAT_BRACKET
+
+    CONSTANT        shift and go to state 37
+    ID              shift and go to state 34
+    OPEN_PARENTH    shift and go to state 32
+
+    EA                             shift and go to state 160
+    FA                             shift and go to state 36
+    MAT                            shift and go to state 33
+    TA                             shift and go to state 38
+
+state 160
+
+    (40) FORSTAT -> FOR OPEN_PARENTH ID EQUAL EA SEMICOLON EL SEMICOLON ID EQUAL EA . CLOSING_PARENTH IN_S
+    (46) EA -> EA . PLUS TA
+    (47) EA -> EA . MINUS TA
+
+    CLOSING_PARENTH shift and go to state 161
+    PLUS            shift and go to state 47
+    MINUS           shift and go to state 46
+
+
+state 161
+
+    (40) FORSTAT -> FOR OPEN_PARENTH ID EQUAL EA SEMICOLON EL SEMICOLON ID EQUAL EA CLOSING_PARENTH . IN_S
+    (44) IN_S -> . OPEN_BRACES S CLOSING_BRACES
+
+    OPEN_BRACES     shift and go to state 87
+
+    IN_S                           shift and go to state 162
+
+state 162
+
+    (40) FORSTAT -> FOR OPEN_PARENTH ID EQUAL EA SEMICOLON EL SEMICOLON ID EQUAL EA CLOSING_PARENTH IN_S .
+
+    CLOSING_BRACES  reduce using rule 40 (FORSTAT -> FOR OPEN_PARENTH ID EQUAL EA SEMICOLON EL SEMICOLON ID EQUAL EA CLOSING_PARENTH IN_S .)
+    PRINT           reduce using rule 40 (FORSTAT -> FOR OPEN_PARENTH ID EQUAL EA SEMICOLON EL SEMICOLON ID EQUAL EA CLOSING_PARENTH IN_S .)
+    READ            reduce using rule 40 (FORSTAT -> FOR OPEN_PARENTH ID EQUAL EA SEMICOLON EL SEMICOLON ID EQUAL EA CLOSING_PARENTH IN_S .)
+    IF              reduce using rule 40 (FORSTAT -> FOR OPEN_PARENTH ID EQUAL EA SEMICOLON EL SEMICOLON ID EQUAL EA CLOSING_PARENTH IN_S .)
+    WHILE           reduce using rule 40 (FORSTAT -> FOR OPEN_PARENTH ID EQUAL EA SEMICOLON EL SEMICOLON ID EQUAL EA CLOSING_PARENTH IN_S .)
+    DO              reduce using rule 40 (FORSTAT -> FOR OPEN_PARENTH ID EQUAL EA SEMICOLON EL SEMICOLON ID EQUAL EA CLOSING_PARENTH IN_S .)
+    FOR             reduce using rule 40 (FORSTAT -> FOR OPEN_PARENTH ID EQUAL EA SEMICOLON EL SEMICOLON ID EQUAL EA CLOSING_PARENTH IN_S .)
+    ID              reduce using rule 40 (FORSTAT -> FOR OPEN_PARENTH ID EQUAL EA SEMICOLON EL SEMICOLON ID EQUAL EA CLOSING_PARENTH IN_S .)
+    INT             reduce using rule 40 (FORSTAT -> FOR OPEN_PARENTH ID EQUAL EA SEMICOLON EL SEMICOLON ID EQUAL EA CLOSING_PARENTH IN_S .)
+    DOUBLE          reduce using rule 40 (FORSTAT -> FOR OPEN_PARENTH ID EQUAL EA SEMICOLON EL SEMICOLON ID EQUAL EA CLOSING_PARENTH IN_S .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for INT in state 0 resolved as shift
+WARNING: shift/reduce conflict for DOUBLE in state 0 resolved as shift
+WARNING: shift/reduce conflict for FUNCTION in state 4 resolved as shift
+WARNING: shift/reduce conflict for PRINT in state 54 resolved as shift
+WARNING: shift/reduce conflict for READ in state 54 resolved as shift
+WARNING: shift/reduce conflict for IF in state 54 resolved as shift
+WARNING: shift/reduce conflict for WHILE in state 54 resolved as shift
+WARNING: shift/reduce conflict for DO in state 54 resolved as shift
+WARNING: shift/reduce conflict for FOR in state 54 resolved as shift
+WARNING: shift/reduce conflict for ID in state 54 resolved as shift
+WARNING: shift/reduce conflict for INT in state 54 resolved as shift
+WARNING: shift/reduce conflict for DOUBLE in state 54 resolved as shift
+WARNING: shift/reduce conflict for PRINT in state 55 resolved as shift
+WARNING: shift/reduce conflict for READ in state 55 resolved as shift
+WARNING: shift/reduce conflict for IF in state 55 resolved as shift
+WARNING: shift/reduce conflict for WHILE in state 55 resolved as shift
+WARNING: shift/reduce conflict for DO in state 55 resolved as shift
+WARNING: shift/reduce conflict for FOR in state 55 resolved as shift
+WARNING: shift/reduce conflict for ID in state 55 resolved as shift
+WARNING: shift/reduce conflict for INT in state 55 resolved as shift
+WARNING: shift/reduce conflict for DOUBLE in state 55 resolved as shift
+WARNING: shift/reduce conflict for CLOSING_BRACES in state 75 resolved as shift
+WARNING: shift/reduce conflict for CLOSING_BRACES in state 75 resolved as shift
+WARNING: shift/reduce conflict for PRINT in state 75 resolved as shift
+WARNING: shift/reduce conflict for READ in state 75 resolved as shift
+WARNING: shift/reduce conflict for IF in state 75 resolved as shift
+WARNING: shift/reduce conflict for WHILE in state 75 resolved as shift
+WARNING: shift/reduce conflict for DO in state 75 resolved as shift
+WARNING: shift/reduce conflict for FOR in state 75 resolved as shift
+WARNING: shift/reduce conflict for ID in state 75 resolved as shift
+WARNING: shift/reduce conflict for INT in state 75 resolved as shift
+WARNING: shift/reduce conflict for DOUBLE in state 75 resolved as shift
+WARNING: shift/reduce conflict for INT in state 83 resolved as shift
+WARNING: shift/reduce conflict for DOUBLE in state 83 resolved as shift
+WARNING: shift/reduce conflict for CLOSING_BRACES in state 84 resolved as shift
+WARNING: shift/reduce conflict for CLOSING_BRACES in state 84 resolved as shift
+WARNING: shift/reduce conflict for PRINT in state 84 resolved as shift
+WARNING: shift/reduce conflict for READ in state 84 resolved as shift
+WARNING: shift/reduce conflict for IF in state 84 resolved as shift
+WARNING: shift/reduce conflict for WHILE in state 84 resolved as shift
+WARNING: shift/reduce conflict for DO in state 84 resolved as shift
+WARNING: shift/reduce conflict for FOR in state 84 resolved as shift
+WARNING: shift/reduce conflict for ID in state 84 resolved as shift
+WARNING: shift/reduce conflict for INT in state 84 resolved as shift
+WARNING: shift/reduce conflict for DOUBLE in state 84 resolved as shift
+WARNING: shift/reduce conflict for PRINT in state 85 resolved as shift
+WARNING: shift/reduce conflict for READ in state 85 resolved as shift
+WARNING: shift/reduce conflict for IF in state 85 resolved as shift
+WARNING: shift/reduce conflict for WHILE in state 85 resolved as shift
+WARNING: shift/reduce conflict for DO in state 85 resolved as shift
+WARNING: shift/reduce conflict for FOR in state 85 resolved as shift
+WARNING: shift/reduce conflict for ID in state 85 resolved as shift
+WARNING: shift/reduce conflict for INT in state 85 resolved as shift
+WARNING: shift/reduce conflict for DOUBLE in state 85 resolved as shift
+WARNING: shift/reduce conflict for PRINT in state 87 resolved as shift
+WARNING: shift/reduce conflict for READ in state 87 resolved as shift
+WARNING: shift/reduce conflict for IF in state 87 resolved as shift
+WARNING: shift/reduce conflict for WHILE in state 87 resolved as shift
+WARNING: shift/reduce conflict for DO in state 87 resolved as shift
+WARNING: shift/reduce conflict for FOR in state 87 resolved as shift
+WARNING: shift/reduce conflict for ID in state 87 resolved as shift
+WARNING: shift/reduce conflict for INT in state 87 resolved as shift
+WARNING: shift/reduce conflict for DOUBLE in state 87 resolved as shift
+WARNING: shift/reduce conflict for CLOSING_BRACES in state 100 resolved as shift
+WARNING: shift/reduce conflict for CLOSING_BRACES in state 100 resolved as shift
+WARNING: shift/reduce conflict for PRINT in state 100 resolved as shift
+WARNING: shift/reduce conflict for READ in state 100 resolved as shift
+WARNING: shift/reduce conflict for IF in state 100 resolved as shift
+WARNING: shift/reduce conflict for WHILE in state 100 resolved as shift
+WARNING: shift/reduce conflict for DO in state 100 resolved as shift
+WARNING: shift/reduce conflict for FOR in state 100 resolved as shift
+WARNING: shift/reduce conflict for ID in state 100 resolved as shift
+WARNING: shift/reduce conflict for INT in state 100 resolved as shift
+WARNING: shift/reduce conflict for DOUBLE in state 100 resolved as shift
+WARNING: shift/reduce conflict for CLOSING_BRACES in state 102 resolved as shift
+WARNING: shift/reduce conflict for CLOSING_BRACES in state 102 resolved as shift
+WARNING: shift/reduce conflict for PRINT in state 102 resolved as shift
+WARNING: shift/reduce conflict for READ in state 102 resolved as shift
+WARNING: shift/reduce conflict for IF in state 102 resolved as shift
+WARNING: shift/reduce conflict for WHILE in state 102 resolved as shift
+WARNING: shift/reduce conflict for DO in state 102 resolved as shift
+WARNING: shift/reduce conflict for FOR in state 102 resolved as shift
+WARNING: shift/reduce conflict for ID in state 102 resolved as shift
+WARNING: shift/reduce conflict for INT in state 102 resolved as shift
+WARNING: shift/reduce conflict for DOUBLE in state 102 resolved as shift
+WARNING: shift/reduce conflict for AND in state 112 resolved as shift
+WARNING: shift/reduce conflict for NOT_EQUAL in state 114 resolved as shift
+WARNING: shift/reduce conflict for LOWER_THAN in state 114 resolved as shift
+WARNING: shift/reduce conflict for BIGGER_THAN in state 114 resolved as shift
+WARNING: shift/reduce conflict for EQUAL_EQUAL in state 114 resolved as shift
+WARNING: shift/reduce conflict for OR in state 124 resolved as shift
+WARNING: shift/reduce conflict for AND in state 146 resolved as shift
+WARNING: reduce/reduce conflict in state 54 resolved using rule (S -> <empty>)
+WARNING: rejected rule (STATEMENTS -> <empty>) in state 54
+WARNING: reduce/reduce conflict in state 54 resolved using rule (VAR -> <empty>)
+WARNING: rejected rule (S -> <empty>) in state 54
+WARNING: reduce/reduce conflict in state 55 resolved using rule (S -> <empty>)
+WARNING: rejected rule (STATEMENTS -> <empty>) in state 55
+WARNING: reduce/reduce conflict in state 55 resolved using rule (VAR -> <empty>)
+WARNING: rejected rule (S -> <empty>) in state 55
+WARNING: reduce/reduce conflict in state 75 resolved using rule (VAR -> <empty>)
+WARNING: rejected rule (STATEMENTS -> <empty>) in state 75
+WARNING: reduce/reduce conflict in state 84 resolved using rule (VAR -> <empty>)
+WARNING: rejected rule (STATEMENTS -> <empty>) in state 84
+WARNING: reduce/reduce conflict in state 85 resolved using rule (S -> <empty>)
+WARNING: rejected rule (STATEMENTS -> <empty>) in state 85
+WARNING: reduce/reduce conflict in state 85 resolved using rule (VAR -> <empty>)
+WARNING: rejected rule (S -> <empty>) in state 85
+WARNING: reduce/reduce conflict in state 87 resolved using rule (S -> <empty>)
+WARNING: rejected rule (STATEMENTS -> <empty>) in state 87
+WARNING: reduce/reduce conflict in state 87 resolved using rule (VAR -> <empty>)
+WARNING: rejected rule (S -> <empty>) in state 87
+WARNING: reduce/reduce conflict in state 100 resolved using rule (VAR -> <empty>)
+WARNING: rejected rule (STATEMENTS -> <empty>) in state 100
+WARNING: reduce/reduce conflict in state 102 resolved using rule (VAR -> <empty>)
+WARNING: rejected rule (STATEMENTS -> <empty>) in state 102
+WARNING: Rule (STATEMENTS -> <empty>) is never reduced
+WARNING: Rule (S -> <empty>) is never reduced

@@ -1,0 +1,42 @@
+ //comment
+ function idFunction(){
+     print();
+     read();
+     for(double i=0; i<5; i++){
+         if(a!=b)
+         if(a>b)
+         if(b<a)
+         if(b/a)
+         while(b==a)
+     }
+ }
+ 
+ 
+ main()
+{
+    double a, b, c, discriminant, root1, root2, realPart, imaginaryPart;
+    print();
+    
+    discriminant = b*b-4*a*c;
+   
+    if (discriminant > 0)
+    {
+
+        root1 = (-b+sqrt(discriminant))/(2*a);
+        root2 = (-b-sqrt(discriminant))/(2*a);
+        print(root1 , root2);
+    }
+
+    else if (discriminant == 0)
+    {
+        root1 = root2 = -b/(2*a);
+        print(root1);
+    }
+
+    else
+    {
+        realPart = -b/(2*a);
+        imaginaryPart = sqrt(-discriminant)/(2*a);
+    }
+    return 0;
+}
