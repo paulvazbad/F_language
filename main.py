@@ -47,6 +47,8 @@ def print_cuadruplos():
 	for index,element in enumerate(cuadruplos):
 		print(str(index)+" --> "+str(element))
 
+def fill(dir1,cont):
+	print("Relleno el espacio en la direccion: " + str(dir1)+" con "+str(cont))
 
 ## ---------------- LEXER ---------------
 
@@ -400,21 +402,30 @@ def p_READSTAT(p):
 def p_IFSTAT(p):
 	'''
 	IFSTAT : IF OPEN_PARENTH EL CLOSING_PARENTH IN_S
-		| IF OPEN_PARENTH EL CLOSING_PARENTH IN_S ELSE IN_S
+		| IF OPEN_PARENTH EL CLOSING_PARENTH IN_S ELSE AUX2 IN_S
 	'''
 	size = len(p)
 	global pila_operandos
 	global cuadruplos
-	if(size == 8):
-		#There is an else
-		dir_1 = pila_saltos.pop()
-		cuadruplos.append(["GOTO","___"])
-		print("GOTO " + "____")
-		contador_cuadruplos = len(cuadruplos)
-		pila_saltos.append(contador_cuadruplos-1)
-		# fill(dir1,cont)
-	dir = pila_saltos.pop()
-	# fill(dir,cont)
+	contador_cuadruplos = len(cuadruplos)
+	dir_1 = pila_saltos.pop()
+	fill(dir_1,contador_cuadruplos)
+def p_empty(p):
+     'empty :'
+     pass
+
+def p_AUX2(p):
+	'''
+	AUX2 : empty
+	'''
+	global pila_operandos
+	global cuadruplos
+	dir_1 = pila_saltos.pop()
+	cuadruplos.append(["GOTO","___"])
+	print("GOTO " + "____")
+	contador_cuadruplos = len(cuadruplos)
+	pila_saltos.append(contador_cuadruplos-1)
+	fill(dir_1,contador_cuadruplos)
 
 def p_WHILESTAT(p):
 	'''
@@ -582,6 +593,7 @@ def p_EL(p):
 	local_cuad.append(str(Result_Logic))
 	local_cuad.append("___")
 	cuadruplos.append(local_cuad)
+	contador_cuadruplos = len(cuadruplos)
 	print("GOTO " + str(Result_Logic) + "____")
 	pila_saltos.append(contador_cuadruplos-1)
 
