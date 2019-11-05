@@ -20,7 +20,6 @@ value= None
 pila_operandos = []
 pila_operadores = []
 pila_saltos = []
-contador_saltos = 0
 contador_T = 0
 
 contador_cuadruplos = 0
@@ -44,7 +43,9 @@ def is_number(s):
 	except TypeError:
 		return False
 
-
+def print_cuadruplos():
+	for index,element in enumerate(cuadruplos):
+		print(str(index)+" --> "+str(element))
 
 
 ## ---------------- LEXER ---------------
@@ -321,10 +322,17 @@ def p_ASSIGN(p):
 	ASSIGN : ID EQUAL EA
 	'''
 	global lista_var
+	global cuadruplos
 	lista_var.append(p[1])
 	#Cuadruplo de asignacion
 	ea = pila_operandos.pop()
+	local_cuad = []
+	local_cuad.append('=')
+	local_cuad.append(str(ea))
+	local_cuad.append('$')
+	local_cuad.append(p[1])
 	print('= ' + str(ea) +' $ ' + str(p[1]))
+	cuadruplos.append(local_cuad)
 	p[0] = p[1]
 
 def p_FUNC(p):
@@ -395,13 +403,15 @@ def p_IFSTAT(p):
 		| IF OPEN_PARENTH EL CLOSING_PARENTH IN_S ELSE IN_S
 	'''
 	size = len(p)
-	global contador_saltos
 	global pila_operandos
+	global cuadruplos
 	if(size == 8):
 		#There is an else
 		dir_1 = pila_saltos.pop()
+		cuadruplos.append(["GOTO","___"])
 		print("GOTO " + "____")
-		pila_saltos.append(contador_saltos-1)
+		contador_cuadruplos = len(cuadruplos)
+		pila_saltos.append(contador_cuadruplos-1)
 		# fill(dir1,cont)
 	dir = pila_saltos.pop()
 	# fill(dir,cont)
@@ -449,29 +459,32 @@ def p_EA(p):
 	size = len(p)
 	global contador_T
 	global pila_operandos
-	cuadruplos = True
+	global cuadruplos
+	local_cuad = []
 	#print(pila_operandos)
 	if(size==4):
 		op_1 = pila_operandos.pop()
 		op_2 = pila_operandos.pop()
 		# Check if operands in SymbolTable
-
-		if(cuadruplos):
-			res = 'T_' + str(contador_T)
-		else:
-			res =0
+		res = 'T_' + str(contador_T)
 		if(p[2]=='+'):
-			if(not cuadruplos): res = op_1 + op_2
-			print('+ ' + str(op_1 )+ ' ' + str(op_2)+ ' ' + str(res))
-			if(cuadruplos): contador_T=contador_T+1
+			local_cuad.append('+')
+			local_cuad.append(str(op_1))
+			local_cuad.append(str(op_2))
+			local_cuad.append(str(res))
+			contador_T=contador_T+1
 			pila_operandos.append(res)
 		elif(p[2]=='-'):
-			if(not cuadruplos): res = op_1 - op_2
+			local_cuad.append('-')
+			local_cuad.append(str(op_1))
+			local_cuad.append(str(op_2))
+			local_cuad.append(str(res))
 			print('- ' + str(op_1)+ ' ' + str(op_2)+ ' ' + str(res))
 			pila_operandos.append(res)
-			if(cuadruplos): contador_T=contador_T+1
+			contador_T=contador_T+1
 		else:
 			print("Unknown operator")
+		cuadruplos.append(local_cuad)
 	else:
 		p[0]=p[1]
 
@@ -507,27 +520,32 @@ def p_TA(p):
 	# CUADRUPLOS
 	global contador_T
 	global pila_operandos
+	global cuadruplos
+	local_cuad = []
 	size = len(p)
 	if(size==4):
 		op_1 = pila_operandos.pop()
 		op_2 = pila_operandos.pop()
-		cuadruplos = True
-		if(cuadruplos):
-			res = 'T_' + str(contador_T)
-		else:
-			res = 0
+		res = 'T_' + str(contador_T)
 		if(p[2]=='*'):
-			if(not cuadruplos): res = op_1 * op_2
+			local_cuad.append('*')
+			local_cuad.append(op_1)
+			local_cuad.append(op_2)
+			local_cuad.append(res)
 			print('* ' + str(op_1)+ ' ' + str(op_2)+ ' ' + str(res))
 			pila_operandos.append(res)
-			if cuadruplos: contador_T=contador_T+1
+			contador_T=contador_T+1
 		elif(p[2]=='/'):
-			if(not cuadruplos): res = op_1 / op_2
+			local_cuad.append('/')
+			local_cuad.append(op_1)
+			local_cuad.append(op_2)
+			local_cuad.append(res)
 			print('/ ' + str(op_1)+ ' ' + str(op_2)+ ' ' + str(res))
 			pila_operandos.append(res)
-			if cuadruplos: contador_T=contador_T+1
+			contador_T=contador_T+1
 		else:
 			print("Unknown operator")
+		cuadruplos.append(local_cuad)
 	else:
 		p[0] = p[1]
 
@@ -539,24 +557,33 @@ def p_EL(p):
 	size= len(p)
 	global contador_T
 	global pila_operandos
-
+	global cuadruplos
+	local_cuad = []
 	#print(pila_operandos)
 	if(size==4):
 		op_1 = pila_operandos.pop()
 		op_2 = pila_operandos.pop()
-		cuadruplos = True
-		if(cuadruplos):
-			res = 'T_' + str(contador_T)
+		res = 'T_' + str(contador_T)
 		if(p[2]=='||'):
+			local_cuad.append('||')
+			local_cuad.append(str(op_1))
+			local_cuad.append(str(op_2))
+			local_cuad.append(str(res))
 			print('|| ' + str(op_1)+ ' ' + str(op_2)+ ' ' + str(res))
 			pila_operandos.append(res)
 			contador_T=contador_T+1
+			cuadruplos.append(local_cuad)
 		else:
 			print("Unknown operator")
-
+	
 	Result_Logic = pila_operandos.pop()
+	local_cuad = []
+	local_cuad.append("GOTO")
+	local_cuad.append(str(Result_Logic))
+	local_cuad.append("___")
+	cuadruplos.append(local_cuad)
 	print("GOTO " + str(Result_Logic) + "____")
-	pila_saltos.append(contador_saltos-1)
+	pila_saltos.append(contador_cuadruplos-1)
 
 def p_TL(p):
 	'''
@@ -566,16 +593,21 @@ def p_TL(p):
 	size= len(p)
 	global contador_T
 	global pila_operandos
+	global cuadruplos
+	local_cuad = []
 	if(size==4):
 		op_1 = pila_operandos.pop()
 		op_2 = pila_operandos.pop()
-		cuadruplos = True
-		if(cuadruplos):
-			res = 'T_' + str(contador_T)
+		res = 'T_' + str(contador_T)
 		if(p[2]=='&&'):
+			local_cuad.append('&&')
+			local_cuad.append(str(op_1))
+			local_cuad.append(str(op_2))
+			local_cuad.append(str(res))
 			print('&& ' + str(op_1)+ ' ' + str(op_2)+ ' ' + str(res))
 			pila_operandos.append(res)
 			contador_T=contador_T+1
+			cuadruplos.append(local_cuad)
 		else:
 			print("Unknown operator")
 
@@ -590,30 +622,47 @@ def p_FL(p):
 	size= len(p)
 	global contador_T
 	global pila_operandos
+	global cuadruplos
+	local_cuad = []
 	if(size==4 and p[1]!='('):
 		op_1 = pila_operandos.pop()
 		op_2 = pila_operandos.pop()
-		cuadruplos = True
-		if(cuadruplos):
-			res = 'T_' + str(contador_T)
+		res = 'T_' + str(contador_T)
 		if(p[2]=='!='):
+			local_cuad.append('!=')
+			local_cuad.append(str(op_1))
+			local_cuad.append(str(op_2))
+			local_cuad.append(str(res))
 			print('!= ' + str(op_1)+ ' ' + str(op_2)+ ' ' + str(res))
 			pila_operandos.append(res)
-			if cuadruplos: contador_T=contador_T+1
+			contador_T=contador_T+1
 		elif(p[2]=='=='):
+			local_cuad.append('==')
+			local_cuad.append(str(op_1))
+			local_cuad.append(str(op_2))
+			local_cuad.append(str(res))
 			print('== ' + str(op_1)+ ' ' + str(op_2)+ ' ' + str(res))
 			pila_operandos.append(res)
-			if cuadruplos: contador_T=contador_T+1
+			contador_T=contador_T+1
 		elif(p[2]=='>'):
+			local_cuad.append('>')
+			local_cuad.append(str(op_1))
+			local_cuad.append(str(op_2))
+			local_cuad.append(str(res))
 			print('> ' + str(op_1)+ ' ' + str(op_2)+ ' ' + str(res))
 			pila_operandos.append(res)
-			if cuadruplos: contador_T=contador_T+1
+			contador_T=contador_T+1
 		elif(p[2]=='<'):
+			local_cuad.append('<')
+			local_cuad.append(str(op_1))
+			local_cuad.append(str(op_2))
+			local_cuad.append(str(res))
 			print('< ' + str(op_1)+ ' ' + str(op_2)+ ' ' + str(res))
 			pila_operandos.append(res)
-			if cuadruplos: contador_T=contador_T+1
+			contador_T=contador_T+1
 		else:
 			print("Unknown operator")
+		cuadruplos.append(local_cuad)
 
 
 def p_NL(p):
@@ -623,16 +672,21 @@ def p_NL(p):
 	size = len(p)
 	global contador_T
 	global pila_operandos
+	global cuadruplos
+	local_cuad = []
 	if(size==3):
 		# case !(EA)
 		op_1 = pila_operandos.pop()
-		cuadruplos = True
-		if(cuadruplos):
-			res = 'T_' + str(contador_T)
+		res = 'T_' + str(contador_T)
 		if(p[1]=='!'):
+			local_cuad.append('!')
+			local_cuad.append(str(op_1))
+			local_cuad.append('$')
+			local_cuad.append(str(res))
 			print('! ' + str(op_1)+ ' $ ' + ' ' + str(res))
 			pila_operandos.append(res)
 			contador_T=contador_T+1
+		cuadruplos.append(local_cuad)
 
 def p_OPERATORS(p):
 	'''
@@ -720,5 +774,5 @@ if __name__ =="__main__":
 	parser = yacc.yacc(start="PROGRAMA")
 	tryLexer(lexer)
 	tryParserOnFile(lexer,parser)
+	print_cuadruplos()
 	SymbolTable.print()
-	print("PILA DE OPERANDOS")

@@ -6,7 +6,7 @@ main(){
     if(a>b && x<d){
         if(b<f){
            m=a +b;
-           b = m-c;
+           b = m*c;
            r = 9877;
         }
         else{
