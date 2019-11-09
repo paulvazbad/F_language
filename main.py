@@ -49,6 +49,10 @@ def print_cuadruplos():
 
 def fill(dir1,cont):
 	print("Relleno el espacio en la direccion: " + str(dir1)+" con "+str(cont))
+	global cuadruplos
+	position_fill = cuadruplos[dir1]
+	# Last position
+	cuadruplos[dir1][-1] = str(cont)
 
 ## ---------------- LEXER ---------------
 
@@ -401,31 +405,61 @@ def p_READSTAT(p):
 
 def p_IFSTAT(p):
 	'''
-	IFSTAT : IF OPEN_PARENTH EL CLOSING_PARENTH IN_S
-		| IF OPEN_PARENTH EL CLOSING_PARENTH IN_S ELSE AUX2 IN_S
+	IFSTAT : IF OPEN_PARENTH EL CLOSING_PARENTH IF_AUX1 IN_S IF_AUX3
+		| IF OPEN_PARENTH EL CLOSING_PARENTH IF_AUX1 IN_S ELSE IF_AUX2 IN_S IF_AUX3
 	'''
-	size = len(p)
-	global pila_operandos
-	global cuadruplos
-	contador_cuadruplos = len(cuadruplos)
-	dir_1 = pila_saltos.pop()
-	fill(dir_1,contador_cuadruplos)
-def p_empty(p):
-     'empty :'
-     pass
 
-def p_AUX2(p):
+
+def p_IF_AUX1(p):
 	'''
-	AUX2 : empty
+	IF_AUX1 : empty
 	'''
 	global pila_operandos
 	global cuadruplos
+	global pila_saltos
+	
+	Result_Logic = pila_operandos.pop()
+	# Generar cuadruplo
+	local_cuad = []
+	local_cuad.append("GOTOF")
+	local_cuad.append(str(Result_Logic))
+	local_cuad.append("___")
+	cuadruplos.append(local_cuad)
+	#
+	contador_cuadruplos = len(cuadruplos)
+	pila_saltos.append(contador_cuadruplos-1)
+	print("GOTO " + str(Result_Logic) + "____")
+
+
+def p_IF_AUX2(p):
+	'''
+	IF_AUX2 : empty
+	'''
+	global pila_operandos
+	global cuadruplos
+	global pila_saltos
 	dir_1 = pila_saltos.pop()
 	cuadruplos.append(["GOTO","___"])
 	print("GOTO " + "____")
 	contador_cuadruplos = len(cuadruplos)
 	pila_saltos.append(contador_cuadruplos-1)
 	fill(dir_1,contador_cuadruplos)
+
+def p_IF_AUX3(p):
+	'''
+	IF_AUX3 : empty
+	'''
+	global pila_operandos
+	global cuadruplos
+	global pila_saltos
+	dir_1 = pila_saltos.pop()
+	contador_cuadruplos = len(cuadruplos)
+	fill(dir_1,contador_cuadruplos)
+
+
+def p_empty(p):
+     'empty :'
+     pass
 
 def p_WHILESTAT(p):
 	'''
@@ -587,15 +621,8 @@ def p_EL(p):
 		else:
 			print("Unknown operator")
 	
-	Result_Logic = pila_operandos.pop()
-	local_cuad = []
-	local_cuad.append("GOTO")
-	local_cuad.append(str(Result_Logic))
-	local_cuad.append("___")
-	cuadruplos.append(local_cuad)
-	contador_cuadruplos = len(cuadruplos)
-	print("GOTO " + str(Result_Logic) + "____")
-	pila_saltos.append(contador_cuadruplos-1)
+	
+	
 
 def p_TL(p):
 	'''
