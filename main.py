@@ -463,8 +463,49 @@ def p_empty(p):
 
 def p_WHILESTAT(p):
 	'''
-	WHILESTAT : WHILE OPEN_PARENTH EL CLOSING_PARENTH IN_S
+	WHILESTAT : WHILE WHILE_AUX_1 OPEN_PARENTH EL CLOSING_PARENTH WHILE_AUX_2 IN_S
 	'''
+	global pila_saltos
+	global cuadruplos
+	dir1 = pila_saltos.pop()
+	dir2= pila_saltos.pop()
+	global cuadruplos
+	# Generar cuadruplo
+	local_cuad = []
+	local_cuad.append("GOTO")
+	local_cuad.append(str(dir2))
+	cuadruplos.append(local_cuad)
+	#
+	fill(dir1,len(cuadruplos))
+
+
+def p_WHILE_AUX_1(p):
+	'''
+	WHILE_AUX_1 : empty
+	'''
+	global pila_saltos
+	global cuadruplos
+	pila_saltos.append(len(cuadruplos))
+
+
+
+def p_WHILE_AUX_2(p):
+	'''
+	WHILE_AUX_2 : empty
+	'''
+	global pila_operandos
+	global cuadruplos
+	Result_Logic = pila_operandos.pop()
+	# Generar cuadruplo
+	local_cuad = []
+	local_cuad.append("GOTOF")
+	local_cuad.append(str(Result_Logic))
+	local_cuad.append("___")
+	cuadruplos.append(local_cuad)
+	#
+	contador_cuadruplos = len(cuadruplos)
+	pila_saltos.append(contador_cuadruplos-1)
+	print("GOTOF " + str(Result_Logic) + "____")
 
 def p_DOSTAT(p):
 	'''
