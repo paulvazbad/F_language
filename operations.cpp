@@ -2,6 +2,7 @@ int a,b,c,d,x,y;
 int f=4;
 double r;
 int m;
+int i;
 main(){
     m = 10+1;
     if(a>b && x<d){
@@ -16,7 +17,11 @@ main(){
         a =1+3+b;
     }
 
-    do{
+    while(m<100){
         m=m+1;
-    }while(m<100);
+    }
+
+    for( i=0; i>20; i=i+1){
+        a= b+c;
+    }
 }

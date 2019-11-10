@@ -529,9 +529,20 @@ def p_DOSTAT(p):
 
 def p_FORSTAT(p):
 	'''
-	FORSTAT : FOR OPEN_PARENTH ID EQUAL EA SEMICOLON EL SEMICOLON ID EQUAL EA CLOSING_PARENTH IN_S
+	FORSTAT : FOR OPEN_PARENTH ASSIGN SEMICOLON WHILE_AUX_1 EL SEMICOLON WHILE_AUX_2 ASSIGN CLOSING_PARENTH  IN_S
 	'''
-
+	global pila_saltos
+	global cuadruplos
+	dir1 = pila_saltos.pop()
+	dir2= pila_saltos.pop()
+	global cuadruplos
+	# Generar cuadruplo
+	local_cuad = []
+	local_cuad.append("GOTO")
+	local_cuad.append(str(dir2))
+	cuadruplos.append(local_cuad)
+	#
+	fill(dir1,len(cuadruplos))
 
 def p_FUNCSTAT(p):
 	'''
