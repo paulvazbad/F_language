@@ -509,8 +509,23 @@ def p_WHILE_AUX_2(p):
 
 def p_DOSTAT(p):
 	'''
-	DOSTAT : DO IN_S WHILE OPEN_PARENTH EL CLOSING_PARENTH SEMICOLON
+	DOSTAT : DO WHILE_AUX_1 IN_S WHILE OPEN_PARENTH EL CLOSING_PARENTH SEMICOLON
 	'''
+	global pila_operandos
+	global cuadruplos
+	Result_Logic = pila_operandos.pop()
+	# Generar cuadruplo
+	local_cuad = []
+	local_cuad.append("GOTOT")
+	local_cuad.append(str(Result_Logic))
+	local_cuad.append("___")
+	cuadruplos.append(local_cuad)
+	#
+	print("GOTOT " + str(Result_Logic) + "____")
+	contador_cuadruplos = len(cuadruplos)
+
+	fill(contador_cuadruplos-1,pila_saltos.pop())
+
 
 def p_FORSTAT(p):
 	'''

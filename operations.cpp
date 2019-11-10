@@ -16,7 +16,7 @@ main(){
         a =1+3+b;
     }
 
-    while(m<100){
+    do{
         m=m+1;
-    }
+    }while(m<100);
 }
