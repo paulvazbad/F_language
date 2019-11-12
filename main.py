@@ -282,7 +282,6 @@ def p_PROGRAMA(p):
 	PROGRAMA : VAR FUNC M
 	'''
 
-
 def p_VAR(p):
 	'''
 	VAR : TIPO DECLARE SEMICOLON
@@ -343,10 +342,60 @@ def p_ASSIGN(p):
 
 def p_FUNC(p):
 	'''
-	FUNC : FUNCTION ID OPEN_PARENTH CLOSING_PARENTH OPEN_BRACES S CLOSING_BRACES
-		| FUNC FUNCTION ID OPEN_PARENTH CLOSING_PARENTH OPEN_BRACES S CLOSING_BRACES
+	FUNC : FUNCTION AUX_FUNC ID OPEN_PARENTH CLOSING_PARENTH OPEN_BRACES S CLOSING_BRACES RETURN IF_AUX3
+		| FUNC AUX_FUNC FUNCTION ID OPEN_PARENTH CLOSING_PARENTH OPEN_BRACES S CLOSING_BRACES  RETURN IF_AUX3
 		|
 	'''
+	global SymbolTable
+	# Agregar a la tabla de simbolos
+	size = len(p)
+	func_id = ""
+	line_number = -10
+	print(size)
+	if(size == 11):
+		line_number = p[2]
+		print("11")
+		print(p[2])
+		func_id = p[3]
+	else:
+		print("12")
+		line_number = p[2]
+		print(p[2])
+		func_id = p[4]
+	SymbolTable.insert(id=func_id, tipo="void", attributes=line_number)
+
+def p_RETURN(p):
+	'''
+	RETURN  : empty
+	'''
+	global cuadruplos
+	# Generar cuadruplo RETURN
+	local_cuad = []
+	local_cuad.append("RETURN")
+	cuadruplos.append(local_cuad)
+	#
+	print("RETURN " + "____")
+
+def p_AUX_FUNC(p):
+	'''
+	AUX_FUNC : empty
+	'''
+	global pila_operandos
+	global cuadruplos
+	global pila_saltos
+	
+
+	# Generar cuadruplo
+	local_cuad = []
+	local_cuad.append("GOTO")
+	local_cuad.append("___")
+	cuadruplos.append(local_cuad)
+	#
+	contador_cuadruplos = len(cuadruplos)
+	pila_saltos.append(contador_cuadruplos-1)
+	print("GOTO " + "____")
+	p[0]= contador_cuadruplos
+
 
 def p_M(p):
 	'''
@@ -548,6 +597,22 @@ def p_FUNCSTAT(p):
 	'''
 	FUNCSTAT : ID OPEN_PARENTH CLOSING_PARENTH SEMICOLON
 	'''
+	global pila_saltos
+	global cuadruplos
+	id = p[1]
+	# Generar cuadruplo
+	local_cuad = []
+	local_cuad.append("CALL")
+	# Sacar line_number de la funcion de la SymbolTable
+	result = SymbolTable.lookup(id=id)
+	if(result==None):
+		raise Exception('function "{}" not previously declared '.format(id))
+	print(result)
+	local_cuad.append(result.attributes)
+	cuadruplos.append(local_cuad)
+	#
+
+
 
 def p_INC_STAT(p):
 	'''

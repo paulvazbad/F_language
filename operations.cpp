@@ -1,10 +1,18 @@
-int a,b,c,d,x,y;
+int a,b,c,d,x,y,p,e,v;
 int f=4;
 double r;
 int m;
 int i;
+
+function foo(){
+    p = e+v;
+}
+function bar(){
+    e = p+b;
+}
+
 main(){
-    m = 10+1;
+    foo();
     if(a>b && x<d){
         if(a<d){
             m = a+b;
@@ -24,4 +32,7 @@ main(){
     for( i=0; i>20; i=i+1){
         a= b+c;
     }
+    do{
+        a=r+1;
+    }while(a==b);
 }
