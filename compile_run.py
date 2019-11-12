@@ -3,12 +3,13 @@ import ply.yacc as yacc
 import sys
 import os
 from SymbolTable import SymbolTable
+from Execute import execute
 #from LexDefinition import *
 
 """
 Paul Vazquez A00819877
 """
-fileName = 'operations.cpp'
+fileName = 'factorial.cpp'
 
 
 ## ---------------- SymbolTable ---------------
@@ -24,6 +25,9 @@ contador_T = 0
 
 contador_cuadruplos = 0
 cuadruplos = []
+
+func_id = ""
+line_number = -1
 
 def get_value(value):
 	if(is_number(value)):
@@ -53,6 +57,8 @@ def fill(dir1,cont):
 	position_fill = cuadruplos[dir1]
 	# Last position
 	cuadruplos[dir1][-1] = str(cont)
+
+
 
 ## ---------------- LEXER ---------------
 
@@ -281,6 +287,14 @@ def p_PROGRAMA(p):
 	'''
 	PROGRAMA : VAR FUNC M
 	'''
+	# Generar cuadruplo de fin de programa
+	global cuadruplos
+	# Generar cuadruplo RETURN
+	local_cuad = []
+	local_cuad.append("END")
+	cuadruplos.append(local_cuad)
+	#
+	print("END ")
 
 def p_VAR(p):
 	'''
@@ -342,26 +356,29 @@ def p_ASSIGN(p):
 
 def p_FUNC(p):
 	'''
-	FUNC : FUNCTION AUX_FUNC ID OPEN_PARENTH CLOSING_PARENTH OPEN_BRACES S CLOSING_BRACES RETURN IF_AUX3
-		| FUNC AUX_FUNC FUNCTION ID OPEN_PARENTH CLOSING_PARENTH OPEN_BRACES S CLOSING_BRACES  RETURN IF_AUX3
-		|
+	FUNC :  FUNCTION AUX_FUNC SET_ID OPEN_PARENTH CLOSING_PARENTH DECLARE_FUNC OPEN_BRACES S CLOSING_BRACES RETURN IF_AUX3
+		|  FUNC AUX_FUNC FUNCTION SET_ID OPEN_PARENTH CLOSING_PARENTH OPEN_BRACES DECLARE_FUNC S CLOSING_BRACES  RETURN IF_AUX3
+		|  empty
 	'''
-	global SymbolTable
-	# Agregar a la tabla de simbolos
-	size = len(p)
-	func_id = ""
-	line_number = -10
-	print(size)
-	if(size == 11):
-		line_number = p[2]
-		print("11")
-		print(p[2])
-		func_id = p[3]
-	else:
-		print("12")
-		line_number = p[2]
-		print(p[2])
-		func_id = p[4]
+
+
+def p_SET_ID(p):
+	'''
+	SET_ID : ID
+	'''
+	global func_id
+	print("set_function_id")
+	func_id = p[1]
+
+def p_DECLARE_FUNC(p):
+	'''
+	DECLARE_FUNC : empty
+	'''
+	global func_id
+	global line_number
+	print("REgister new function")
+	print('FUnc id' + func_id)
+	print("line_number" + str(line_number))
 	SymbolTable.insert(id=func_id, tipo="void", attributes=line_number)
 
 def p_RETURN(p):
@@ -383,6 +400,7 @@ def p_AUX_FUNC(p):
 	global pila_operandos
 	global cuadruplos
 	global pila_saltos
+	global line_number
 	
 
 	# Generar cuadruplo
@@ -394,6 +412,7 @@ def p_AUX_FUNC(p):
 	contador_cuadruplos = len(cuadruplos)
 	pila_saltos.append(contador_cuadruplos-1)
 	print("GOTO " + "____")
+	line_number = contador_cuadruplos
 	p[0]= contador_cuadruplos
 
 
@@ -446,11 +465,22 @@ def p_PRINTSTAT(p):
 	PRINTSTAT : PRINT OPEN_PARENTH EA CLOSING_PARENTH SEMICOLON
 			| PRINT OPEN_PARENTH STRING CLOSING_PARENTH SEMICOLON
 	'''
+	global cuadruplos
+	local_cuad = []
+	local_cuad.append("PRINT")
+	local_cuad.append(p[3])
+	cuadruplos.append(local_cuad)
+
 
 def p_READSTAT(p):
 	'''
 	READSTAT : READ OPEN_PARENTH EA CLOSING_PARENTH SEMICOLON
 	'''
+	global cuadruplos
+	local_cuad = []
+	local_cuad.append("READ")
+	local_cuad.append(p[3])
+	cuadruplos.append(local_cuad)
 
 def p_IFSTAT(p):
 	'''
@@ -947,3 +977,6 @@ if __name__ =="__main__":
 	tryParserOnFile(lexer,parser)
 	print_cuadruplos()
 	SymbolTable.print()
+
+	##Program Execution
+	execute(SymbolTable=SymbolTable,cuadruplos=cuadruplos)

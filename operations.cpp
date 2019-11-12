@@ -1,14 +1,16 @@
 int a,b,c,d,x,y,p,e,v;
-int f=4;
+int f;
 double r;
 int m;
 int i;
 
-function foo(){
-    p = e+v;
-}
 function bar(){
     e = p+b;
+}
+
+function foo(){
+    p = e+v;
+    bar();
 }
 
 main(){
