@@ -9,7 +9,7 @@ from Execute import execute
 """
 Paul Vazquez A00819877
 """
-fileName = 'mat.cpp'
+fileName = 'factorial.cpp'
 
 
 ## ---------------- SymbolTable ---------------

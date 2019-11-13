@@ -20,6 +20,16 @@ def array_lookup(stack_indexes, starting_index):
     print(lista[int(float(last_index))])
     return  lista[int(float(last_index))]
         
+def array_set(stack_indexes, starting_index, value):
+    print("EN ARRAY_LOOKUP")
+    last_index = stack_indexes.pop()
+    lista = list_arrays[int(float(starting_index))]
+    for index in stack_indexes:
+        lista = lista[int(float(index))]
+    print("ELEMENTO SELECCIONADO")
+    print(lista[int(float(last_index))])
+    lista[int(float(last_index))] = value
+
 ##definicion de la funcion execute
 def execute(SymbolTable,cuadruplos,list_arrays_local):
     global list_arrays
