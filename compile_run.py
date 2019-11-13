@@ -9,7 +9,7 @@ from Execute import execute
 """
 Paul Vazquez A00819877
 """
-fileName = 'factorial.cpp'
+fileName = 'variables_simples.cpp'
 
 
 ## ---------------- SymbolTable ---------------
@@ -166,8 +166,9 @@ precedence = (
 t_ignore  = '\t | \n '
 
 def t_COMMENT(t):
-	r'\#.*'
+	r'(/\*(.|\n)*?\*/)|(//.*)'
 	pass
+
 	# No return value. Token discarded
 def t_OPEN_BRACES(t):
 	r'{'
@@ -569,6 +570,9 @@ def p_PRINTSTAT(p):
 	global cuadruplos
 	local_cuad = []
 	local_cuad.append("PRINT")
+	print("EEEEEEEEEEEEEEEEEEEEEE")
+	print(p[3])
+	print("AAAAAAAAAA")
 	local_cuad.append(p[3])
 	cuadruplos.append(local_cuad)
 

@@ -94,9 +94,12 @@ def process_command(SymbolTable,cuadruplo, avail,call_stack,PC):
         PC = call_stack.pop()+1
         print("RETURN")
     elif(OP_CODE == "PRINT"):
-        val = get_value(cuadruplo[1],SymbolTable,avail)
         print("-----------------------CONSOLE OF PROGRAM-----------------------")
-        print(str(val))
+        if(cuadruplo[1][0]=="\""):
+            print(cuadruplo[1][1:-1])
+        else:
+            val = get_value(cuadruplo[1],SymbolTable,avail)
+            print(str(val))
         print("----------------------------------------------------------------")
         PC = PC + 1
     elif(OP_CODE == "READ"):
