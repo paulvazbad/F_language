@@ -1,16 +1,13 @@
 int x,f;
-int mat[2][3];
-int tictactoe[3][3][3];
-int p;
+int dummy;
 function uno(){
     read(x);
-    p=tictactoe[x+1][1][0]+mat[1][1];
 }
 function dos(){
     print(f);
 }
 function tres(){
-    if(x>1){
+    if(x>1 && dummy==5){
         f = f*x;
         x =x-1;
         tres();
@@ -18,6 +15,7 @@ function tres(){
 }
 
 main(){
+    dummy =5;
     f = 1;
     uno();
     tres();

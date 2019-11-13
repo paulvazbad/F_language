@@ -48,8 +48,15 @@ def is_number(s):
 		return False
 
 def print_cuadruplos():
+	f = open("cuadruplos.txt", "w")
+	f.write("")
+	f.close()
+	f = open("cuadruplos.txt", "a")
 	for index,element in enumerate(cuadruplos):
 		print(str(index)+" --> "+str(element))
+		f.write(str(index)+" --> "+str(element)+"\n")
+	f.close()
+
 
 def fill(dir1,cont):
 	print("Relleno el espacio en la direccion: " + str(dir1)+" con "+str(cont))
@@ -386,7 +393,7 @@ def p_VAR(p):
 		elif(size ==5):
 			tipo = p[2]
 		for element in lista_var:
-			SymbolTable.insert(id=element, tipo=tipo, attributes="")
+			SymbolTable.insert(id=element, tipo=tipo, attributes=0.0)
 		lista_var.clear()
 	tamano = 1
 	list_indexes = []
@@ -1121,4 +1128,4 @@ if __name__ =="__main__":
 	print(str(stack_dimension))
 
 	##Program Execution
-	execute(SymbolTable=SymbolTable,cuadruplos=cuadruplos)
+	execute(SymbolTable=SymbolTable,cuadruplos=cuadruplos, list_arrays=list_arrays)
