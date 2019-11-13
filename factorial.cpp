@@ -4,7 +4,7 @@ int tictactoe[3][3][3];
 int p;
 function uno(){
     read(x);
-    p=tictactoe[1][1][0]+mat[1][1];
+    p=tictactoe[x+1][1][0]+mat[1][1];
 }
 function dos(){
     print(f);

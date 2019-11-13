@@ -762,6 +762,7 @@ def p_EA(p):
 	global pila_operandos
 	global cuadruplos
 	local_cuad = []
+	print("--------------------EVALUO EA----------------")
 	#print(pila_operandos)
 	if(size==4):
 		op_1 = pila_operandos.pop()
@@ -787,6 +788,8 @@ def p_EA(p):
 			print("Unknown operator")
 		cuadruplos.append(local_cuad)
 	else:
+		print("REgerso el resultado")
+		print(p[1])
 		p[0]=p[1]
 
 def p_FA(p):
@@ -1026,23 +1029,26 @@ def p_MAT(p):
 
 def p_MAT_BRACKET(p):
 	'''
-	MAT_BRACKET : OPEN_BRACKET CONSTANT CLOSING_BRACKET
-				| MAT_BRACKET OPEN_BRACKET CONSTANT CLOSING_BRACKET
-				| OPEN_BRACKET ID CLOSING_BRACKET
-				| MAT_BRACKET OPEN_BRACKET ID CLOSING_BRACKET
+	MAT_BRACKET : OPEN_BRACKET EA CLOSING_BRACKET
+				| MAT_BRACKET OPEN_BRACKET EA CLOSING_BRACKET
 	'''
 	global global_dimension
 	global tamano
 	global list_indexes
+	global pila_operandos
 	global_dimension = global_dimension+1
 	size = len(p)
+	print("EVALUO ADENTRO DE BRACKET")
+	print(pila_operandos)
+	print("YA PASO")
 	if(size == 4):
-		list_indexes.append(p[2])
+		print(p[2])
+		list_indexes.append(pila_operandos.pop())
 		if(is_number(p[2])):
-			
 			tamano = tamano * int(p[2])
 	else:
-		list_indexes.append(p[3])
+		print(p[3])
+		list_indexes.append(pila_operandos.pop())
 		if(is_number(p[3])):	
 			tamano = tamano * int(p[3])
 
