@@ -319,7 +319,7 @@ def t_ID(t):
 	return t
 
 def t_STRING(t):
-	r'"(.)*"'
+	r'"((?!").)*"'
 	return t
 
 #en caso de error

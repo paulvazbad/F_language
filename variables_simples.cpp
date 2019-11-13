@@ -29,6 +29,7 @@ main(){
     tres();
     dos();
     res=1;
+    print("Introduce x para power");
     read(x);
     read(y);
     power();
