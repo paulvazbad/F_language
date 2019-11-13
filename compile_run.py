@@ -9,7 +9,7 @@ from Execute import execute
 """
 Paul Vazquez A00819877
 """
-fileName = 'factorial.cpp'
+fileName = 'mat.cpp'
 
 
 ## ---------------- SymbolTable ---------------
@@ -1128,4 +1128,4 @@ if __name__ =="__main__":
 	print(str(stack_dimension))
 
 	##Program Execution
-	execute(SymbolTable=SymbolTable,cuadruplos=cuadruplos, list_arrays=list_arrays)
+	execute(SymbolTable=SymbolTable,cuadruplos=cuadruplos, list_arrays_local=list_arrays)

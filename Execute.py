@@ -1,4 +1,5 @@
 #from compile_run import is_number,is_array,get_value
+list_arrays = []
 
 def is_number(s):
 	try:
@@ -8,9 +9,21 @@ def is_number(s):
 		return False
 	except TypeError:
 		return False
+
+def array_lookup(stack_indexes, starting_index):
+    print("EN ARRAY_LOOKUP")
+    last_index = stack_indexes.pop()
+    lista = list_arrays[int(float(starting_index))]
+    for index in stack_indexes:
+        lista = lista[int(float(index))]
+    print("ELEMENTO SELECCIONADO")
+    print(lista[int(float(last_index))])
+    return  lista[int(float(last_index))]
         
 ##definicion de la funcion execute
-def execute(SymbolTable,cuadruplos,list_arrays):
+def execute(SymbolTable,cuadruplos,list_arrays_local):
+    global list_arrays
+    list_arrays = list_arrays_local
     avail = {}
     print("--------------------- EXECUTION----------------------")
     OP_CODE = ""
@@ -20,12 +33,12 @@ def execute(SymbolTable,cuadruplos,list_arrays):
     while(OP_CODE is not "END"):
         OP_CODE = cuadruplos[PC][0]
         print(PC)
-        PC  = process_command(SymbolTable,list_arrays,cuadruplos[PC], avail,call_stack,PC)
+        PC  = process_command(SymbolTable,cuadruplos[PC], avail,call_stack,PC)
         
     SymbolTable.print()
     print(avail)
 
-def process_command(SymbolTable,list_arrays,cuadruplo, avail,call_stack,PC):
+def process_command(SymbolTable,cuadruplo, avail,call_stack,PC):
     OP_CODE= cuadruplo[0]
     # JUMP SECTION
     if(OP_CODE == "END"):
@@ -85,13 +98,13 @@ def process_command(SymbolTable,list_arrays,cuadruplo, avail,call_stack,PC):
     else:
         # OPERATION
         print("OPERATION")
-        process_command_expression(SymbolTable,list_arrays,cuadruplo, avail,call_stack,PC)
+        process_command_expression(SymbolTable,cuadruplo, avail,call_stack,PC)
         #Increment PC
         PC = PC + 1
     return PC
 
 
-def process_command_expression(SymbolTable,list_arrays,cuadruplo, avail,call_stack,PC):
+def process_command_expression(SymbolTable,cuadruplo, avail,call_stack,PC):
     OP_CODE= cuadruplo[0]
     res = None
     op_2 =get_value(cuadruplo[1],SymbolTable,avail)
@@ -145,6 +158,12 @@ def set_value(ID,SymbolTable, avail, res):
         T = avail.get(ID)
         avail[ID] = res
 
+def parse_matrix(ID_MAT):
+    print("Matrix a parsear")
+    print(ID_MAT)
+    LIST_MAT= ID_MAT.split("-")
+    print(LIST_MAT)
+    return LIST_MAT[0], LIST_MAT[1:]
 
 def get_value(ID,SymbolTable,avail):
     print("LOOKING FOR " + str(ID))
@@ -152,8 +171,12 @@ def get_value(ID,SymbolTable,avail):
         return float(ID)
     # Check if it starts with a  [
     if(ID[0]=="["):
-        print("ES MATRIX")
-        return 11111
+        ID, stack_indexes= parse_matrix(ID[1:])
+        starting_index = get_value(ID,SymbolTable,avail)
+        print(starting_index)
+        ele = array_lookup(stack_indexes=stack_indexes,starting_index=starting_index)
+        
+        return ele
     query = SymbolTable.lookup(ID)
     if(query is not None):
         print(query.print())
