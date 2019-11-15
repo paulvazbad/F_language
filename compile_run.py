@@ -10,7 +10,7 @@ from execute_f import execute
 """
 Paul Vazquez A00819877
 """
-fileName = 'mat.cpp'
+fileName = 'variables_simples.cpp'
 
 
 ## ---------------- SymbolTable ---------------
@@ -29,6 +29,12 @@ cuadruplos = []
 
 func_id = ""
 line_number = -1
+
+
+def debug(ele):
+	output=False
+	if(output==True):
+		print(ele)
 
 def get_value(value):
 	if(is_number(value)):
@@ -54,13 +60,13 @@ def print_cuadruplos():
 	f.close()
 	f = open("cuadruplos.txt", "a")
 	for index,element in enumerate(cuadruplos):
-		print(str(index)+" --> "+str(element))
+		debug(str(index)+" --> "+str(element))
 		f.write(str(index)+" --> "+str(element)+"\n")
 	f.close()
 
 
 def fill(dir1,cont):
-	print("Relleno el espacio en la direccion: " + str(dir1)+" con "+str(cont))
+	debug("Relleno el espacio en la direccion: " + str(dir1)+" con "+str(cont))
 	global cuadruplos
 	position_fill = cuadruplos[dir1]
 	# Last position
@@ -88,8 +94,8 @@ def recursive_generation(depth,lista,stack_dimensions):
 
 def print_lista_arrays():
 	for index,ele in enumerate(list_arrays):
-		print("Lista en la posicion " + str(index))
-		print(ele)
+		debug("Lista en la posicion " + str(index))
+		debug(ele)
 
 
 def is_array(id):
@@ -327,7 +333,7 @@ def t_STRING(t):
 
 #en caso de error
 def t_error(t):
-	print('Error de lexico: '+str(t))
+	debug('Error de lexico: '+str(t))
 	t.lexer.skip(1)
 
 
@@ -343,7 +349,7 @@ def p_PROGRAMA(p):
 	local_cuad.append("END")
 	cuadruplos.append(local_cuad)
 	#
-	print("END ")
+	debug("END ")
 
 def p_VAR(p):
 	'''
@@ -366,14 +372,14 @@ def p_VAR(p):
 		list_indexes = stack_list_indexes.pop()
 	if(dimension>0):
 		##declaration of n-dimensional array
-		print("n-dimentional_array")
-		print("--------------------------")
-		print("tamano " + str(tamano))
-		print('dimension' + str(dimension))	
+		debug("n-dimentional_array")
+		debug("--------------------------")
+		debug("tamano " + str(tamano))
+		debug('dimension' + str(dimension))	
 		
-		print("indexes" + str(list_indexes))
-		print("id:" + str(p[3]))
-		print("--------------------------")
+		debug("indexes" + str(list_indexes))
+		debug("id:" + str(p[3]))
+		debug("--------------------------")
 		
 		if(size==5):
 			id = p[3]
@@ -393,7 +399,7 @@ def p_VAR(p):
 	else:
 		if(size == 4):
 			tipo = p[1]
-		#print("tipo " + p[1])
+		#debug("tipo " + p[1])
 		elif(size ==5):
 			tipo = p[2]
 		for element in lista_var:
@@ -412,9 +418,9 @@ def p_DECLARE(p):
 	size = len(p)
 	global value
 	global lista_var
-	#print("size en declare" + str(size))
+	#debug("size en declare" + str(size))
 	if(size == 2):
-		#print('En declare' + str(p[1]))
+		#debug('En declare' + str(p[1]))
 		element = p[1]
 		lista_var.append(element)
 	elif(size == 4):
@@ -440,13 +446,13 @@ def p_ASSIGN(p):
 	local_cuad.append('=')
 	local_cuad.append(str(ea))
 	local_cuad.append('$')
-	print("ASSIGN" + p[1]+" " +  str(dimension))
+	debug("ASSIGN" + p[1]+" " +  str(dimension))
 
 	## And is of type mat
 	is_arr = is_array(p[1])
 	if(dimension>0 and  is_arr):
-		print("ASSIGN TO MAT")
-		print(stack_list_indexes)
+		debug("ASSIGN TO MAT")
+		debug(stack_list_indexes)
 		list_indexes = stack_list_indexes.pop()
 		
 		indexes = '-'.join([str(elem) for elem in list_indexes]) 
@@ -455,7 +461,7 @@ def p_ASSIGN(p):
 	else:
 		lista_var.append(p[1])
 		local_cuad.append(p[1])
-		print('= ' + str(ea) +' $ ' + str(p[1]))
+		debug('= ' + str(ea) +' $ ' + str(p[1]))
 	cuadruplos.append(local_cuad)
 	p[0] = p[1]
 
@@ -472,7 +478,7 @@ def p_SET_ID(p):
 	SET_ID : ID
 	'''
 	global func_id
-	print("set_function_id")
+	debug("set_function_id")
 	func_id = p[1]
 
 def p_DECLARE_FUNC(p):
@@ -481,9 +487,9 @@ def p_DECLARE_FUNC(p):
 	'''
 	global func_id
 	global line_number
-	print("REgister new function")
-	print('FUnc id' + func_id)
-	print("line_number" + str(line_number))
+	debug("REgister new function")
+	debug('FUnc id' + func_id)
+	debug("line_number" + str(line_number))
 	SymbolTable.insert(id=func_id, tipo="void", attributes=line_number)
 
 def p_RETURN(p):
@@ -496,7 +502,7 @@ def p_RETURN(p):
 	local_cuad.append("RETURN")
 	cuadruplos.append(local_cuad)
 	#
-	print("RETURN " + "____")
+	debug("RETURN " + "____")
 
 def p_AUX_FUNC(p):
 	'''
@@ -516,7 +522,7 @@ def p_AUX_FUNC(p):
 	#
 	contador_cuadruplos = len(cuadruplos)
 	pila_saltos.append(contador_cuadruplos-1)
-	print("GOTO " + "____")
+	debug("GOTO " + "____")
 	line_number = contador_cuadruplos
 	p[0]= contador_cuadruplos
 
@@ -573,9 +579,9 @@ def p_PRINTSTAT(p):
 	global cuadruplos
 	local_cuad = []
 	local_cuad.append("PRINT")
-	print("EEEEEEEEEEEEEEEEEEEEEE")
-	print(p[3])
-	print("AAAAAAAAAA")
+	debug("EEEEEEEEEEEEEEEEEEEEEE")
+	debug(p[3])
+	debug("AAAAAAAAAA")
 	local_cuad.append(p[3])
 	cuadruplos.append(local_cuad)
 
@@ -615,7 +621,7 @@ def p_IF_AUX1(p):
 	#
 	contador_cuadruplos = len(cuadruplos)
 	pila_saltos.append(contador_cuadruplos-1)
-	print("GOTO " + str(Result_Logic) + "____")
+	debug("GOTO " + str(Result_Logic) + "____")
 
 
 def p_IF_AUX2(p):
@@ -627,7 +633,7 @@ def p_IF_AUX2(p):
 	global pila_saltos
 	dir_1 = pila_saltos.pop()
 	cuadruplos.append(["GOTO","___"])
-	print("GOTO " + "____")
+	debug("GOTO " + "____")
 	contador_cuadruplos = len(cuadruplos)
 	pila_saltos.append(contador_cuadruplos-1)
 	fill(dir_1,contador_cuadruplos)
@@ -692,7 +698,7 @@ def p_WHILE_AUX_2(p):
 	#
 	contador_cuadruplos = len(cuadruplos)
 	pila_saltos.append(contador_cuadruplos-1)
-	print("GOTOF " + str(Result_Logic) + "____")
+	debug("GOTOF " + str(Result_Logic) + "____")
 
 def p_DOSTAT(p):
 	'''
@@ -708,7 +714,7 @@ def p_DOSTAT(p):
 	local_cuad.append("___")
 	cuadruplos.append(local_cuad)
 	#
-	print("GOTOT " + str(Result_Logic) + "____")
+	debug("GOTOT " + str(Result_Logic) + "____")
 	contador_cuadruplos = len(cuadruplos)
 
 	fill(contador_cuadruplos-1,pila_saltos.pop())
@@ -721,9 +727,9 @@ def p_FORSTAT(p):
 	global pila_saltos
 	global cuadruplos
 	# Meter la asignacion
-	print("METO EN FOR ANTES DE LOS SALTOS")
+	debug("METO EN FOR ANTES DE LOS SALTOS")
 	for each in p[10][::-1]:
-		print(each)
+		debug(each)
 		cuadruplos.append(each)
 	dir1 = pila_saltos.pop()
 	dir2= pila_saltos.pop()
@@ -761,7 +767,7 @@ def p_FUNCSTAT(p):
 	result = SymbolTable.lookup(id=id)
 	if(result==None):
 		raise Exception('function "{}" not previously declared '.format(id))
-	print(result)
+	debug(result)
 	local_cuad.append(result.attributes)
 	cuadruplos.append(local_cuad)
 	#
@@ -792,8 +798,8 @@ def p_EA(p):
 	global pila_operandos
 	global cuadruplos
 	local_cuad = []
-	print("--------------------EVALUO EA----------------")
-	#print(pila_operandos)
+	debug("--------------------EVALUO EA----------------")
+	#debug(pila_operandos)
 	if(size==4):
 		op_1 = pila_operandos.pop()
 		op_2 = pila_operandos.pop()
@@ -811,15 +817,15 @@ def p_EA(p):
 			local_cuad.append(str(op_1))
 			local_cuad.append(str(op_2))
 			local_cuad.append(str(res))
-			print('- ' + str(op_1)+ ' ' + str(op_2)+ ' ' + str(res))
+			debug('- ' + str(op_1)+ ' ' + str(op_2)+ ' ' + str(res))
 			pila_operandos.append(res)
 			contador_T=contador_T+1
 		else:
-			print("Unknown operator")
+			debug("Unknown operator")
 		cuadruplos.append(local_cuad)
 	else:
-		print("REgerso el resultado")
-		print(p[1])
+		debug("REgerso el resultado")
+		debug(p[1])
 		p[0]=p[1]
 
 def p_FA(p):
@@ -838,14 +844,14 @@ def p_FA(p):
 	if(size == 2):
 		element = SymbolTable.lookup(p[1])
 		if(element is not None):
-			#print("Variable " +p[1])
+			#debug("Variable " +p[1])
 			if(len(stack_dimension)>0) and is_array(p[1]):
 				dimension = stack_dimension.pop()
 			if (dimension>1):
 				#Is matrix
 				list_indexes = stack_list_indexes.pop()
-				print("indexes" + str(list_indexes))
-				print(p[1])
+				debug("indexes" + str(list_indexes))
+				debug(p[1])
 				#special format
 				indexes = '-'.join([str(elem) for elem in list_indexes]) 
 				pila_operandos.append('['+element.id+'-'+indexes)
@@ -857,7 +863,7 @@ def p_FA(p):
 			pila_operandos.append(float(p[1]))
 		else:
 			#No existe
-			#print("Constant " + p[1])
+			#debug("Constant " + p[1])
 			raise Exception("variable {} no previously declared".format(p[1]))
 		p[0]=p[1]
 		
@@ -883,7 +889,7 @@ def p_TA(p):
 			local_cuad.append(op_1)
 			local_cuad.append(op_2)
 			local_cuad.append(res)
-			#print('* ' + str(op_1)+ ' ' + str(op_2)+ ' ' + str(res))
+			#debug('* ' + str(op_1)+ ' ' + str(op_2)+ ' ' + str(res))
 			pila_operandos.append(res)
 			contador_T=contador_T+1
 		elif(p[2]=='/'):
@@ -891,11 +897,11 @@ def p_TA(p):
 			local_cuad.append(op_1)
 			local_cuad.append(op_2)
 			local_cuad.append(res)
-			#print('/ ' + str(op_1)+ ' ' + str(op_2)+ ' ' + str(res))
+			#debug('/ ' + str(op_1)+ ' ' + str(op_2)+ ' ' + str(res))
 			pila_operandos.append(res)
 			contador_T=contador_T+1
 		else:
-			print("Unknown operator")
+			debug("Unknown operator")
 		cuadruplos.append(local_cuad)
 	else:
 		p[0] = p[1]
@@ -910,7 +916,7 @@ def p_EL(p):
 	global pila_operandos
 	global cuadruplos
 	local_cuad = []
-	#print(pila_operandos)
+	#debug(pila_operandos)
 	if(size==4):
 		op_1 = pila_operandos.pop()
 		op_2 = pila_operandos.pop()
@@ -920,12 +926,12 @@ def p_EL(p):
 			local_cuad.append(str(op_1))
 			local_cuad.append(str(op_2))
 			local_cuad.append(str(res))
-			#print('|| ' + str(op_1)+ ' ' + str(op_2)+ ' ' + str(res))
+			#debug('|| ' + str(op_1)+ ' ' + str(op_2)+ ' ' + str(res))
 			pila_operandos.append(res)
 			contador_T=contador_T+1
 			cuadruplos.append(local_cuad)
 		else:
-			print("Unknown operator")
+			debug("Unknown operator")
 	
 	
 	
@@ -949,12 +955,12 @@ def p_TL(p):
 			local_cuad.append(str(op_1))
 			local_cuad.append(str(op_2))
 			local_cuad.append(str(res))
-			#print('&& ' + str(op_1)+ ' ' + str(op_2)+ ' ' + str(res))
+			#debug('&& ' + str(op_1)+ ' ' + str(op_2)+ ' ' + str(res))
 			pila_operandos.append(res)
 			contador_T=contador_T+1
 			cuadruplos.append(local_cuad)
 		else:
-			print("Unknown operator")
+			debug("Unknown operator")
 
 def p_FL(p):
 	'''
@@ -978,7 +984,7 @@ def p_FL(p):
 			local_cuad.append(str(op_1))
 			local_cuad.append(str(op_2))
 			local_cuad.append(str(res))
-			#print('!= ' + str(op_1)+ ' ' + str(op_2)+ ' ' + str(res))
+			#debug('!= ' + str(op_1)+ ' ' + str(op_2)+ ' ' + str(res))
 			pila_operandos.append(res)
 			contador_T=contador_T+1
 		elif(p[2]=='=='):
@@ -986,7 +992,7 @@ def p_FL(p):
 			local_cuad.append(str(op_1))
 			local_cuad.append(str(op_2))
 			local_cuad.append(str(res))
-			#print('== ' + str(op_1)+ ' ' + str(op_2)+ ' ' + str(res))
+			#debug('== ' + str(op_1)+ ' ' + str(op_2)+ ' ' + str(res))
 			pila_operandos.append(res)
 			contador_T=contador_T+1
 		elif(p[2]=='>'):
@@ -994,7 +1000,7 @@ def p_FL(p):
 			local_cuad.append(str(op_1))
 			local_cuad.append(str(op_2))
 			local_cuad.append(str(res))
-			#print('> ' + str(op_1)+ ' ' + str(op_2)+ ' ' + str(res))
+			#debug('> ' + str(op_1)+ ' ' + str(op_2)+ ' ' + str(res))
 			pila_operandos.append(res)
 			contador_T=contador_T+1
 		elif(p[2]=='<'):
@@ -1002,11 +1008,11 @@ def p_FL(p):
 			local_cuad.append(str(op_1))
 			local_cuad.append(str(op_2))
 			local_cuad.append(str(res))
-			#print('< ' + str(op_1)+ ' ' + str(op_2)+ ' ' + str(res))
+			#debug('< ' + str(op_1)+ ' ' + str(op_2)+ ' ' + str(res))
 			pila_operandos.append(res)
 			contador_T=contador_T+1
 		else:
-			print("Unknown operator")
+			debug("Unknown operator")
 		cuadruplos.append(local_cuad)
 
 
@@ -1028,7 +1034,7 @@ def p_NL(p):
 			local_cuad.append(str(op_1))
 			local_cuad.append('$')
 			local_cuad.append(str(res))
-			print('! ' + str(op_1)+ ' $ ' + ' ' + str(res))
+			debug('! ' + str(op_1)+ ' $ ' + ' ' + str(res))
 			pila_operandos.append(res)
 			contador_T=contador_T+1
 		cuadruplos.append(local_cuad)
@@ -1052,7 +1058,7 @@ def p_MAT(p):
 	global list_indexes
 	p[0] = p[1]
 	stack_dimension.append(global_dimension)
-	print("append to stack_list_indexes" + str(list_indexes))
+	debug("append to stack_list_indexes" + str(list_indexes))
 	stack_list_indexes.append(list_indexes)
 	global_dimension = 0
 	list_indexes = []
@@ -1068,16 +1074,16 @@ def p_MAT_BRACKET(p):
 	global pila_operandos
 	global_dimension = global_dimension+1
 	size = len(p)
-	print("EVALUO ADENTRO DE BRACKET")
-	print(pila_operandos)
-	print("YA PASO")
+	debug("EVALUO ADENTRO DE BRACKET")
+	debug(pila_operandos)
+	debug("YA PASO")
 	if(size == 4):
-		print(p[2])
+		debug(p[2])
 		list_indexes.append(pila_operandos.pop())
 		if(is_number(p[2])):
 			tamano = tamano * int(p[2])
 	else:
-		print(p[3])
+		debug(p[3])
 		list_indexes.append(pila_operandos.pop())
 		if(is_number(p[3])):	
 			tamano = tamano * int(p[3])
@@ -1090,11 +1096,11 @@ def p_error(p):
 
 ##----------------------MAIN----------------------
 def printAtttributes(p):
-	print("------")
-	print(len(p))
+	debug("------")
+	debug(len(p))
 	for each in p:
-		print(each)
-	print("------")
+		debug(each)
+	debug("------")
 
 
 def tryLexer(lexer):
@@ -1122,19 +1128,19 @@ def tryParser(lexer,parser):
 		print ("\n" + sentence)
 		result = parser.parse(sentence)
 		if(result):
-			print(result)
-		print("-----------")
+			debug(result)
+		debug("-----------")
 
 def tryParserOnFile(lexer,parser):
 	global fileName
 	with open(fileName, 'r') as file:
 		data = file.read()
-		#print(data)
+		#debug(data)
 		data = data.replace('\n', '')
 		parser.parse(data)
-		print("-----------")
-		print("Gramatica y Sintaxis correcta")
-		print("-----------")
+		debug("-----------")
+		debug("Gramatica y Sintaxis correcta")
+		debug("-----------")
 
 if __name__ =="__main__":
 	os.listdir()
@@ -1144,11 +1150,11 @@ if __name__ =="__main__":
 	tryLexer(lexer)
 	tryParserOnFile(lexer,parser)
 	print_cuadruplos()
-	SymbolTable.print()
+	#SymbolTable.print()
 
 	print_lista_arrays()
 	## acceder a un elemento
-	print(str(stack_dimension))
-	print("---------------------EXECUTION-----------------")
+	debug(str(stack_dimension))
+	debug("---------------------EXECUTION-----------------")
 	##Program Execution
 	execute(SymbolTable=SymbolTable,cuadruplos=cuadruplos, list_arrays_local=list_arrays)

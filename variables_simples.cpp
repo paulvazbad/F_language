@@ -32,42 +32,59 @@ function power(){
 function e(){
     print("Introduce x para e^x");
     read(x);
+    int potencia;
+    potencia = x;
     int j;
     double num,den;
     num=0;
     den=0;
-    for(j=0;j<10;j=j+1){
+    for(j=0;j<11;j=j+1){
         y=j;
+        x=potencia;
         power();
         num = res;
         m = j;
+        f=1;
         factorial();
         den = f;
+        print(num);
+        print("/");
+        print(den);
+        print("endl");
         valorE  = valorE + (num/den);
     }
     print("RESULTADO:");
     print(valorE);
+    print("endl");
 }
 main(){
     
     do{
-        print("--MENU--"); 
+        print("--MENU--");
+        print("endl"); 
         print("1) Factorial");
+        print("endl");
         print("2) Potencia");
+        print("endl");
         print("3) e^x");
+        print("endl");
         print("0) Salir");
+        print("endl");
         read(opcion);
         f=1;
         if(opcion == 1){
             print("Introduce el numero para  factorial");
+            print("endl");
             uno();
             factorial();
             dos();
         }
         if(opcion == 2){
             print("Introduce x para power");
+            print("endl");
             read(x);
             print("Introduce y para power");
+            print("endl");
             read(y);
             power();
             print(res);
