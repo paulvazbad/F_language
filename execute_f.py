@@ -19,7 +19,7 @@ def array_lookup(stack_indexes, starting_index,SymbolTable,avail):
     for index in stack_indexes:
         index =  get_value(index,SymbolTable=SymbolTable,avail=avail)
         lista = lista[int(index)]
-    last_index =  get_value(starting_index,SymbolTable=SymbolTable,avail=avail)
+    last_index =  get_value(last_index,SymbolTable=SymbolTable,avail=avail)
     return  lista[int(last_index)]
 
 
