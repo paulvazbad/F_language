@@ -1,14 +1,31 @@
+#include <iostream>
+#include <string>
+
 int x,f,y,m;
 int res;
 int opcion;
 int valorE;
-function uno(){
+
+void read(int &num){
+    std::cin>>num;
+}
+
+
+
+void print(int algo){
+    std::cout<<algo<<std::endl;
+}
+void print(std::string algo){
+    std::cout<<algo<<std::endl;
+}
+
+void uno(){
     read(m);
 }
-function dos(){
+void dos(){
     print(f);
 }
-function tres(){
+void tres(){
     if(m>1){
         f = f*m;
         m =m-1;
@@ -16,21 +33,21 @@ function tres(){
     }
 }
 
-function factorial(){
+void factorial(){
     tres();
 }
 
-function power(){
+void power(){
     int i;
     res = 1;
-
+    print("valor de y: ");
+    print(y);
     for(i=0 ;i<y; i= i+1){
         res = res * x;
     }
 }
 
-function e(){
-    print("Introduce x para e^x");
+void e(){
     read(x);
     int j;
     double num,den;
@@ -39,16 +56,23 @@ function e(){
     for(j=0;j<10;j=j+1){
         y=j;
         power();
+        
         num = res;
         m = j;
         factorial();
         den = f;
+        
+        
+        
         valorE  = valorE + (num/den);
+        
+        
     }
-    print("RESULTADO:");
-    print(valorE);
+    
+    
 }
-main(){
+
+int main(){
     
     do{
         print("--MENU--"); 

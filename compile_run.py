@@ -2,14 +2,15 @@ import ply.lex as lex
 import ply.yacc as yacc
 import sys
 import os
+import numpy as np
 from SymbolTable import SymbolTable
-from Execute import execute
+from execute_f import execute
 #from LexDefinition import *
 
 """
 Paul Vazquez A00819877
 """
-fileName = 'variables_simples.cpp'
+fileName = 'mat.cpp'
 
 
 ## ---------------- SymbolTable ---------------
@@ -72,6 +73,7 @@ def  initialize_list(n):
 	for i in range(0,n):
 		return [0]*n
 
+
 def recursive_generation(depth,lista,stack_dimensions):
     if(depth>0):
         number_elements= stack_dimensions.pop(0)
@@ -82,6 +84,7 @@ def recursive_generation(depth,lista,stack_dimensions):
         depth= depth-1
         recursive_generation(depth,lista,stack_dimensions)
     return lista
+
 
 def print_lista_arrays():
 	for index,ele in enumerate(list_arrays):
@@ -713,10 +716,15 @@ def p_DOSTAT(p):
 
 def p_FORSTAT(p):
 	'''
-	FORSTAT : FOR OPEN_PARENTH ASSIGN SEMICOLON WHILE_AUX_1 EL SEMICOLON WHILE_AUX_2 ASSIGN CLOSING_PARENTH  IN_S
+	FORSTAT : FOR OPEN_PARENTH ASSIGN SEMICOLON WHILE_AUX_1 EL SEMICOLON WHILE_AUX_2 ASSIGN FOR_INCREMENT CLOSING_PARENTH  IN_S
 	'''
 	global pila_saltos
 	global cuadruplos
+	# Meter la asignacion
+	print("METO EN FOR ANTES DE LOS SALTOS")
+	for each in p[10][::-1]:
+		print(each)
+		cuadruplos.append(each)
 	dir1 = pila_saltos.pop()
 	dir2= pila_saltos.pop()
 	global cuadruplos
@@ -727,6 +735,17 @@ def p_FORSTAT(p):
 	cuadruplos.append(local_cuad)
 	#
 	fill(dir1,len(cuadruplos))
+
+
+def p_FOR_INCREMENT(p):
+	'''
+	FOR_INCREMENT : empty
+	'''
+	global cuadruplos
+	local_cuad = []
+	while(cuadruplos[-1][0]!="GOTOF"):
+		local_cuad.append(cuadruplos.pop())
+	p[0] = local_cuad
 
 def p_FUNCSTAT(p):
 	'''
@@ -1130,6 +1149,6 @@ if __name__ =="__main__":
 	print_lista_arrays()
 	## acceder a un elemento
 	print(str(stack_dimension))
-
+	print("---------------------EXECUTION-----------------")
 	##Program Execution
 	execute(SymbolTable=SymbolTable,cuadruplos=cuadruplos, list_arrays_local=list_arrays)
