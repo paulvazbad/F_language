@@ -14,6 +14,11 @@ class SymbolTable:
         else:
             return None
     
+    def update(self,id,value):
+        if(self.elements[id] is None):
+            raise Exception(id + " not found in SymbolTable")
+        self.elements[id].attributes = value
+
     def delete(self,id):
         success = self.elements.pop(id,d=None)
         return success
@@ -34,4 +39,4 @@ class TableElement:
    
     
     def print(self):
-        print("<type: {0}, id: {1}, attribute: {2}>".format(self.tipo,self.id,self.attributes))
+        print("<type: {0}, id: {1}, attributes: {2}>".format(self.tipo,self.id,self.attributes))
