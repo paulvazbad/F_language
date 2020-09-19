@@ -733,7 +733,6 @@ def p_FORSTAT(p):
 		cuadruplos.append(each)
 	dir1 = pila_saltos.pop()
 	dir2= pila_saltos.pop()
-	global cuadruplos
 	# Generar cuadruplo
 	local_cuad = []
 	local_cuad.append("GOTO")
@@ -1131,8 +1130,10 @@ def tryParser(lexer,parser):
 			debug(result)
 		debug("-----------")
 
-def tryParserOnFile(lexer,parser):
+def tryParserOnFile(lexer,parser,args):
 	global fileName
+	if(len(args)>1):
+		fileName = args[1]
 	with open(fileName, 'r') as file:
 		data = file.read()
 		#debug(data)
@@ -1143,12 +1144,13 @@ def tryParserOnFile(lexer,parser):
 		debug("-----------")
 
 if __name__ =="__main__":
+	args = sys.argv
 	os.listdir()
 	count = 0
 	lexer = lex.lex()
 	parser = yacc.yacc(start="PROGRAMA")
 	tryLexer(lexer)
-	tryParserOnFile(lexer,parser)
+	tryParserOnFile(lexer,parser,args)
 	print_cuadruplos()
 	#SymbolTable.print()
 

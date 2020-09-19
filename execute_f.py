@@ -182,8 +182,10 @@ def get_value(ID,SymbolTable,avail):
         return ele
     query = SymbolTable.lookup(ID)
     if(query is not None):
-        if(query.tipo == "int" or query.tipo == "double"):
+        if(query.tipo == "double"):
             return float(query.attributes)
+        elif(query.tipo == "int"):
+            return int(query.attributes)
         return query.attributes
     else:
         #Look in avail
